@@ -42,7 +42,9 @@ export default function Post({ type, title, description, link, image, tech }: { 
         </video>
         </a>
       ) : (
+        <a href={link} target="_blank" rel="noopener noreferrer">
         <img src={image} alt={title} className="max-h-[400px] object-cover" />
+        </a>
       )}
       </div>
       
