@@ -145,11 +145,12 @@ teaching coding to primary school children in Edinburgh.
         Recent Projects
       </h2>
 
-      <Post title="XAI for Brain MRI Glioblastoma Diagnosis" 
+      <Post title="Clinically interpretable XAI for Brain Tumor MRI Diagnosis" 
       type={isDarkMode ? "light" : "dark"}
-      description="For my dissertation, I am exploring XAI techniques to enhance the trustworthiness of brain cancer detection systems. Specifically, I am building on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a>
-      to integrate clinical concepts into the pipeline. I am collaborating closely with a clinician to identify key clinical concepts from medical reports, which will be incorporated into the model training process to improve interpretability." 
+      description="For my dissertation, I am exploring Explainable AI (XAI) techniques to enhance the trustworthiness of brain tumor diagnosis models. Specifically, I am building on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a>
+      to integrate clinical concepts into the pipeline. I am collaborating with clinicians to identify key clinical concepts from medical reports, which will be incorporated into the model training process to improve interpretability." 
       image="/posts/diss.png"
+      link="https://github.com/Cat2005/xai-brain-diagnosis"
       tech={["Python", "TensorFlow"]} />
  
 
