@@ -1,103 +1,204 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import AuroraBackground from "./components/AuroraBackground";
+import Landing from "./landing";
+import Projects from "./Projects";
+import Navbar from "./components/Navbar";
+import SideBar from "./components/SideBar";
+import Experience from "./Experience";
+import ArrowPopUp from "./components/ArrowPopUp";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [projectsScrollProgress, setProjectsScrollProgress] = useState(0);
+  const projectsRef = useRef(null);
+  const landingRef = useRef(null);
+  const experienceRef = useRef(null);
+  const [currentSection, setCurrentSection] = useState<string | null>(null);
+  
+  // Simplified intersection observer to handle sidebar visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Show sidebar if either Projects or Experience section is visible
+        const isVisible = entries.some(entry => {
+          const isIntersecting = entry.isIntersecting;
+          // If it's the projects section, also check if it's not fully faded out
+          if (entry.target.id === 'projects-section') {
+            setCurrentSection('projects');
+            return isIntersecting && (1 - projectsScrollProgress) > 0;
+          }
+          if (entry.target.id === 'experience-section') {
+            setCurrentSection('experience');
+          }
+          return isIntersecting;
+        });
+        
+        // Debug log
+        console.log('Sidebar visibility:', isVisible);
+        setShowSidebar(isVisible);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-20% 0px'
+      }
+    );
+    
+    // Observe both Projects and Experience sections
+    if (projectsRef.current) {
+      observer.observe(projectsRef.current);
+    }
+    if (experienceRef.current) {
+      observer.observe(experienceRef.current);
+    }
+    
+    return () => {
+      if (projectsRef.current) {
+        observer.unobserve(projectsRef.current);
+      }
+      if (experienceRef.current) {
+        observer.unobserve(experienceRef.current);
+      }
+    };
+  }, [projectsScrollProgress]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  // Improved scroll handler with debouncing
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Start transition after scrolling past 80% of landing section height
+      const transitionStart = windowHeight * 0.8;
+      const transitionEnd = windowHeight * 0.9;
+      
+      if (scrollY < transitionStart) {
+        setScrollProgress(0);
+      } else if (scrollY > transitionEnd) {
+        setScrollProgress(1);
+      } else {
+        setScrollProgress((scrollY - transitionStart) / (transitionEnd - transitionStart));
+      }
+    };
+
+    // Add debouncing to reduce performance impact
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener);
+    handleScroll(); // Initialize on mount
+    return () => window.removeEventListener('scroll', scrollListener);
+  }, []);
+
+  // Add new scroll handler for Projects to Experience transition
+  useEffect(() => {
+    const handleProjectsScroll = () => {
+      if (!projectsRef.current) return;
+      
+      const projectsElement = projectsRef.current as HTMLElement;
+      const projectsRect = projectsElement.getBoundingClientRect();
+      const projectsHeight = projectsRect.height;
+      
+      // Start fading when we're 80% through the Projects section
+      const transitionStart = projectsHeight * 0.8;
+      const transitionEnd = projectsHeight * 0.9;
+      const scrollPosition = Math.abs(projectsRect.top);
+      
+      let newProgress = 0;
+      if (scrollPosition < transitionStart) {
+        newProgress = 0;
+      } else if (scrollPosition > transitionEnd) {
+        newProgress = 1;
+      } else {
+        newProgress = (scrollPosition - transitionStart) / (transitionEnd - transitionStart);
+      }
+      
+      // Debug log
+      console.log('Projects scroll progress:', newProgress, 'scroll position:', scrollPosition);
+      setProjectsScrollProgress(newProgress);
+    };
+
+    // Add debouncing
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleProjectsScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener);
+    handleProjectsScroll(); // Initialize on mount
+    return () => window.removeEventListener('scroll', scrollListener);
+  }, []);
+
+  return (
+    <div className="relative">
+      <AuroraBackground />
+      <Navbar />
+      {/* <ArrowPopUp text="Scroll down" /> */}
+      
+      {/* Fixed Sidebar */}
+      {showSidebar && <SideBar currentSection={currentSection} />}
+      
+      {/* Landing section - normal scroll behavior */}
+      <div 
+        ref={landingRef}
+        id="landing-section" 
+        className="min-h-screen transition-opacity duration-500 ease-in-out"
+        style={{ 
+          opacity: 1 - scrollProgress,
+          position: 'relative',
+          zIndex: 10
+        }}
+      >
+        <Landing />
+      </div>
+     
+      {/* Projects section with fade in/out effect */}
+      <div 
+        ref={projectsRef}
+        id="projects-section"  // Add ID for debugging
+        className="w-full min-h-screen transition-opacity duration-500 ease-in-out"
+        style={{ 
+          opacity: scrollProgress * (1 - projectsScrollProgress),
+          position: 'relative',
+          zIndex: 20,
+          marginTop: '-20vh',
+          pointerEvents: projectsScrollProgress > 0 ? 'auto' : 'none'
+        }}
+      >
+        <Projects />
+      </div>
+
+      {/* Experience section with fade in effect */}
+      <div 
+        ref={experienceRef}
+        id="experience-section" 
+        className="w-full min-h-screen transition-opacity duration-500 ease-in-out"
+        style={{ 
+          opacity: projectsScrollProgress,
+          position: 'relative',
+          zIndex: 30,
+          marginTop: '-20vh',
+          pointerEvents: projectsScrollProgress > 0 ? 'auto' : 'none'
+        }}
+      >
+        <Experience />
+      </div>
     </div>
   );
 }
