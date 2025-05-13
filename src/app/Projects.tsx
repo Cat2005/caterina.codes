@@ -1,27 +1,25 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProjectSlide from './components/ProjectSlide';
-import { motion, AnimatePresence } from 'framer-motion';
+import { HiArrowUpRight } from 'react-icons/hi2';
 
 const Projects: React.FC = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [scrollProgress, setScrollProgress] = useState(0);
-    
     const projects = [
-        {
-            title: "CompSoc Website",
-            description: "Co-developed + designed with <a href='https://www.tomasmaillo.com' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> Tomas Maillo</a>.",
-            link: "https://comp-soc.com",
-            image: "/posts/compsoc-img.png",
-            tech: ["React", "Typescript", "Next.js", "Tailwind"]
-        },
+        
         {
             title: "Nail Polish Finder",
             description: "Took off quickly after I posted about it on Reddit on Instagram where it got 6M+ views. The website gets roughly 30k unique visitors a month nowadays. I received a lot of valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!",
             link: "https://nailpolishfinder.com",
             image: "/posts/nailpolish-cut.mov",
-            tech: ["React", "Typescript", "Next.js", "Tailwind", "Python", "Selenium"]
+            tech: ["React", "Typescript", "Next.js", "Python"]
+        },
+        {
+            title: "CompSoc Website",
+            description: "Co-developed + designed with <a href='https://www.tomasmaillo.com' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> Tomas Maillo</a>. We integrated features like pulling events directly from Google Calendar to ensure the event schedule stays up-to-date and displaying the live number of members on Discord. The website gets over 7000 unique visitors per month.",
+            link: "https://comp-soc.com",
+            image: "/posts/compsoc-img.png",
+            tech: ["React", "Typescript", "Next.js", "Tailwind"]
         },
         {
             title: "XAI model for Brain Tumor MRI Diagnosis",
@@ -47,92 +45,36 @@ const Projects: React.FC = () => {
 
     ];
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const newIndex = Math.floor((scrollPosition + (windowHeight * 0.3)) / windowHeight) - 1;
-            
-            // Clamp the index to valid range
-            const clampedIndex = Math.min(Math.max(0, newIndex), projects.length - 1);
-            
-            // Calculate progress within current section
-            const sectionScrollPosition = scrollPosition - (clampedIndex + 1) * windowHeight;
-            const progress = sectionScrollPosition / windowHeight;
-            
-            // Only update if we're within valid bounds
-            if (clampedIndex >= 0 && clampedIndex < projects.length) {
-                setScrollProgress(Math.max(0, Math.min(1, progress)));
-                setActiveIndex(clampedIndex);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [activeIndex, projects.length]);
-
     return (
-        <div className="flex flex-col w-full">
-            <div className="h-screen relative">
-                <div className="fixed top-[20vh] w-[45%] left-1/2 -translate-x-1/2">
-                    {/* Progress bar */}
-                    {/* <div className="absolute -right-12 top-0 h-full w-1">
-                        <div className="h-full w-full bg-gray-200/20 rounded-full">
-                            <motion.div 
-                                className="w-full bg-[#CA0079] rounded-full origin-top"
-                                style={{ 
-                                    scaleY: scrollProgress,
-                                    height: '100%',
-                                    transformOrigin: 'top'
-                                }}
-                                transition={{ type: "spring", stiffness: 100 }}
-                            />
-                        </div> */}
-                        {/* Project count indicator */}
-                        {/* <div className="absolute -right-8 top-0 text-sm font-newsreader text-[#CA0079]">
-                            {activeIndex + 1}/{projects.length}
-                        </div>
-                    </div> */}
-
-                    <h1 className="text-5xl  max-lg:w-full lg:w-4/5 text-[#CA0079] ml-3 font-newsreader mb-10">
+        <div className="flex flex-col w-full mb-[20vh]">
+            {/* Section title */}
+            <div className="flex flex-col items-center">
+                <div className="w-[45%] max-xl:w-[45%] xl:w-[35%] pt-[10vh]">
+                    <h1 className="text-5xl max-lg:w-full lg:w-4/5 text-[#CA0079] ml-3 font-newsreader mb-10">
                         what have i been building?
                     </h1>
-                    
-                    {/* Wrap slides in a container */}
-                    <div className="relative max-lg:w-full ">
-                        {/* Current Slide */}
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeIndex}
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -50 }}
-                                transition={{ duration: 0.3 }}
-                                className="relative z-10"
-                            >
-                                <ProjectSlide {...projects[activeIndex]} />
-                            </motion.div>
-                        </AnimatePresence>
-
-                        {/* Next Slide (if available) */}
-                        {activeIndex < projects.length - 1 && (
-                            <motion.div
-                                className="absolute top-full mt-4"
-                                style={{
-                                    opacity: scrollProgress * 0.8,
-                                    filter: `blur(${1}px)`,
-                                    transform: `translateY(${scrollProgress * 20}px)`
-                                }}
-                            >
-                                <ProjectSlide {...projects[activeIndex + 1]} />
-                            </motion.div>
-                        )}
-                    </div>
                 </div>
             </div>
-            {projects.map((_, index) => (
-                <div key={index} className="h-screen" />
+
+            {/* All project slides – no animation, no blur */}
+            {projects.map((project, index) => (
+                <div key={index} className="flex flex-col items-center">
+                    <div className="w-[45%] max-xl:w-[45%] xl:w-[35%]">
+                        <ProjectSlide {...project} />
+                    </div>
+                </div>
             ))}
+             <a href="https://github.com/Cat2005" rel='noopener noreferrer' target='_blank' className='z-50 block'>
+                <div className="flex flex-col items-center group">
+                    <div className="w-[45%] max-xl:w-[45%] xl:w-[35%] text-sm text-[#acacac] text-center group-hover:cursor-pointer group-hover:scale-[1.02] transition-transform duration-200" style={{fontFamily: 'Avant-Garde-Medium'}}>
+                        these are just some recent projects I've worked on - i have many more projects, including 5+ hackathon winning projects{' '}
+                        <span className="text-[#c02e7e] border-b border-current text-sm">
+                            on my GitHub!
+                            <HiArrowUpRight className="inline mb-0.5 text-xs ml-0.5" />
+                        </span>
+                    </div>
+                </div>
+            </a>
         </div>
     );
 };

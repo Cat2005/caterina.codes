@@ -1,38 +1,60 @@
-
 import React from 'react';
 import ExperienceSlide from './components/ExperienceSlide';
+import Divider from '@/app/svgs/divider.svg';
+import Image from 'next/image';
+import DividerSVG from '@/app/components/DividerSVG';
+
 const Experience = () => {
   return (
-  
-            <div className="flex flex-col w-full">
-                <div className="fixed top-[20vh] w-2/5 left-1/2 -translate-x-1/2">
-                <div className="h-screen relative">
-                    <div className="">
-                    <h1 className="text-6xl text-[#CA0079] ml-3 font-newsreader mb-10">
-                        professional experience</h1>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                    <ExperienceSlide 
-                    title="Software Engineer Intern"
-                    company="Goldman Sachs"
-                    description="Worked on developing a dashboard using Prometheus, Grafana, Java, and PromQL to monitor infrastructure metrics for the generation of regulatory reports. The system was designed for the 1,000+ engineers in the Regulatory Engineering division to onboard their own frameworks and monitor their operations. It tracked key metrics such as processing lag and failure rates across clusters, ensuring better observability and faster issue resolution."
-                    duration="Summer 2024"
-                    />
-                    <ExperienceSlide 
-                    title="Tech secretary"
-                    company="CompSoc"
-                    description="Responsible for managing the society's technical infrastructure. This includes overseeing CompSoc's Linux servers and handling domain management. Additionally, I maintain and manage the <a href='https://infball.comp-soc.com/'> website for Infball</a>,  supporting an event with over 300 attendees with features such as integrated payment processing, QR code generation, and automated email confirmations."
-                    duration="Summer 2024"
-                    />
-                    </div>
-                </div>
-
-                </div>
-
-              
-
-            </div>
-
+    <div className="flex flex-col w-full min-h-screen">
+      <div className="w-2/5 max-xl:w-2/5 xl:w-[35%] mx-auto py-[10vh]">
+        <div className="">
+          <h1 className="text-5xl text-[#CA0079] font-newsreader mb-10 w-1/2">
+            professional experience</h1>
+        </div>
+        <div className="flex flex-col gap-3">
+          <ExperienceSlide 
+            image="/posts/spotify-logo.png"
+            title="Software Engineer Intern"
+            company="Spotify"
+            description="idk yet, will update soon"
+            duration="Summer 2025"
+          />
+          <ExperienceSlide 
+            image="/posts/gs-logo.png"
+            title="Software Engineer Intern"
+            company="Goldman Sachs"
+            description="Prometheus, Grafana, Java, PromQL"
+            duration="Summer 2024"
+          />
+          <ExperienceSlide 
+            image="/posts/compsoc-logo.png"
+            title="Tech secretary"
+            company="CompSoc"
+            description="Built comp-soc.com, managed infball website, managed compsoc's internal servers."
+            duration="2024-2025"
+          />
+          <ExperienceSlide 
+            image="/posts/compsoc-logo.png"
+            title="Sponsorship Coordinator"
+            company="CompSoc"
+            description="Raised 30k in sponsorship funding, signed on 8+ companies including Meta, Optiver and QRT."
+            duration="2024-2025"
+          />
+          <div className="w-full flex justify-center mt-5 mb-5">
+            <DividerSVG />
+          </div>
+          <ExperienceSlide 
+            image="/posts/edi-logo.png"
+            title="BSc Computer Science and AI"
+            company="University of Edinburgh"
+            description="Predicted 1st Class (81%) \n 
+            Machine Learning Practical, Natural Language Understanding+, Computer Graphics, Reinforcement Learning, Foundations of Natural Language Processing"
+            duration="2021-2025"
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

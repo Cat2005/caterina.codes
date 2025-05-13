@@ -54,7 +54,7 @@ const AuroraBackground: React.FC = () => {
           const value = noise.current.simplex3(nx * 1.5, ny * 2, t);
 
           // Curved intensity for softer edges
-          const intensity = Math.pow((value + 1) / 2, 3);
+          const intensity = Math.pow((value + 1) / 2, 3) * 1.5;
 
           // Aurora colors 
           const r = 180 + 75 * intensity; // pinkish red

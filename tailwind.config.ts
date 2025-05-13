@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
         fontFamily: {
             newsreader: ["var(--font-newsreader)"],
+            avantGardeMedium: ['var(--font-avant-garde)'],
+            avantGardeBook: ['var(--font-avant-garde-book)'],
           },
           colors: {
             'hotpink': '#CA0079',

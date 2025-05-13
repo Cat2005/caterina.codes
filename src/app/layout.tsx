@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
+import localFont from 'next/font/local'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const avantGarde = localFont({
+  src: '../../public/fonts/Avant-Garde-Medium.ttf', // Adjust path as needed
+  variable: '--font-avant-garde',
+}) 
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${avantGarde.variable} antialiased`}>
         {children}
       </body>
     </html>
