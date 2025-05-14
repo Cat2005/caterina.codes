@@ -37,6 +37,10 @@ export default function Home() {
       teachingRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const navClicked = () => {
+     projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   
   // Simplified intersection observer to handle sidebar visibility
   useEffect(() => {
@@ -248,7 +252,7 @@ export default function Home() {
         }}
       >
         
-        <Landing />
+        <Landing navClicked={navClicked} />
       </div>
      
       {/* Projects section with fade in/out effect */}
@@ -300,7 +304,7 @@ export default function Home() {
       <div className="flex justify-center items-center w-full mt-6 flex-col mb-20">
         <div className="w-[35%] max-xl:w-[35%] xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
         <div className="font-newsreader  text-center text-md" style={{fontFamily: 'Avant-Garde-Medium'}}>
-          welp, that's it! if you want to know more, you can 
+          that's it! if you want to know more, you can 
           <a href="mailto:caterina.mammola20@gmail.com"  
              target="_blank" 
              rel="noopener noreferrer"

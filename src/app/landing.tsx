@@ -1,10 +1,15 @@
 import BlogLanding from './components/BlogLanding';
 import React from 'react';
 import Navbar from './components/Navbar';
-const Landing: React.FC = () => {
+
+interface LandingProps {
+    navClicked: () => void;
+}
+
+const Landing: React.FC<LandingProps> = ({ navClicked }) => {
     return (
         <div className="flex flex-col">
-            <Navbar />
+            <Navbar navClicked={navClicked} />
 
         <div className="pl-8 justify-start pt-[10vh] flex flex-col w-2/5 mx-auto">
             <div className="flex flex-row xl:ml-10">
@@ -13,7 +18,7 @@ const Landing: React.FC = () => {
             </div>
 
             <div className="pt-8 xl:ml-10 flex flex-row text-lg text-[#CA0079] font-newsreader">
-                21 y.o CS grad, currently at Spotify :D
+                21 y.o CS grad, currently at Spotify.
             </div>
 
             {/* <div className="pt-8 xl:ml-10 text-sm flex flex-row text-lg text-[#d8d8d8] font-newsreader">
@@ -24,6 +29,7 @@ const Landing: React.FC = () => {
         </div>
 
             <div className="pt-28 w-2/5 mx-auto flex flex-col font-newsreader mb-[30vh]">
+            
             <div>Recent posts:</div>
             <div className="mt-4 flex flex-row gap-2">
                 <BlogLanding />

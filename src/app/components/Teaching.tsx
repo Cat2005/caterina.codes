@@ -38,7 +38,7 @@ const Teaching = () => {
         image="/posts/edi-logo.png"
         title="Course Tutor"
         company="School of Informatics"
-        description="Taught a first year course in Functional Programming and Computational Logic. Lead tutorials and marked weekly assignments."
+        description="Taught a first year course in Functional Programming and Computational Logic. Lead tutorials and marked assignments."
         duration="2023"
             />
 

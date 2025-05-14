@@ -17,28 +17,28 @@ const Experience = () => {
             image="/posts/spotify-logo.png"
             title="Software Engineer Intern"
             company="Spotify"
-            description="idk yet, will update soon"
+            description="To be updated soon!"
             duration="Summer 2025"
           />
           <ExperienceSlide 
             image="/posts/gs-logo.png"
             title="Software Engineer Intern"
             company="Goldman Sachs"
-            description="Prometheus, Grafana, Java, PromQL"
+            description="Worked on the Regulatory Engineering team, using Prometheus, Grafana, Java, PromQL."
             duration="Summer 2024"
           />
           <ExperienceSlide 
             image="/posts/compsoc-logo.png"
             title="Tech secretary"
             company="CompSoc"
-            description="Built comp-soc.com, managed infball website, managed compsoc's internal servers."
+            description="Built comp-soc.com, managed Infball event website, maintained CompSoc's internal servers."
             duration="2024-2025"
           />
           <ExperienceSlide 
             image="/posts/compsoc-logo.png"
             title="Sponsorship Coordinator"
             company="CompSoc"
-            description="Raised 30k in sponsorship funding, signed on 8+ companies including Meta, Optiver and QRT."
+            description="Raised 30k in sponsorship funding, signed on 8 companies including Meta, Optiver and QRT."
             duration="2024-2025"
           />
           <div className="w-full flex justify-center mt-5 mb-5">
@@ -49,7 +49,7 @@ const Experience = () => {
             title="BSc Computer Science and AI"
             company="University of Edinburgh"
             description="Predicted 1st Class (81%) \n 
-            Machine Learning Practical, Natural Language Understanding+, Computer Graphics, Reinforcement Learning, Foundations of Natural Language Processing"
+            Machine Learning Practical, Natural Language Understanding+, Computer Graphics, Reinforcement Learning, Foundations of Natural Language Processing."
             duration="2021-2025"
           />
         </div>
