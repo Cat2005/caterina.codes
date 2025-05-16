@@ -67,7 +67,7 @@ const Projects: React.FC = () => {
              <a href="https://github.com/Cat2005" rel='noopener noreferrer' target='_blank' className='z-50 block'>
                 <div className="flex flex-col items-center group">
                     <div className="w-[80%] sm:w-[45%]  xl:w-[35%] text-sm text-[#acacac] text-center group-hover:cursor-pointer group-hover:scale-[1.02] transition-transform duration-200" style={{fontFamily: 'Avant-Garde-Medium'}}>
-                        these are just some recent projects I've worked on - i have many more projects, including 5+ hackathon winning projects{' '}
+                        these are just some recent projects I&apos;ve worked on - I have many more projects, including 5+ hackathon winning projects{' '}
                         <span className="text-[#c02e7e] border-b border-current text-sm">
                             on my GitHub!
                             <HiArrowUpRight className="inline mb-0.5 text-xs ml-0.5" />

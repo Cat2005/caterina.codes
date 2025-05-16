@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+// @ts-expect-error - noisejs lacks TypeScript type definitions
 import { Noise } from 'noisejs';
 
 const AuroraBackground: React.FC = () => {
