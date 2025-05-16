@@ -22,7 +22,7 @@ const ProjectSlide: React.FC<ProjectSlideProps> = ({ title, description, link, i
                  rel="noopener noreferrer"
                  style={{ pointerEvents: 'auto' }}
                  className="font-avantGardeMedium text-md relative group z-20">
-                <span className="inline-flex items-center">
+                <span className="inline-flex items-center text-white">
                   {title}
                   {link && (
                     <HiArrowUpRight className="text-[#c02e7e] inline mb-0.5 text-xs ml-0.5" />

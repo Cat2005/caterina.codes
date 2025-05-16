@@ -34,7 +34,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
          
             <div className="flex flex-col xl:ml-10">
                 <div className="flex flex-row ">
-                    <h1 className="text-6xl md:text-7xl font-newsreader">
+                    <h1 className="text-6xl text-white md:text-7xl font-newsreader">
                         hi, i&apos;m <span className="text-[#CA0079]">Cat.</span>
                     </h1>
                 </div>
@@ -47,7 +47,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                     <div className="flex mt-22 w-full  mx-auto font-newsreader flex flex-col gap-2">
         
                     {isMobile && (
-                        <div className="">Recent posts:</div>
+                        <div className="text-white">Recent posts:</div>
                     )}
                     <BlogLanding />
                     <BlogLanding />
@@ -65,7 +65,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
             {!isMobile && (
           
           <div className="flex flex-col items-center mt-16 mx-auto w-[450px] font-newsreader">
-              <div className="w-full mx-auto">Recent posts:</div>
+              <div className="w-full mx-auto text-white">Recent posts:</div>
           <div className="flex mt-4 w-[450px] mx-auto font-newsreader md:flex-row gap-2">
   
               

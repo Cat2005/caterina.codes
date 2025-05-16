@@ -14,7 +14,7 @@ interface ExperienceSlideProps {
 
 const ExperienceSlide: React.FC<ExperienceSlideProps> = ({ title, company, description, duration, image }) => {
   return (
-    <div className={`p-4 rounded-lg transition-transform duration-200 hover:scale-[1.02] border border-[#252525] hover:border-[#c02e7e]/30 backdrop-blur-sm bg-[#979797]/10  shadow-lg`}>
+    <div className={`p-4 rounded-lg border border-[#252525] hover:border-[#c02e7e]/30 backdrop-blur-sm bg-[#979797]/10  shadow-lg`}>
        <div className='flex flex-row w-full items-center'>
         <div className='w-[15%] mr-4'>
             <Image src={image} alt={company} width={100} height={100} />

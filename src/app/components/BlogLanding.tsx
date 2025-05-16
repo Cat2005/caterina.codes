@@ -6,7 +6,7 @@ const BlogLanding: React.FC = () => {
             <h1 className="text-sm text-white decoration-[#CA0079] underline underline-offset-3">
                 ML system to predict bicep curl failure
             </h1>
-            <p className="text-xs mt-2">something something idk something....</p>
+            <p className="text-xs mt-2 text-[#dddddd]">something something idk something....</p>
 
         </div>
     )
