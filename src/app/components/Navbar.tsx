@@ -10,9 +10,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ navClicked }) => {
     return (
         <div className="flex justify-center items-center w-full py-16">
-            <div className="flex font-newsreader justify-center items-center p-2 w-2/5 xl:w-[35%] bg-[#150D12] rounded-xl">
-                <div className="flex gap-8 justify-between space-x-8">
-                    <div className="flex flex-row gap-3 items-center">
+            <div className="flex font-newsreader justify-center items-center p-2 w-3/4 md:w-2/5 xl:w-[35%] bg-[#150D12] rounded-xl">
+                <div className="flex md:gap-8 md:justify-between md:space-x-8 justify-center items-center space-x-6">
+                    <div className="flex flex-row gap-2 md:gap-3 items-center">
                     <a href="https://www.linkedin.com/in/caterina-m/" target="_blank" rel="noopener noreferrer">
                         <FaLinkedin className="cursor-pointer hover:text-[#CA0079] transition-colors duration-200" />
                     </a>

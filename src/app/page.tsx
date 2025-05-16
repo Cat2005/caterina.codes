@@ -21,6 +21,8 @@ export default function Home() {
   const teachingRef = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
   
+
+  
   // Function to handle section clicks in sidebar
   const sectionClicked = (section: string) => {
     if (section === 'projects' && projectsRef.current) {
@@ -39,7 +41,16 @@ export default function Home() {
   };
 
   const navClicked = () => {
-     projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (projectsRef.current) {
+      let yOffset;
+      if (window.innerWidth > 500) {
+        yOffset = 80; // Adjust this value as needed
+      } else {
+        yOffset = -10; // Adjust this value as needed
+      }
+      const y = projectsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
+    }
   };
   
   // Simplified intersection observer to handle sidebar visibility
@@ -56,7 +67,7 @@ export default function Home() {
             (current.intersectionRatio > prev.intersectionRatio) ? current : prev
           );
           
-          if (mostVisibleEntry.target.id === 'projects-section' && scrollProgress > 0.9) {
+          if (mostVisibleEntry.target.id === 'projects-section' && scrollProgress > 0.95) {
             setCurrentSection('projects');
           } else if (mostVisibleEntry.target.id === 'experience-section') {
             setCurrentSection('experience');
@@ -67,7 +78,7 @@ export default function Home() {
         
         // Show sidebar if we're past the landing section (scrollProgress > 0.9)
         // This ensures the sidebar stays visible when scrolling between Projects and Experience
-        const isVisible = scrollProgress > 0.9 || intersectingEntries.some(entry => 
+        const isVisible = scrollProgress > 0.45 || intersectingEntries.some(entry => 
           entry.target.id === 'experience-section' && entry.isIntersecting
         );
         
@@ -301,30 +312,30 @@ export default function Home() {
         <Teaching />
       </div>
 
-      <div className="flex justify-center items-center w-full mt-6 flex-col mb-20">
-        <div className="w-[35%] max-xl:w-[35%] xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
-        <div className="font-newsreader  text-center text-md" style={{fontFamily: 'Avant-Garde-Medium'}}>
-          that's it! if you want to know more, you can 
+      <div className="flex justify-center items-center w-full md:mt-6 flex-col mb-20">
+        <div className="w-[75%] sm:w-[50%] md:w-[35%]  xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
+        <div className="font-newsreader  text-center text-sm sm:text-base" style={{fontFamily: 'Avant-Garde-Medium'}}>
+          that's it! if you want to know more, you can{` `}
           <a href="mailto:caterina.mammola20@gmail.com"  
              target="_blank" 
              rel="noopener noreferrer"
              className={`mr-1 text-[#c02e7e] transition-colors relative group`}>
             <span className="inline-flex items-center transition-transform duration-200 hover:scale-[1.02]">
             check out some of my posts!
-              <HiArrowUpRight className="inline mb-0.5 text-xs ml-0.5" />
+              <HiArrowUpRight className="inline mb-0.5 ml-0.5" />
             </span>
             <span className="absolute left-0 right-0 bottom-0 border-b border-transparent group-hover:border-current"></span>
           </a> 
           
         </div>
-        <div className="font-newsreader text-center text-md" style={{fontFamily: 'Avant-Garde-Medium'}}>
+        <div className="font-newsreader text-center text-sm sm:text-base" style={{fontFamily: 'Avant-Garde-Medium'}}>
         if you have any questions, please don&apos;t hesitate to <a href="mailto:caterina.mammola20@gmail.com"  
              target="_blank" 
              rel="noopener noreferrer"
              className={`mr-1 text-[#c02e7e] transition-colors relative group`}>
             <span className="inline-flex items-center transition-transform duration-200 hover:scale-[1.02]">
               contact me on email
-              <HiArrowUpRight className="inline mb-0.5 text-xs ml-0.5" />
+              <HiArrowUpRight className="inline mb-0.5 ml-0.5" />
             </span>
             <span className="absolute left-0 right-0 bottom-0 border-b border-transparent group-hover:border-current"></span>
           </a> 
@@ -334,7 +345,7 @@ export default function Home() {
              className={`mr-1 text-[#c02e7e] transition-colors relative group`}>
             <span className="inline-flex items-center transition-transform duration-200 hover:scale-[1.02]">
               LinkedIn
-              <HiArrowUpRight className="inline mb-0.5 text-xs ml-0.5" />
+              <HiArrowUpRight className="inline mb-0.5 ml-0.5" />
             </span>
             <span className="absolute left-0 right-0 bottom-0 border-b border-transparent group-hover:border-current"></span>
           </a> 
