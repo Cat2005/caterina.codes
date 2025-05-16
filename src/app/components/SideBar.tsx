@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import PinkAsterisk from '@/app/svgs/pink-asterisk.svg';
+import PinkAsteriskSVG from '@/app/components/PinkAsteriskSVG';
 
 interface SideBarProps {
     currentSection: string | null;
@@ -43,20 +43,20 @@ const SideBar: React.FC<SideBarProps> = ({ currentSection, sectionClicked }) => 
                 <div className="w-7/8 flex text-lg" style={{ fontFamily: 'Newsreader' }}>
                     <div className="w-2/8 h-20 flex flex-col">
                     <div className="mr-20 text-right flex flex-col gap-2 items-end">
-                        <div className={`flex flew-row gap-2`}>
-                            {isProjects && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        <div className={`flex flex-row gap-2 items-center`}>
+                            {isProjects && <PinkAsteriskSVG />}
                             <div className={`${isProjects ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('projects')}
                             >Projects</div>
                         </div>
-                        <div className={`flex flew-row gap-2`}>
-                            {isExperience && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        <div className={`flex flex-row gap-2 items-center`}>
+                            {isExperience && <PinkAsteriskSVG />}
                             <div className={`${isExperience ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('experience')}
                             >Experience</div>
                         </div>
-                        <div className={`flex flew-row gap-2`}>
-                            {isTeaching && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        <div className={`flex flex-row gap-2 items-center`}>
+                            {isTeaching && <PinkAsteriskSVG />}
                             <div className={`${isTeaching ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('teaching')}
                             >Teaching</div>
@@ -74,19 +74,19 @@ const SideBar: React.FC<SideBarProps> = ({ currentSection, sectionClicked }) => 
                 <div className="w-full flex text-lg justify-center" style={{ fontFamily: 'Newsreader' }}>
                     <div className="w-[80%] flex flex-row justify-between">
                     <div className={`flex flew-row items-center gap-2`}>
-                        {isProjects && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        {isProjects && <PinkAsteriskSVG />}
                         <div className={`${isProjects ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('projects')}
                         >Projects</div>
                     </div>
                     <div className={`flex flew-row gap-2`}>
-                        {isExperience && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        {isExperience && <PinkAsteriskSVG />}
                         <div className={`${isExperience ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('experience')}
                         >Experience</div>
                     </div>
                     <div className={`flex flew-row gap-2`}>
-                        {isTeaching && <Image src={PinkAsterisk} alt="Pink Asterisk" width={20} height={20} />}
+                        {isTeaching && <PinkAsteriskSVG />}
                         <div className={`${isTeaching ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('teaching')}
                         >Teaching</div>
