@@ -316,7 +316,7 @@ export default function Home() {
         <div className="w-[75%] sm:w-[50%] md:w-[35%]  xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
         <div className="font-newsreader  text-center text-sm sm:text-base" style={{fontFamily: 'Avant-Garde-Medium'}}>
           that&apos;s it! if you want to know more, you can{` `}
-          <a href="mailto:caterina.mammola20@gmail.com"  
+          <a href="https://caterina.codes/posts"  
              target="_blank" 
              rel="noopener noreferrer"
              className={`mr-1 text-[#c02e7e] transition-colors relative group`}>

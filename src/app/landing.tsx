@@ -40,7 +40,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                 </div>
 
                 <div className="md:pt-4 text-md md:text-lg text-[#CA0079] font-newsreader">
-                    21 y.o CS grad, currently at Spotify.
+                    21 y.o CS grad, something something.
                 </div>
 
                 {isMobile && (
