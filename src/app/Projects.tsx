@@ -9,7 +9,7 @@ const Projects: React.FC = () => {
         
         {
             title: "Nail Polish Finder",
-            description: "Took off quickly after I posted about it on Reddit on Instagram where it got 6 million+ views. The website gets roughly 30k unique visitors a month nowadays. I received a lot of valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!",
+            description: "Took off quickly after I posted about it on Reddit and Instagram where it got 6 million+ views. The website gets roughly 30k unique visitors a month nowadays. I received a lot of valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!",
             link: "https://nailpolishfinder.com",
             image: "/posts/nailpolish-cut.mov",
             tech: ["React", "Typescript", "Next.js", "Python"]
