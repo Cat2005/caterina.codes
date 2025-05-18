@@ -22,10 +22,10 @@ const ExperienceSlide: React.FC<ExperienceSlideProps> = ({ title, company, descr
 
         <div className='flex flex-col w-full'>
           <div className='flex flex-row justify-between w-full items-center'>
-            <p className={`text-sm text-white`} style={{fontFamily: 'Avant-Garde-Medium'}}>{company}</p>
-            <p className='text-sm text-[#dddddd]'>{duration}</p>
+            <p className={`text-sm mb-1 text-white`} style={{fontFamily: 'Avant-Garde-Medium'}}>{company}</p>
+            <p className='sm:text-sm mb-1.5 text-xs text-[#dddddd]'>{duration}</p>
             </div>
-            <p className='text-sm text-[#ebebeb] mt-[-5px] mb-[0.5] font-avantGardeMedium'>{title}</p>
+            <p className='text-xs md:text-sm text-[#ebebeb] mt-[-5px] mb-[0.5] font-avantGardeMedium'>{title}</p>
             <p className={`text-xs ${!title ? 'mt-2' : ''} text-[#dddddd]`}>{description?.split('\\n').map((line, i) => (
               <React.Fragment key={i}>
                 {line}
