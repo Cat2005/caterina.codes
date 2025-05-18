@@ -40,7 +40,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                 </div>
 
                 <div className="md:pt-4 text-md md:text-lg text-[#CA0079] font-newsreader">
-                    21 y.o CS grad, something something.
+                    22 y.o CS grad, based in London.
                 </div>
 
                 {isMobile && (
@@ -49,9 +49,9 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                     {isMobile && (
                         <div className="text-white">Recent posts:</div>
                     )}
-                    <BlogLanding />
-                    <BlogLanding />
-                    <BlogLanding />
+                    <BlogLanding title="Predicting bicep curl failure with ML"  />
+                    <BlogLanding title="Building clinically interpretable AI"  />
+                    <BlogLanding title="Scaling nailpolishfinder.com" />
                 </div>
                 )}
 
@@ -65,13 +65,19 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
             {!isMobile && (
           
           <div className="flex flex-col items-center mt-16 mx-auto w-[450px] font-newsreader">
-              <div className="w-full mx-auto text-white">Recent posts:</div>
+              <div className="w-full mx-auto text-white">Posts (will be up soon!) :</div>
           <div className="flex mt-4 w-[450px] mx-auto font-newsreader md:flex-row gap-2">
   
               
-              <BlogLanding />
-              <BlogLanding />
-              <BlogLanding />
+          <div className="w-1/3 ">
+            <BlogLanding title="Predicting bicep curl failure with ML" className="h-[130px]" />
+          </div>
+          <div className="w-1/3 ">
+            <BlogLanding title="Building clinically interpretable AI" className="h-[130px]" />
+          </div>
+          <div className="w-1/3 ">
+            <BlogLanding title="Scaling nailpolishfinder.com" className="h-[130px]" />
+          </div>
           </div>
           </div>
     
