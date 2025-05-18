@@ -15,7 +15,7 @@ const ProjectSlide: React.FC<ProjectSlideProps> = ({ title, description, link, i
     return (
       <div className="mb-12 pt-2 rounded-lg shadow-lg font-avantGardeMedium ">
   
-          <div className="flex justify-between pl-4">
+          <div className="flex justify-between">
             <h3 style={{ fontFamily: 'Avant-Garde-Medium' }} className="font-avantGardeMedium text-md">
               <a href={link}  
                  target="_blank" 
@@ -33,7 +33,7 @@ const ProjectSlide: React.FC<ProjectSlideProps> = ({ title, description, link, i
             </h3>
           </div>
           
-          <p className="font-avantGardeMedium text-sm pt-2 pl-4 pb-3 text-[#acacac] z-10" 
+          <p className="font-avantGardeMedium text-sm pt-2  pb-3 text-[#acacac] z-10" 
             dangerouslySetInnerHTML={{ 
               __html: description.replace(
                   /<a\s+href=['"]([^'"]+)['"]/g,
@@ -49,7 +49,7 @@ const ProjectSlide: React.FC<ProjectSlideProps> = ({ title, description, link, i
                    rel="noopener noreferrer" 
                    style={{ pointerEvents: 'auto' }}
                    className="block w-full z-20">
-          <div className="flex flex-col justify-center w-full  border border-[#252525] backdrop-blur-sm hover:border-[#c02e7e]/30  bg-[#979797]/10 rounded-lg mx-2 pt-4 pb-4 transition-transform duration-200 hover:scale-[1.02]">
+          <div className="flex flex-col justify-center w-full  border border-[#252525] backdrop-blur-sm hover:border-[#c02e7e]/30  bg-[#979797]/10 rounded-lg pt-4 pb-4 transition-transform duration-200 hover:scale-[1.02]">
             <div className="flex justify-center w-6/8 mx-auto rounded-lg relative">
               {isVideo ? (
                

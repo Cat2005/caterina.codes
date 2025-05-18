@@ -5,7 +5,7 @@ import ExperienceSlide from "./ExperienceSlide";
 const Teaching = () => {
     return (
         <div className="flex flex-col w-full min-h-screen">
-      <div className="w-[80%] sm:w-[50%] md:w-2/5 xl:w-[35%] mx-auto py-[10vh]">
+      <div className="w-[85%] sm:w-[50%] md:w-2/5 xl:w-[35%] mx-auto">
       <div className="">
           <h1 className="text-5xl text-[#CA0079] font-newsreader mb-6 w-3/4 md:w-1/2">
             i also love to teach!</h1>

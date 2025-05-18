@@ -12,7 +12,7 @@ import { HiArrowUpRight } from "react-icons/hi2";
 
 export default function Home() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0.1);
   const [projectsScrollProgress, setProjectsScrollProgress] = useState(0);
   const [experienceScrollProgress, setExperienceScrollProgress] = useState(0);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -35,8 +35,15 @@ export default function Home() {
       // Scroll to landing section
       landingRef.current.scrollIntoView({ behavior: 'smooth' });
     } else if (section === 'teaching' && teachingRef.current) {
-      // Scroll to teaching section
-      teachingRef.current.scrollIntoView({ behavior: 'smooth' });
+      // Scroll to teaching section with an offset to prevent scrolling too far
+      var yOffset;
+      if (window.innerWidth > 500) { 
+        yOffset = -90; // Adjust this value as needed (negative values scroll less)
+      } else {
+        yOffset = -100; // Adjust this value as needed (negative values scroll less)
+      }
+      const y = teachingRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
     }
   };
 
@@ -126,7 +133,7 @@ export default function Home() {
       const transitionEnd = windowHeight * 0.85;
       
       if (scrollY < transitionStart) {
-        setScrollProgress(0);
+        setScrollProgress(0.1);
       } else if (scrollY > transitionEnd) {
         setScrollProgress(1);
       } else {
@@ -161,13 +168,13 @@ export default function Home() {
       const projectsHeight = projectsRect.height;
       
       // Start fading when we're 80% through the Projects section
-      const transitionStart = projectsHeight * 0.8;
+      const transitionStart = projectsHeight * 0.5;
       const transitionEnd = projectsHeight * 0.9;
       const scrollPosition = Math.abs(projectsRect.top);
       
-      let newProgress = 0;
+      let newProgress = 0.1;
       if (scrollPosition < transitionStart) {
-        newProgress = 0;
+        newProgress = 0.1;
       } else if (scrollPosition > transitionEnd) {
         newProgress = 1;
       } else {
@@ -257,7 +264,7 @@ export default function Home() {
         id="landing-section" 
         className="min-h-screen transition-opacity duration-500 ease-in-out"
         style={{ 
-          opacity: 1 - scrollProgress,
+          opacity: 0.1 + 0.9 * (1 - scrollProgress),
           position: 'relative',
           zIndex: 10
         }}
@@ -272,7 +279,14 @@ export default function Home() {
         id="projects-section"  // Add ID for debugging
         className="w-full min-h-screen transition-opacity duration-500 ease-in-out"
         style={{ 
-          opacity: scrollProgress * (1 - projectsScrollProgress),
+          // Force lower opacity when landing is visible
+          opacity: landingRef.current && landingRef.current.getBoundingClientRect().bottom > 0 ?
+                   0.1 + 0.9 * scrollProgress : // When landing is visible, use scroll-based opacity
+                   currentSection === 'projects' ? 
+                   1 : // Fully visible when it's the current section
+                   (experienceRef.current && experienceRef.current.getBoundingClientRect().top < window.innerHeight) ?
+                   0.1 + 0.9 * (1 - projectsScrollProgress) : // Scrolling back up from Experience
+                   0.1 + 0.9 * scrollProgress * (1 - projectsScrollProgress), // Normal scrolling down
           position: 'relative',
           zIndex: 20,
           marginTop: '-20vh',
@@ -288,7 +302,9 @@ export default function Home() {
         id="experience-section" 
         className="w-full min-h-screen transition-opacity duration-500 ease-in-out"
         style={{ 
-          opacity: projectsScrollProgress * (1 - experienceScrollProgress),
+          opacity: currentSection === 'experience' ?
+                   1 : // Fully visible when it's the current section
+                   0.1 + 0.9 * projectsScrollProgress * (1 - experienceScrollProgress),
           position: 'relative',
           zIndex: 30,
           marginTop: '-20vh',
@@ -304,7 +320,9 @@ export default function Home() {
         id="teaching-section"
         className="w-full min-h-screen transition-opacity duration-500 ease-in-out"
         style={{ 
-          opacity: experienceScrollProgress,
+          opacity: currentSection === 'teaching' ?
+                   1 : // Fully visible when it's the current section
+                   0.1 + 0.9 * experienceScrollProgress,
           position: 'relative',
           zIndex: 40,
           pointerEvents: experienceScrollProgress > 0 ? 'auto' : 'none'
@@ -313,7 +331,7 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center items-center w-full md:mt-6 flex-col mb-20">
-        <div className="w-[75%] sm:w-[50%] md:w-[35%]  xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
+        <div className="w-[85%] sm:w-[50%] md:w-[35%]  xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
         <div className="font-newsreader  text-center text-sm sm:text-base" style={{fontFamily: 'Avant-Garde-Medium'}}>
           that&apos;s it! if you want to know more, you can{` `}
           <a href="https://caterina.codes/posts"  

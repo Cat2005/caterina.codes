@@ -49,8 +49,8 @@ const Projects: React.FC = () => {
         <div className="flex flex-col w-full mb-[20vh]">
             {/* Section title */}
             <div className="flex flex-col items-center">
-                <div className="w-[80%] sm:w-[45%]  xl:w-[35%] pt-[10vh]">
-                    <h1 className="text-5xl  w-7/8 lg:w-4/5 text-[#CA0079] ml-3 font-newsreader mb-6 md:mb-10">
+                <div className="w-[85%] sm:w-[42%]  xl:w-[35%] pt-[10vh]">
+                    <h1 className="text-5xl  w-7/8 lg:w-4/5 text-[#CA0079] font-newsreader mb-6 md:mb-10">
                         what have i been building?
                     </h1>
                 </div>
@@ -59,14 +59,14 @@ const Projects: React.FC = () => {
             {/* All project slides – no animation, no blur */}
             {projects.map((project, index) => (
                 <div key={index} className="flex flex-col items-center">
-                    <div className="w-[80%] sm:w-[45%] xl:w-[35%]">
+                    <div className="w-[85%] sm:w-[42%] xl:w-[35%]">
                         <ProjectSlide {...project} />
                     </div>
                 </div>
             ))}
              <a href="https://github.com/Cat2005" rel='noopener noreferrer' target='_blank' className='z-50 block'>
                 <div className="flex flex-col items-center group">
-                    <div className="w-[80%] sm:w-[45%]  xl:w-[35%] text-sm text-[#acacac] text-center group-hover:cursor-pointer group-hover:scale-[1.02] transition-transform duration-200" style={{fontFamily: 'Avant-Garde-Medium'}}>
+                    <div className="w-[85%] sm:w-[42%]  xl:w-[35%] text-sm text-[#acacac] text-center group-hover:cursor-pointer group-hover:scale-[1.02] transition-transform duration-200" style={{fontFamily: 'Avant-Garde-Medium'}}>
                         these are just some recent projects I&apos;ve worked on - I have many more projects, including 5+ hackathon winning projects{' '}
                         <span className="text-[#c02e7e] border-b border-current text-sm">
                             on my GitHub!
