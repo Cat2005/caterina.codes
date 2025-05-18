@@ -27,10 +27,24 @@ export default function Home() {
   const sectionClicked = (section: string) => {
     if (section === 'projects' && projectsRef.current) {
       // Scroll to projects section
-      projectsRef.current.scrollIntoView({ behavior: 'smooth' });
+      let yOffset;
+      if (window.innerWidth > 500) {
+        yOffset = 7; // Adjust this value as needed (negative values scroll less)
+      } else {
+        yOffset = 55; // Adjust this value as needed (negative values scroll less)
+      }
+      const y = projectsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
     } else if (section === 'experience' && experienceRef.current) {
       // Scroll to experience section
-      experienceRef.current.scrollIntoView({ behavior: 'smooth' });
+      let yOffset;
+      if (window.innerWidth > 500) {
+        yOffset = -2; // Adjust this value as needed (negative values scroll less)
+      } else {
+        yOffset = -25; // Adjust this value as needed (negative values scroll less)
+      }
+      const y = experienceRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
     } else if (section === 'landing' && landingRef.current) {
       // Scroll to landing section
       landingRef.current.scrollIntoView({ behavior: 'smooth' });
