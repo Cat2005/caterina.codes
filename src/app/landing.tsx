@@ -51,7 +51,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                     )}
                     <BlogLanding title="Predicting bicep curl failure with ML" className="h-[55px]" />
                     <BlogLanding title="Building clinically interpretable AI" className="h-[55px]" />
-                    <BlogLanding title="Scaling nailpolishfinder.com" className="h-[55px]" />
+                    <BlogLanding title="Scaling nailpolishfinder" className="h-[55px]" />
                 </div>
                 )}
 
@@ -76,7 +76,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
             <BlogLanding title="Building clinically interpretable AI" className="h-[130px]" />
           </div>
           <div className="w-1/3 ">
-            <BlogLanding title="Scaling nailpolishfinder.com" className="h-[130px]" />
+            <BlogLanding title="Scaling nailpolishfinder" className="h-[130px]" />
           </div>
           </div>
           </div>

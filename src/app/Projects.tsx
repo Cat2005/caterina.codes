@@ -9,23 +9,23 @@ const Projects: React.FC = () => {
         
         {
             title: "Nail Polish Finder",
-            description: "Took off quickly after I posted about it on Reddit on Instagram where it got 6M+ views. The website gets roughly 30k unique visitors a month nowadays. I received a lot of valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!",
+            description: "Took off quickly after I posted about it on Reddit on Instagram where it got 6 million+ views. The website gets roughly 30k unique visitors a month nowadays. I received a lot of valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!",
             link: "https://nailpolishfinder.com",
             image: "/posts/nailpolish-cut.mov",
             tech: ["React", "Typescript", "Next.js", "Python"]
         },
         {
             title: "CompSoc Website",
-            description: "Co-developed + designed with <a href='https://www.tomasmaillo.com' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> Tomas Maillo</a>. We integrated features like pulling events directly from Google Calendar to ensure the event schedule stays up-to-date and displaying the live number of members on Discord. The website gets over 7000 unique visitors per month.",
+            description: "Co-developed + designed with <a href='https://www.tomasmaillo.com' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> Tomas Maillo</a>. We integrated features like pulling events directly from Google Calendar to ensure the event schedule stays up-to-date and displaying the live number of members on Discord. I particularly enjoyed making the <a href='https://comp-soc.com/sponsors' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> sponsors page!</a>",
             link: "https://comp-soc.com",
             image: "/posts/compsoc-img.png",
             tech: ["React", "Typescript", "Next.js", "Tailwind"]
         },
         {
             title: "XAI model for Brain Tumor MRI Diagnosis",
-            description: "For my dissertation, I worked on a model for brain tumor diagnosis designed to be clinically interpretable. Specifically, it builds on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a> to integrate clinical concepts into the pipeline, which were defined in collaboration with clinicians.",
+            description: "For my dissertation, I built a model for brain tumor diagnosis designed to be clinically interpretable. Specifically, it builds on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a> to integrate clinical concepts into the pipeline, which were defined in collaboration with clinicians.",
             link: "https://github.com/Cat2005/xai-brain-diagnosis",
-            image: "/posts/diss-cbm.png",
+            image: "/posts/xai-brain.png",
             tech: ["Python", "TensorFlow"]
         },
         {
@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
         {
             title: "Ray tracer in C++",
             description: "Made for my <a href='https://ksubr.github.io/CGR2024/#Tutorials' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> Computer Graphics: Rendering </a> course! While I don't usually highlight university coursework, this one was particularly significant as it was both technically challenging and my first time using C++. The ray tracer includes advanced features such as textures, an acceleration hierarchy, BRDFs and volumetrics. I achieved 94% for this work.",
-            link: "https://github.com/Cat2005/raytracer",
+            link: "",
             image: "/posts/raytracer-imgs.png",
             tech: ["C++ (no libraries allowed)"]
         }
