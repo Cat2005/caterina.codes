@@ -299,7 +299,7 @@ export default function Home() {
         <Teaching />
       </div>
 
-      <div className="flex justify-center items-center w-full md:mt-18 flex-col mb-20">
+      <div className="flex justify-center items-center w-full md:mt-18 mt-16 flex-col mb-20">
         <div className="w-[85%] sm:w-[50%] md:w-[35%]  xl:w-[35%] mx-auto flex flex-col gap-6 text-[#e1e1e1]">
         <div className="font-newsreader  text-center text-sm sm:text-base" style={{fontFamily: 'Avant-Garde-Medium'}}>
           that&apos;s it! if you want to know more, you can{` `}
