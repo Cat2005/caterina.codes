@@ -49,7 +49,7 @@ const Projects: React.FC = () => {
         <div className="flex flex-col w-full mb-[20vh]">
             {/* Section title */}
             <div className="flex flex-col items-center">
-                <div className="w-[85%] sm:w-[42%]  xl:w-[35%] pt-[10vh]">
+                <div className="w-[85%] sm:w-[42%]  xl:w-[35%] pt-[20vh] md:pt-[10vh]">
                     <h1 className="text-5xl  w-7/8 lg:w-4/5 text-[#CA0079] font-newsreader mb-6 md:mb-10">
                         what have i been building?
                     </h1>

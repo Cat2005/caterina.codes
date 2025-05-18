@@ -220,7 +220,11 @@ export default function Home() {
       {/* <ArrowPopUp text="Scroll down" /> */}
       
       {/* Fixed Sidebar */}
-      {showSidebar && <SideBar currentSection={currentSection} sectionClicked={sectionClicked} />}
+      <SideBar
+        currentSection={currentSection}
+        sectionClicked={sectionClicked}
+        isVisible={showSidebar}
+      />
       
       {/* Landing section - normal scroll behavior */}
 
