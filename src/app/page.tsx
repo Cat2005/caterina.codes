@@ -65,9 +65,9 @@ export default function Home() {
     if (projectsRef.current) {
       let yOffset;
       if (window.innerWidth > 500) {
-        yOffset = 80; // Adjust this value as needed
+        yOffset = 0; // Adjust this value as needed
       } else {
-        yOffset = -10; // Adjust this value as needed
+        yOffset = 55; // Adjust this value as needed
       }
       const y = projectsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({top: y, behavior: 'smooth'});
