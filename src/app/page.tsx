@@ -122,26 +122,81 @@ export default function Home() {
     };
   }, [projectsScrollProgress, experienceScrollProgress, scrollProgress]);
 
-  // Improved scroll handler with debouncing
+  // Replace the three separate useEffect scroll handlers with one combined handler
   useEffect(() => {
     const handleScroll = () => {
+      // Landing to Projects transition
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      
-      // Start transition after scrolling past 80% of landing section height
       const transitionStart = windowHeight * 0.6;
       const transitionEnd = windowHeight * 0.85;
       
+      let newScrollProgress = scrollProgress;
       if (scrollY < transitionStart) {
-        setScrollProgress(0.1);
+        newScrollProgress = 0.1;
       } else if (scrollY > transitionEnd) {
-        setScrollProgress(1);
+        newScrollProgress = 1;
       } else {
-        setScrollProgress((scrollY - transitionStart) / (transitionEnd - transitionStart));
+        newScrollProgress = (scrollY - transitionStart) / (transitionEnd - transitionStart);
+      }
+      
+      // Only update state if value changed significantly
+      if (Math.abs(newScrollProgress - scrollProgress) > 0.01) {
+        setScrollProgress(newScrollProgress);
+      }
+      
+      // Projects section handling
+      if (projectsRef.current) {
+        const projectsElement = projectsRef.current as HTMLElement;
+        const projectsRect = projectsElement.getBoundingClientRect();
+        const projectsHeight = projectsRect.height;
+        const projectsTransitionStart = projectsHeight * 0.5;
+        const projectsTransitionEnd = projectsHeight * 0.9;
+        const projectsScrollPosition = Math.abs(projectsRect.top);
+        
+        let newProjectsProgress = projectsScrollProgress;
+        if (projectsScrollPosition < projectsTransitionStart) {
+          newProjectsProgress = 0.1;
+        } else if (projectsScrollPosition > projectsTransitionEnd) {
+          newProjectsProgress = 1;
+        } else {
+          newProjectsProgress = (projectsScrollPosition - projectsTransitionStart) / 
+                               (projectsTransitionEnd - projectsTransitionStart);
+        }
+        
+        // Only update state if value changed significantly
+        if (Math.abs(newProjectsProgress - projectsScrollProgress) > 0.01) {
+          setProjectsScrollProgress(newProjectsProgress);
+        }
+      }
+      
+      // Experience section handling
+      if (experienceRef.current) {
+        const experienceElement = experienceRef.current as HTMLElement;
+        const experienceRect = experienceElement.getBoundingClientRect();
+        const experienceHeight = experienceRect.height;
+        const experienceTransitionStart = experienceHeight * 0.4;
+        const experienceTransitionEnd = experienceHeight * 0.75;
+        const experienceScrollPosition = Math.abs(experienceRect.top);
+        
+        let newExperienceProgress = experienceScrollProgress;
+        if (experienceScrollPosition < experienceTransitionStart) {
+          newExperienceProgress = 0;
+        } else if (experienceScrollPosition > experienceTransitionEnd) {
+          newExperienceProgress = 1;
+        } else {
+          newExperienceProgress = (experienceScrollPosition - experienceTransitionStart) / 
+                                   (experienceTransitionEnd - experienceTransitionStart);
+        }
+        
+        // Only update state if value changed significantly
+        if (Math.abs(newExperienceProgress - experienceScrollProgress) > 0.01) {
+          setExperienceScrollProgress(newExperienceProgress);
+        }
       }
     };
 
-    // Add debouncing to reduce performance impact
+    // Add debouncing with requestAnimationFrame
     let ticking = false;
     const scrollListener = () => {
       if (!ticking) {
@@ -156,97 +211,7 @@ export default function Home() {
     window.addEventListener('scroll', scrollListener);
     handleScroll(); // Initialize on mount
     return () => window.removeEventListener('scroll', scrollListener);
-  }, []);
-
-  // Add new scroll handler for Projects to Experience transition
-  useEffect(() => {
-    const handleProjectsScroll = () => {
-      if (!projectsRef.current) return;
-      
-      const projectsElement = projectsRef.current as HTMLElement;
-      const projectsRect = projectsElement.getBoundingClientRect();
-      const projectsHeight = projectsRect.height;
-      
-      // Start fading when we're 80% through the Projects section
-      const transitionStart = projectsHeight * 0.5;
-      const transitionEnd = projectsHeight * 0.9;
-      const scrollPosition = Math.abs(projectsRect.top);
-      
-      let newProgress = 0.1;
-      if (scrollPosition < transitionStart) {
-        newProgress = 0.1;
-      } else if (scrollPosition > transitionEnd) {
-        newProgress = 1;
-      } else {
-        newProgress = (scrollPosition - transitionStart) / (transitionEnd - transitionStart);
-      }
-      
-      // Debug log
-      console.log('Projects scroll progress:', newProgress, 'scroll position:', scrollPosition);
-      setProjectsScrollProgress(newProgress);
-    };
-
-    // Add debouncing
-    let ticking = false;
-    const scrollListener = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleProjectsScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollListener);
-    handleProjectsScroll(); // Initialize on mount
-    return () => window.removeEventListener('scroll', scrollListener);
-  }, []);
-
-  // Add new scroll handler for Experience to Teaching transition
-  useEffect(() => {
-    const handleExperienceScroll = () => {
-      if (!experienceRef.current) return;
-      
-      const experienceElement = experienceRef.current as HTMLElement;
-      const experienceRect = experienceElement.getBoundingClientRect();
-      const experienceHeight = experienceRect.height;
-      
-      // Start fading when we're 80% through the Experience section
-      const transitionStart = experienceHeight * 0.4;
-      const transitionEnd = experienceHeight * 0.75;
-      const scrollPosition = Math.abs(experienceRect.top);
-      
-      let newProgress = 0;
-      if (scrollPosition < transitionStart) {
-        newProgress = 0;
-      } else if (scrollPosition > transitionEnd) {
-        newProgress = 1;
-      } else {
-        newProgress = (scrollPosition - transitionStart) / (transitionEnd - transitionStart);
-      }
-      
-      // Debug log
-      console.log('Experience scroll progress:', newProgress, 'scroll position:', scrollPosition);
-      setExperienceScrollProgress(newProgress);
-    };
-
-    // Add debouncing
-    let ticking = false;
-    const scrollListener = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleExperienceScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollListener);
-    handleExperienceScroll(); // Initialize on mount
-    return () => window.removeEventListener('scroll', scrollListener);
-  }, []);
+  }, [scrollProgress, projectsScrollProgress, experienceScrollProgress]);
 
   return (
     <div className="relative">

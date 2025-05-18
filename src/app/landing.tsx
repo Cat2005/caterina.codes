@@ -30,11 +30,11 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
         <div className="flex flex-col">
             <Navbar navClicked={navClicked} />
 
-        <div className="justify-center pt-[10vh] w-4/5 mx-auto  flex items-center flex-col">
+        <div className="justify-center pt-[10vh] w-full mx-auto  flex items-center flex-col">
          
             <div className="flex flex-col xl:ml-10">
                 <div className="flex flex-row ">
-                    <h1 className="text-6xl text-white md:text-7xl font-newsreader">
+                    <h1 className="text-7xl text-white  font-newsreader">
                         hi, i&apos;m <span className="text-[#CA0079]">Cat.</span>
                     </h1>
                 </div>
