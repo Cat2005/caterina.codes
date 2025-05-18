@@ -18,57 +18,55 @@ const AuroraBackground: React.FC = () => {
     let animationFrameId: number;
     let t = 0;
 
-    const resizeCanvas = () => {
-        const SCALE = 0.25; // 25% resolution
+    const SCALE = 0.25;          // 25 % resolution
+    let lastW = 0;               // remember last real width
 
-        canvas.width = window.innerWidth * SCALE;
-        canvas.height = window.innerHeight * SCALE;
-        
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        
-      
+    const resizeCanvas = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // Skip if only the height changed (mobile address bar toggle)
+      if (w === lastW) return;
+
+      lastW = w;
+      canvas.width  = w * SCALE;
+      canvas.height = h * SCALE;
+      canvas.style.width  = '100%';
+      canvas.style.height = '100%';
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);          // desktop
+    window.addEventListener('orientationchange', resizeCanvas); // mobile
 
     let lastDraw = performance.now();
-    const FRAME_INTERVAL = 1000 / 20; // ~20fps
+    const FRAME_INTERVAL = 1000 / 20; // ≈20 fps
 
     const draw = (now = performance.now()) => {
-        if (now - lastDraw < FRAME_INTERVAL) {
-            requestAnimationFrame(draw);
-            return;
-          }
-          lastDraw = now;
-      const width = canvas.width;
+      if (now - lastDraw < FRAME_INTERVAL) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      lastDraw = now;
+
+      const width  = canvas.width;
       const height = canvas.height;
+
       const imageData = ctx.createImageData(width, height);
       const data = imageData.data;
 
-      for (let y = 0; y < height; y ++) {
-        for (let x = 0; x < width; x ++) {
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
           const nx = x / width;
           const ny = y / height;
-          // control the shape of aurora (x and y to elognate horizontally)
           const value = noise.current.simplex3(nx * 1.5, ny * 2, t);
-
-          // Curved intensity for softer edges
           const intensity = Math.pow((value + 1) / 2, 3) * 1.5;
 
-          // Aurora colors 
-          const r = 180 + 75 * intensity; // pinkish red
-          const g = 20 + 30 * intensity;  // hint of purple
-          const b = 100 + 120 * intensity; // deep magenta-violet
-
           const i = (y * width + x) * 4;
-
-          // write to pixel color buffer
-          data[i] = r;
-          data[i + 1] = g;
-          data[i + 2] = b;
-          data[i + 3] = intensity * 100; // semi-transparent
+          data[i    ] = 180 + 75 * intensity;   // R
+          data[i + 1] = 20  + 30 * intensity;   // G
+          data[i + 2] = 100 + 120 * intensity;  // B
+          data[i + 3] = intensity * 100;        // A
         }
       }
 
@@ -82,6 +80,7 @@ const AuroraBackground: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('orientationchange', resizeCanvas);
     };
   }, []);
 
@@ -96,6 +95,7 @@ const AuroraBackground: React.FC = () => {
         width: '100%',
         height: '100%',
         backgroundColor: 'black',
+        pointerEvents: 'none',          // just in case
       }}
     />
   );
