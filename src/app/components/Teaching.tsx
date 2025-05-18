@@ -52,7 +52,7 @@ const Teaching = () => {
 
         <ExperienceSlide
         image="/posts/private-logo.png"
-        company="Self-employed Maths Tutor"
+        company="Private Maths Tutor"
         description="Taught students in my local area, aged 13-18. Some of my students were high-achievers, but most really struggled with maths. I learned a lot about how to explain things better and improve their confidence."
         duration="2021 - 2023"
         />
