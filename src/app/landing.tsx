@@ -47,11 +47,11 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                     <div className="flex mt-22 w-full  mx-auto font-newsreader flex flex-col gap-2">
         
                     {isMobile && (
-                        <div className="text-white">Recent posts:</div>
+                        <div className="text-white">Posts (will be up soon!) :</div>
                     )}
-                    <BlogLanding title="Predicting bicep curl failure with ML"  />
-                    <BlogLanding title="Building clinically interpretable AI"  />
-                    <BlogLanding title="Scaling nailpolishfinder.com" />
+                    <BlogLanding title="Predicting bicep curl failure with ML" className="h-[55px]" />
+                    <BlogLanding title="Building clinically interpretable AI" className="h-[55px]" />
+                    <BlogLanding title="Scaling nailpolishfinder.com" className="h-[55px]" />
                 </div>
                 )}
 
