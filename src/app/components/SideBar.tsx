@@ -52,19 +52,19 @@ const SideBar: React.FC<SideBarProps> = ({ currentSection, sectionClicked, isVis
                     <div className="w-2/8 h-20 flex flex-col">
                     <div className="mr-20 text-right flex flex-col gap-2 items-end">
                         <div className={`flex flex-row gap-2 items-center`}>
-                            {isProjects && <PinkAsteriskSVG />}
+                            {isProjects && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                             <div className={`${isProjects ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('projects')}
                             >Projects</div>
                         </div>
                         <div className={`flex flex-row gap-2 items-center`}>
-                            {isExperience && <PinkAsteriskSVG />}
+                            {isExperience && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                             <div className={`${isExperience ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('experience')}
                             >Experience</div>
                         </div>
                         <div className={`flex flex-row gap-2 items-center`}>
-                            {isTeaching && <PinkAsteriskSVG />}
+                            {isTeaching && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                             <div className={`${isTeaching ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                             onClick={() => sectionClicked('teaching')}
                             >Teaching</div>
@@ -88,20 +88,20 @@ const SideBar: React.FC<SideBarProps> = ({ currentSection, sectionClicked, isVis
             >
                 <div className="w-full flex text-lg justify-center" style={{ fontFamily: 'Newsreader' }}>
                     <div className="w-[80%] flex flex-row justify-between">
-                    <div className={`flex flew-row items-center gap-2`}>
-                        {isProjects && <PinkAsteriskSVG />}
+                    <div className={`flex flex-row items-center gap-2`}>
+                        {isProjects && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                         <div className={`${isProjects ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('projects')}
                         >Projects</div>
                     </div>
-                    <div className={`flex flew-row gap-2`}>
-                        {isExperience && <PinkAsteriskSVG />}
+                    <div className={`flex flex-row items-center gap-2`}>
+                        {isExperience && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                         <div className={`${isExperience ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('experience')}
                         >Experience</div>
                     </div>
-                    <div className={`flex flew-row gap-2`}>
-                        {isTeaching && <PinkAsteriskSVG />}
+                    <div className={`flex flex-row items-center gap-2`}>
+                        {isTeaching && <div className="mb-1"> <PinkAsteriskSVG/> </div>}
                         <div className={`${isTeaching ? 'text-[white]' : 'text-[#B6B6B6]'} cursor-pointer hover:text-[#CA0079] transition-colors duration-200`}
                         onClick={() => sectionClicked('teaching')}
                         >Teaching</div>
