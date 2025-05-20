@@ -19,7 +19,7 @@ const ExperienceSlide: React.FC<ExperienceSlideProps> = ({ title, company, descr
         <div className='w-[15%] mr-4 relative'>
             {imageLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-4 border-solid border-[#c02e7e]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-4 border-solid border-[#c02e7e] border-t-transparent"></div>
               </div>
             )}
             <Image 
