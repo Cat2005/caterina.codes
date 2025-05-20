@@ -7,6 +7,8 @@ import { Noise } from 'noisejs';
 const AuroraBackground: React.FC = () => {
   const [isReady, setIsReady] = useState(false);
 
+  
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const noise     = useRef(new Noise(Math.random()));
 
@@ -96,8 +98,11 @@ const AuroraBackground: React.FC = () => {
           position: 'fixed',
           inset: 0,
           zIndex: -2,
+          backgroundColor: '#000000', 
           // --- Debugging Background ---
           background:
+         
+
             // Bright Red Top-Left
             'radial-gradient(ellipse at 10% 15%, #341128  0%, transparent 25% 50%),' +
             // Bright Green Top-Right
@@ -109,7 +114,8 @@ const AuroraBackground: React.FC = () => {
             // Yellow Bottom-Right
             'radial-gradient(ellipse at 83% 73%, #351129  0%, transparent 25% 50%),' +
             // Magenta Center
-            'radial-gradient(ellipse at 22% 33%, #2D0F22  0%, transparent 20% 40%)',
+            'radial-gradient(ellipse at 22% 33%, #2D0F22  0%, transparent 20% 40%),' +
+            '#000000',
           // --- End Debugging Background ---
           transition: 'opacity 400ms ease',
           opacity: isReady ? 0 : 1, // Should be 1 initially
@@ -125,7 +131,7 @@ const AuroraBackground: React.FC = () => {
           zIndex: -1,
           width: '100%',
           height: '100%',
-          background: 'transparent',
+          background: '#000000',
           pointerEvents: 'none',
           transition: 'opacity 400ms ease',
           opacity: isReady ? 1 : 0,
