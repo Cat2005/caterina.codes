@@ -1,0 +1,77 @@
+In this post I want to explain what I worked on for my final year dissertation!
+The official title of my project was: Clinically Interpretable XAI for Brain Tumor Diagnosis in MRIs.
+
+I focused on AI in medical diagnostics—specifically for brain MRIs—and how we can make these models more interpretable for clinicians.
+
+This post is a short overview aimed at a technical audience who might not be very familiar with diagnostic AI.  I’ll cover why this field is exciting, what’s already been done, and the main issue my project tackled: these systems, while often very accurate, are still black boxes. That’s a huge problem if we want anyone in the medical field to actually trust and use them.
+
+TL;DR: Brain-MRI models have already reached radiologist-level accuracy, but the lack of transparency in how they make decisions means clinicians are unlikely to trust them.
+My dissertation focused on building a Concept Bottleneck Model (CBM), trained to predict the presence of clinical features before making a diagnosis, so clinicians can better understand how the model reached its conclusion.
+
+1. Why even bring AI into this?
+
+Medical diagnosis is really hard. That’s not news to anyone, but I was surprised to find out just how common misdiagnosis is. For example, in the UK, 4 in 10 cancer patients receive at least one misdiagnosis before getting the correct diagnosis. 
+
+There are many reasons for this, but one big factor is simply how overloaded doctors are, and how difficult it is to interpret something like a brain MRI. These scans are 3D volumes, captured in multiple modalities (T1, T2, FLAIR, etc.), each showing different tissue contrasts. Radiologists have to scroll through these slices and look for subtle abnormalities, often under time pressure, meaning it's easy to miss things.
+
+If AI can help reduce that burden—even just by flagging high-risk cases or providing a second opinion—it could be really valuable. But it also comes with its own set of challenges.
+
+2. Where are we at right now?
+So far, a lot of progress has been made. Models trained on large datasets like BraTS can classify brain tumours with high accuracy. In fact, some models now outperform humans on specific tasks. Below is a table showing how state-of-the-art models perform on brain MRI classification tasks—you’ll see that these are surpassing radiologist-level performance.
+
+But anyone familiar with AI knows the key issue is still transparency. Can clinicians really trust the model's output without understanding what it's looking at? How do we know it’s not relying on irrelevant artefacts or shortcuts? How do we know it’s picking up real, clinical features?
+
+That’s where XAI (explainable AI) comes in. Tools like LIME, SHAP, and Grad-CAM are designed to help with this—they highlight parts of the image that most influenced the model’s prediction. They work in different ways (some perturb the image, others use the model's gradients), but all try to answer the same question: what parts of the image were important for this classification decision? The idea is that if you can show what the model is attending to, that serves as a kind of sanity check for whether its reasoning aligns with clinical practice.
+
+These tools can be helpful, but they also have big drawbacks. One issue is that these techniques often disagree with each other - you can run all three on the same image and get completely different highlighted areas (shown below). And even when they do align, they show you where the model is “looking” but not what it’s “seeing”. Is it seeing edema? Ring enhancement? Something else entirely? So for something as high-stakes as diagnostics, this level of interpretability just isn’t enough.
+
+
+(Picture idea: same brain MRI slice, with three heatmaps showing different highlighted areas from LIME/SHAP/GradCAM.)
+
+3. Concept bottlenecks: the idea behind my diss
+This is where Concept Bottleneck Models (CBMs) come in, originally proposed by Koh et al.
+Instead of training a model to go directly from the raw image to the final label, you break the task into two steps. First, the model predicts whether certain human-interpretable features are present. Then, a second model uses that concept vector to make the final diagnosis.
+
+In the original paper, they used examples like bird classification—predicting concepts like “wing shape” or “beak length” before classifying the species. In my case, those concepts were medical: features like “edema” or “ring enhancement” that a radiologist would actually look for when diagnosing a tumour. 
+This sort of medical application has been done before using chest x-rays, with really good results (link here to the paper). 
+
+The main advantage is that the model’s reasoning is now very visible. You can see which features were detected, and which ones contributed to the final prediction. But the big question is: can this still perform as well as a black-box model? This was one of my main research questions of my project.
+
+4. Now onto what I did 
+I applied this CBM setup to brain MRIs. This meant I first needed to build a dataset where each scan came with a set of concept labels—e.g., does this scan show edema? Midline shift? Ring enhancement?
+
+Getting the scans was relatively straightforward, thanks to open datasets. But getting the concept labels was a lot more difficult.
+
+Since I’m not a medic, I needed to work with clinicians to decide which concepts should be included in the model, and figure out whether each concept was present in each scan.
+
+Below is a diagram showing the process I used to pair brain scans with clinical concepts. There were a lot of radiology reports available online, but validating everything with clinicians took several months. It was by far the most time-consuming part of the project.
+
+We eventually settled on seven key concepts:
+mass, nodule, edema, midline shift, ventricular compression, abnormal signal, ring enhancement.
+
+I used a mix of a rule based approach and python NLP tools (spaCy + NegEx) to extract whether each concept was mentioned in each report.
+
+
+6. The architecture I used
+I trained three VGG-based models, one for each anatomical plane (axial, sagittal, coronal), to predict the seven concepts from nine MRI slices (3 planes × 3 modalities). Then I combined their outputs and used a small decision tree to make the final diagnosis (glioma or metastasis) based only on the concept predictions.
+
+Because the final classifier is a decision tree, it’s easy to trace its reasoning: if ring_enhancement > 0.9 and ventricular_compression < 0.5, then the model predicts metastasis, for example.
+
+(Picture idea: diagram showing slices → concept predictions → decision tree → diagnosis)
+
+7. Results
+Here’s how the model performed compared to a standard “black-box” baseline:
+
+Metric	Baseline (no concepts)	CBM (with concepts)
+Accuracy	93.8%	90.4%
+AUC	0.98	0.93
+
+The baseline did slightly better, but the difference wasn’t statistically significant—mostly due to the small test set. A larger dataset would be needed to explore this trade-off properly. Still, I found these results really promising given how much more interpretable the CBM is.
+
+8. Next steps
+I would’ve loved to experiment with a 3D CNN or even a transformer model, but I didn’t have access to enough labeled data. I reached out to get datasets like NYU BraTS with radiology reports, but unfortunately never heard back. this was really the major bottleneck of my project - getting access to medical data and knowledge as a computer scientist, and i think its an area where there needs to be much more collaboration.
+I gave a talk at the Scottish Oncology Undergraduate Conference, mainly to medical students, where I stressed the importance of collaboration in AI for healthcare. It’s not enough for computer scientists to build high-performing models that clinicians don’t trust or can’t interpret. If we want these tools to make it into practice, they need to be interpretable, and they need to actually fit into how clinicians work.
+
+That said, I’m really excited about where diagnostic AI is heading. The UK has already started gearing up for adoption (see: NHS AI diagnostic fund, Brainomix, etc.) and I think these tools could do a lot of good. But interpretability is key.
+
+I encourage any computer scientists reading to try to consult as much as u can with medics when building things. And if you're a medic, please consider collaborating with us! We really value your expertise and we need it to build tools that actually work in the real world.
