@@ -17,7 +17,7 @@ const Experience = () => {
             image="/posts/spotify-logo.png"
             title="Software Engineer Intern"
             company="Spotify"
-            description="To be updated soon!"
+            description="Full-stack development on the Spotify for Authors platform in Audiobooks team."
             duration="Summer 2025"
           />
           <ExperienceSlide 
@@ -48,7 +48,7 @@ const Experience = () => {
             image="/posts/edi-logo.png"
             title="BSc Computer Science and AI"
             company="University of Edinburgh"
-            description="Predicted 1st Class (81%) \n 
+            description="First Class (81%) \n 
             Machine Learning Practical, Natural Language Understanding+, Computer Graphics, Reinforcement Learning, Foundations of Natural Language Processing."
             duration="2021-2025"
           />
