@@ -23,7 +23,7 @@ const Projects: React.FC = () => {
         },
         {
             title: "XAI model for Brain Tumor MRI Diagnosis",
-            description: "For my dissertation, I built a model for brain tumor diagnosis designed to be clinically interpretable. Specifically, it builds on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a> to integrate clinical concepts into the pipeline, which were defined in collaboration with clinicians.",
+            description: "For my dissertation, I built a model for brain tumor diagnosis designed to be clinically interpretable. Specifically, it builds on prior work with <a href='https://github.com/yewsiang/ConceptBottleneck' rel='noopener noreferrer' target='_blank' className='text-[#c02e7e]'> concept bottleneck models</a> to integrate clinical concepts into the pipeline, which were defined in collaboration with clinicians. I achieved an outstanding classification for this work (84%).",
             link: "https://github.com/Cat2005/xai-brain-diagnosis",
             image: "/posts/xai-brain.png",
             tech: ["Python", "TensorFlow"]
