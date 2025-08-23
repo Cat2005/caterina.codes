@@ -18,8 +18,8 @@ const Experience = () => {
             image="/posts/spotify-logo.png"
             title="Software Engineer Intern"
             company="Spotify"
-            description="Full-stack development on the Spotify for Authors platform in Audiobooks team."
-            duration="Summer 2025"
+            description="Full-stack development on the Spotify for Authors platform in Audiobooks team, using React, TypeScript, Java, Scala."
+            duration="June 2025 - ongoing"
           />
           <ExperienceSlide
             image="/posts/gs-logo.png"
