@@ -16,7 +16,7 @@ const Experience = () => {
         <div className="flex flex-col gap-3">
           <ExperienceSlide
             image="/posts/spotify-logo.png"
-            title="Software Engineer Intern"
+            title="Software Engineer"
             company="Spotify"
             description="Full-stack development on the Spotify for Authors platform in Audiobooks team, using React, TypeScript, Java, Scala."
             duration="June 2025 - ongoing"
