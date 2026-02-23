@@ -16,7 +16,7 @@ const ArrowPopUp: React.FC<ArrowPopUpProps> = ({ text }) => {
         opacity: { duration: 0.01 }
       }
     }
-  };
+  } as const;
 
   return (
     <div className="relative">
