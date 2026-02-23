@@ -2,6 +2,7 @@
   "name": "website-2025",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.15.5",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -34,8 +35,5 @@
     "eslint-config-next": "15.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "engines": {
-    "node": "20.x"
   }
 }
