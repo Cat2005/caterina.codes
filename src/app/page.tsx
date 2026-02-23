@@ -1,12 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import AuroraBackground from "./components/AuroraBackground";
 import Landing from "./landing";
 import Projects from "./Projects";
 import SideBar from "./components/SideBar";
 import Experience from "./Experience";
-import ArrowPopUp from "./components/ArrowPopUp";
 import Teaching from "./components/Teaching";
 import { HiArrowUpRight } from "react-icons/hi2";
 
@@ -228,11 +225,7 @@ export default function Home() {
   }, [scrollProgress, projectsScrollProgress, experienceScrollProgress]);
 
   return (
-    <div className="relative">
-      <AuroraBackground />
-      
-      {/* <ArrowPopUp text="Scroll down" /> */}
-      
+    <div className="relative animate-fade-in">
       {/* Fixed Sidebar */}
       <SideBar
         currentSection={currentSection}

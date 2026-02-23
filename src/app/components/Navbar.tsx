@@ -1,7 +1,6 @@
 import React from 'react';
-import { FaLinkedin } from 'react-icons/fa';
-import { FaEnvelope } from 'react-icons/fa';
-import { FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
+import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
 
 interface NavbarProps {
     navClicked: () => void;
@@ -9,7 +8,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ navClicked }) => {
     return (
-        <div className="flex text-white justify-center items-center w-full py-16">
+        <div className="flex text-white justify-center items-center w-full py-16 select-none">
             <div className="flex font-newsreader justify-center items-center p-2 w-4/5 md:w-2/5 xl:w-[35%] bg-[#150D12] rounded-xl">
                 <div className="flex md:gap-8 md:justify-between md:space-x-8 justify-center items-center space-x-6">
                     <div className="flex flex-row gap-2 md:gap-3 items-center">
@@ -23,8 +22,8 @@ const Navbar: React.FC<NavbarProps> = ({ navClicked }) => {
                         <FaGithub className="cursor-pointer hover:text-[#CA0079] transition-colors duration-200" />
                     </a>
                     </div>
-                    <div className="cursor-pointer hover:text-[#CA0079] transition-colors duration-200">posts</div>
                     <div className="cursor-pointer hover:text-[#CA0079] transition-colors duration-200" onClick={() => navClicked()}>projects</div>
+                    <Link href="/posts" className="cursor-pointer hover:text-[#CA0079] transition-colors duration-200">posts</Link>
                     
                 </div>
             </div>
