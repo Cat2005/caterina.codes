@@ -53,13 +53,12 @@ const ProjectSlide: React.FC<ProjectSlideProps> = ({ title, description, link, i
             <div className="flex justify-center w-6/8 mx-auto rounded-lg relative">
               {isVideo ? (
                
-                  <video 
+                  <video
                     playsInline
-                    controls
                     autoPlay
                     muted
-                    controlsList="nodownload noplaybackrate"
-                    className="rounded-lg w-full object-cover [&::-webkit-media-controls-enclosure]:max-h-[30px] [&::-webkit-media-controls-panel]:bg-transparent [&::-webkit-media-controls-timeline]:bg-transparent"
+                    loop
+                    className="rounded-lg w-full object-cover"
                   >
                     <source src={image} type="video/mp4" />
                     Your browser does not support the video tag.
