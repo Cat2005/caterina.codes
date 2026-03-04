@@ -42,9 +42,9 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
 
         <div className="justify-center pt-[10vh] w-full mx-auto  flex items-center flex-col">
 
-            <div className="flex flex-col xl:ml-10">
-                <div className="flex flex-row ">
-                    <h1 className="text-[4.2rem] text-white  font-newsreader leading-none">
+            <div className="flex flex-col items-start xl:ml-10 px-6 md:px-0">
+                <div className="flex flex-row">
+                    <h1 className="text-[4.2rem] text-white font-newsreader leading-none">
                         hi, i&apos;m <span className="text-[#CA0079]">Cat.</span>
                     </h1>
                 </div>
@@ -54,7 +54,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                 </div>
 
                 {isMobile && hasPosts && (
-                    <div className="flex mt-22 w-full  mx-auto font-newsreader flex flex-col gap-2">
+                    <div className="flex flex-col mt-22 w-full font-newsreader gap-2">
                         <div className="text-white">Recent posts:</div>
                         {posts.map((post) => (
                             <BlogLanding
