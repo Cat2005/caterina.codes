@@ -79,7 +79,7 @@ const SideBar: React.FC<SideBarProps> = ({ currentSection, sectionClicked, isVis
         {/* Mobile sidebar - only in DOM when needed */}
         {isMobile && (
             <div
-                className="fixed top-0 left-0 pt-5 pb-2 flex justify-center w-full z-50 backdrop-blur-lg bg-[#000000]/10 border-b border-[#252525] transition-opacity duration-300"
+                className="fixed top-0 left-0 pt-5 pb-2 flex justify-center w-full z-50 backdrop-blur-lg bg-[#0a0a0a]/80 border-b border-[#252525] transition-opacity duration-300"
                 style={{
                     opacity:  isVisible ? 1 : 0,
                     visibility: isVisible ? 'visible' : 'hidden',

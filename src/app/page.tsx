@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Landing from "./landing";
 import Projects from "./Projects";
 import SideBar from "./components/SideBar";
@@ -17,44 +17,69 @@ export default function Home() {
   const experienceRef = useRef<HTMLDivElement>(null);
   const teachingRef = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
-  
 
-  
+  // Custom smooth scroll for iOS Safari compatibility
+  const smoothScrollTo = useCallback((targetY: number, duration: number = 1000) => {
+    const startY = window.pageYOffset;
+    const difference = targetY - startY;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + difference * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  }, []);
+
+
   // Function to handle section clicks in sidebar
   const sectionClicked = (section: string) => {
     if (section === 'projects' && projectsRef.current) {
       // Scroll to projects section
       let yOffset;
       if (window.innerWidth > 500) {
-        yOffset = 7; // Adjust this value as needed (negative values scroll less)
+        yOffset = 7;
       } else {
-        yOffset = 55; // Adjust this value as needed (negative values scroll less)
+        yOffset = 55;
       }
       const y = projectsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      smoothScrollTo(y);
     } else if (section === 'experience' && experienceRef.current) {
       // Scroll to experience section
       let yOffset;
       if (window.innerWidth > 500) {
-        yOffset = -2; // Adjust this value as needed (negative values scroll less)
+        yOffset = -2;
       } else {
-        yOffset = -25; // Adjust this value as needed (negative values scroll less)
+        yOffset = -25;
       }
       const y = experienceRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      smoothScrollTo(y);
     } else if (section === 'landing' && landingRef.current) {
       // Scroll to landing section
-      landingRef.current.scrollIntoView({ behavior: 'smooth' });
+      const y = landingRef.current.getBoundingClientRect().top + window.pageYOffset;
+      smoothScrollTo(y);
     } else if (section === 'teaching' && teachingRef.current) {
-      // Scroll to teaching section with an offset to prevent scrolling too far
+      // Scroll to teaching section with an offset
       let yOffset;
-      if (window.innerWidth > 500) { 
-        yOffset = -90; // Adjust this value as needed (negative values scroll less)
+      if (window.innerWidth > 500) {
+        yOffset = -90;
       } else {
-        yOffset = -100; // Adjust this value as needed (negative values scroll less)
+        yOffset = -100;
       }
       const y = teachingRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      smoothScrollTo(y);
     }
   };
 
@@ -62,12 +87,12 @@ export default function Home() {
     if (projectsRef.current) {
       let yOffset;
       if (window.innerWidth > 500) {
-        yOffset = 0; // Adjust this value as needed
+        yOffset = 0;
       } else {
-        yOffset = 55; // Adjust this value as needed
+        yOffset = 55;
       }
       const y = projectsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      smoothScrollTo(y);
     }
   };
   
