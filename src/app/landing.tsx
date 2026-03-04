@@ -42,14 +42,14 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
 
         <div className="justify-center pt-[10vh] w-full mx-auto  flex items-center flex-col">
 
-            <div className="flex flex-col items-start xl:ml-10 px-6 md:px-0">
+            <div className="flex flex-col items-start xl:ml-10 px-10 md:px-0">
                 <div className="flex flex-row">
-                    <h1 className="text-[4.2rem] text-white font-newsreader leading-none">
+                    <h1 className="text-[3.8rem]  md:text-[4.2rem] text-white font-newsreader leading-none">
                         hi, i&apos;m <span className="text-[#CA0079]">Cat.</span>
                     </h1>
                 </div>
 
-                <div className="md:pt-4 text-md md:text-lg text-[#CA0079] font-newsreader">
+                <div className="md:pt-4 text-sm md:text-lg text-[#CA0079] font-newsreader">
                     22 y.o CS grad, currently at Spotify.
                 </div>
 
@@ -62,7 +62,7 @@ const Landing: React.FC<LandingProps> = ({ navClicked }) => {
                                 title={post.title}
                                 slug={post.slug}
                                 description={post.description}
-                                className="h-[55px]"
+                                className="h-[75px]"
                             />
                         ))}
                     </div>
