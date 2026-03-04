@@ -30,6 +30,16 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   title: "Caterina Mammola",
   description: "Caterina Mammola's personal website",
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
