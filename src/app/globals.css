@@ -35,15 +35,9 @@
   }
 }
 
-html {
-  background: var(--background);
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
 }
 ::selection {
   background-color: #a30062;
