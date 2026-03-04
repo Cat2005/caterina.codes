@@ -96,9 +96,12 @@ const AuroraBackground: React.FC = () => {
       <div
         style={{
           position: 'fixed',
-          inset: 0,
+          top: 'calc(-1 * env(safe-area-inset-top, 0))',
+          left: 0,
+          right: 0,
+          bottom: 0,
           zIndex: -2,
-          backgroundColor: '#000000', 
+          backgroundColor: '#000000',
           // --- Debugging Background ---
           background:
          
@@ -127,7 +130,10 @@ const AuroraBackground: React.FC = () => {
         ref={canvasRef}
         style={{
           position: 'fixed',
-          inset: 0,
+          top: 'calc(-1 * env(safe-area-inset-top, 0))',
+          left: 0,
+          right: 0,
+          bottom: 0,
           zIndex: -1,
           width: '100%',
           height: '100%',
