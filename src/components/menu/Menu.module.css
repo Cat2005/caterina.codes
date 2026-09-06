@@ -17,19 +17,47 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 58px;
-  height: 58px;
+  width: 66px;
+  height: 66px;
   padding: 0;
   border: 0;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #ffffff;
-  display: grid;
-  place-items: center;
 }
 
 .cursorImage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   height: 32px;
   width: auto;
+  transform: translate(-50%, -50%);
+}
+
+.cursorImage[data-track] {
+  transform: none;
+}
+
+.cursorImage[data-pop] {
+  animation: pop 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes pop {
+  0% {
+    scale: 1;
+  }
+  40% {
+    scale: 1.35;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursorImage[data-pop] {
+    animation: none;
+  }
 }
 
 .name {

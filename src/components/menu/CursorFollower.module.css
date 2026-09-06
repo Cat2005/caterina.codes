@@ -15,6 +15,10 @@
   opacity: 1;
 }
 
+:global(html[data-cursor-hidden]) .cursor {
+  opacity: 0;
+}
+
 @media not ((hover: hover) and (pointer: fine)) {
   .cursor {
     display: none;
