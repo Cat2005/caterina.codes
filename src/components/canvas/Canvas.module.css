@@ -12,6 +12,11 @@
   zoom: var(--scale);
 }
 
+.backArea {
+  position: absolute;
+  inset: 0;
+}
+
 .back {
   composes: positioned from "./position.module.css";
   margin-left: -10px;

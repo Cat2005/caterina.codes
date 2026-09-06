@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Board from "@/components/board/Board";
+import BackArea from "./BackArea";
 import BackLink from "./BackLink";
 import { layoutBoards } from "./layout";
 import { getPostImages } from "@/lib/posts";
@@ -18,6 +19,7 @@ export default function Canvas({ spec }: { spec: PageSpec }) {
   return (
     <main className={s.page} style={style}>
       <div className={s.canvas}>
+        {spec.back && <BackArea href={spec.back} />}
         {spec.back && hero && (
           <BackLink href={spec.back} {...placed.get(hero.id)!} />
         )}
