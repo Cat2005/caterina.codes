@@ -36,7 +36,7 @@
   position: absolute;
   top: calc(var(--top) + var(--step) * var(--pitch) + 0.5px);
   right: 14px;
-  width: clamp(80px, var(--room), 210px);
+  width: clamp(80px, var(--room), 230px);
   padding: 0;
   border: 0;
   background: none;
@@ -63,10 +63,11 @@
 .label {
   font-family: var(--font-pixel);
   font-size: clamp(9.5px, calc(var(--room) / 14), 12.5px);
-  line-height: 1.35;
-  letter-spacing: 0.04em;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   text-align: right;
+  text-wrap: balance;
   color: var(--muted);
   opacity: 0;
   transition: opacity 160ms ease;

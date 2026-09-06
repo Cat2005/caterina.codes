@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Heading } from "@/lib/headings";
 import s from "./ScrollRail.module.css";
 
-type Mark = Heading & { step: number };
+type Mark = Heading & { raw: number; step: number };
 
 const lead = 120;
-const gap = 4;
+const gap = 6;
 const reach = 260;
 const slack = 90;
 
@@ -34,6 +34,28 @@ export default function ScrollRail({ headings }: { headings: Heading[] }) {
 
   useEffect(() => () => cancelAnimationFrame(tweenRef.current), []);
 
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root || marks.length === 0) return;
+    const style = getComputedStyle(root);
+    const pitch = parseFloat(style.getPropertyValue("--pitch"));
+    const edges = parseFloat(style.getPropertyValue("--top")) + parseFloat(style.getPropertyValue("--bottom"));
+    const top = Math.floor((root.clientHeight - edges) / pitch) - 1;
+    const boxes = [...root.querySelectorAll<HTMLButtonElement>("button")];
+    const heights = marks.map((_, i) => boxes[i]?.offsetHeight ?? 0);
+    const room = (i: number) =>
+      Math.max(gap, Math.ceil((heights[i] / 2 + heights[i + 1] / 2 + 6) / pitch));
+    const steps = marks.map((mark) => Math.min(Math.max(mark.raw, 0), top));
+    for (let i = 1; i < steps.length; i += 1) {
+      steps[i] = Math.min(Math.max(steps[i], steps[i - 1] + room(i - 1)), top);
+    }
+    for (let i = steps.length - 2; i >= 0; i -= 1) {
+      steps[i] = Math.max(Math.min(steps[i], steps[i + 1] - room(i)), 0);
+    }
+    const spaced = marks.map((mark, i) => (steps[i] === mark.step ? mark : { ...mark, step: steps[i] }));
+    if (spaced.some((mark, i) => mark !== marks[i])) setMarks(spaced);
+  }, [marks]);
+
   useEffect(() => {
     const root = rootRef.current;
     const readout = readoutRef.current;
@@ -47,15 +69,13 @@ export default function ScrollRail({ headings }: { headings: Heading[] }) {
       const pitch = parseFloat(style.getPropertyValue("--pitch"));
       const edges = parseFloat(style.getPropertyValue("--top")) + parseFloat(style.getPropertyValue("--bottom"));
       const steps = Math.floor((root.clientHeight - edges) / pitch);
-      let last = -gap;
       setMarks(
         headings.flatMap((heading) => {
           const el = document.getElementById(heading.id);
           if (!el || range <= 0 || steps < 2) return [];
           const at = Math.min(Math.max((offsetOf(el, sc) - lead) / range, 0), 1);
-          const step = Math.min(Math.max(Math.round(at * (steps - 1)), last + gap), steps - 1);
-          last = step;
-          return [{ ...heading, step }];
+          const raw = Math.round(at * (steps - 1));
+          return [{ ...heading, raw, step: raw }];
         }),
       );
     };
