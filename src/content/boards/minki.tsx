@@ -31,8 +31,8 @@ const minki: PageSpec = {
     {
       id: "minki-main-flow",
       tag: "Main flow",
-      x: 1445,
-      y: 640,
+      x: 700,
+      y: 970,
       w: 474,
       h: 345,
       content: <Media src="/projects/minki-main-flow.mp4" poster="/projects/minki-main-flow-poster.webp" />,
@@ -42,7 +42,7 @@ const minki: PageSpec = {
       tag: "Post",
       fit: true,
       x: 1470,
-      y: 90,
+      y: 700,
       w: 445,
       h: 345,
       content: (
@@ -59,8 +59,8 @@ const minki: PageSpec = {
     {
       id: "minki-disc",
       tag: "Disc annotation",
-      x: 88,
-      y: 563,
+      x: 1660,
+      y: 200,
       w: 255,
       h: 270,
       content: <Media src="/projects/minki-disc.mp4" poster="/projects/minki-disc-poster.webp" pad={20} />,
@@ -68,20 +68,11 @@ const minki: PageSpec = {
     {
       id: "minki-send",
       tag: "Send flow",
-      x: 1000,
-      y: 1020,
+      x: 90,
+      y: 940,
       w: 410,
       h: 245,
       content: <Media src="/projects/minki-send.mp4" poster="/projects/minki-send-poster.webp" pad={0} />,
-    },
-    {
-      id: "minki-editor",
-      tag: "Editor",
-      x: 186,
-      y: 950,
-      w: 550,
-      h: 335,
-      content: <Media src="/projects/minki-editor.mp4" poster="/projects/minki-editor-poster.webp" />,
     },
   ],
 };
