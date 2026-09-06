@@ -33,7 +33,7 @@ export default function Board(props: BoardProps) {
     "--height": h && !fit ? `${h}px` : "auto",
     "--i": index,
   } as CSSProperties;
-  const className = href ? `${s.board} ${s.link}` : s.board;
+  const className = s.board;
   const frame = (
     <BoardProvider value={{ tag, clickable: href !== undefined }}>
       <Frame tag={tag}>{children}</Frame>
