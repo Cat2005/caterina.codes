@@ -10,21 +10,25 @@ const minki: PageSpec = {
       tag: "Web",
       hero: true,
       x: 455,
-      y: 436,
+      y: 410,
       w: 940,
-      h: 390,
+      h: 450,
       content: (
         <Row pad={50} gap={30}>
-          <Col gap={14}>
+          <Col gap={26}>
             <Title size={54} href="https://minki.cards">
               minki.cards
             </Title>
-            <Text size={18}>Web-based collaborative card builder. This is my newest and most ambitious project!</Text>
-            <Text size={18}>
-              Almost every component was custom designed by me so this was a big design effort as well as a
-              technical one. Some of my favourite components and flows are spotlighted here!
-            </Text>
-            <Text size={18}>Built with Next, Convex DB, BetterAuth, Resend, Vercel</Text>
+            <Col gap={14}>
+              <Text size={22}>
+                Minki is a web-based collaborative card builder. This is my newest and most ambitious
+                project!
+              </Text>
+              <Text size={22}>
+                Almost every component was custom designed by me so this was a big design effort as well
+                as a technical one. Some of my favourite components and flows are spotlighted here!
+              </Text>
+            </Col>
           </Col>
           <Pic src="/projects/minki-card.webp" alt="" width={320} />
         </Row>

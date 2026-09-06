@@ -1,5 +1,5 @@
 import { Media, Pic, Row, Stack, Col } from "@/components/board/layouts";
-import { Pixel, Text, Title } from "@/components/board/text";
+import { Text, Title } from "@/components/board/text";
 import type { PageSpec } from "@/components/canvas/types";
 
 const makeupcherie: PageSpec = {
@@ -15,13 +15,14 @@ const makeupcherie: PageSpec = {
       h: 340,
       content: (
         <Row pad={48}>
-          <Col gap={14}>
+          <Col gap={26}>
             <Title size={38} href="https://makeupcherie.com">
               makeupcherie.com
             </Title>
-            <Pixel size={17}>10M+ views on Instagram/Tiktok/Reddit</Pixel>
-            <Text size={15}>
-              A lip shade matcher and nail polish finder. Pick a colour, get the closest products.
+            <Text size={22}>
+              Website to find the closest nail polish and lip shades. Took off quickly after I posted
+              about it on Reddit and Instagram where it got 10 million+ views. I received a lot of
+              valuable feedback which I used to improve it, and learnt a lot about marketing+SEO!
             </Text>
           </Col>
           <Pic src="/clay/cherries.webp" alt="" width={170} />
