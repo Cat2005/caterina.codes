@@ -35,7 +35,7 @@ const home: PageSpec = {
             <Title size={38}>makeupcherie.com</Title>
             <Pixel size={17}>10M+ views on Instagram/Tiktok/Reddit</Pixel>
           </Col>
-          <Pic src="/clay/cherries.webp" alt="" width={150} />
+          <Pic src="/clay/cherries.webp" alt="" width={125} />
         </Row>
       ),
     },

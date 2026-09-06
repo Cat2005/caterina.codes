@@ -35,7 +35,7 @@ const uni: PageSpec = {
       href: "/posts/bicepcurl-post",
       fit: true,
       x: 1273,
-      y: 70,
+      y: 130,
       w: 335,
       h: 262,
       content: (

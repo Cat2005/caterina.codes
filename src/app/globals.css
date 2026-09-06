@@ -98,6 +98,11 @@ a {
   color: inherit;
 }
 
+::selection {
+  background: var(--red);
+  color: #ffffff;
+}
+
 img,
 video {
   display: block;
