@@ -16,7 +16,9 @@ const minki: PageSpec = {
       content: (
         <Row pad={50} gap={30}>
           <Col gap={14}>
-            <Title size={54}>minki.cards</Title>
+            <Title size={54} href="https://minki.cards">
+              minki.cards
+            </Title>
             <Text size={18}>Web-based collaborative card builder. This is my newest and most ambitious project!</Text>
             <Text size={18}>
               Almost every component was custom designed by me so this was a big design effort as well as a

@@ -16,7 +16,9 @@ const makeupcherie: PageSpec = {
       content: (
         <Row pad={48}>
           <Col gap={14}>
-            <Title size={38}>makeupcherie.com</Title>
+            <Title size={38} href="https://makeupcherie.com">
+              makeupcherie.com
+            </Title>
             <Pixel size={17}>10M+ views on Instagram/Tiktok/Reddit</Pixel>
             <Text size={15}>
               A lip shade matcher and nail polish finder. Pick a colour, get the closest products.
