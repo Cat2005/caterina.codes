@@ -8,13 +8,21 @@ type Props = {
   href: string;
   external: boolean;
   shared: boolean;
+  lead?: boolean;
+  plain?: boolean;
+  off?: boolean;
   className: string;
   style: CSSProperties;
   children: ReactNode;
 };
 
-export default function BoardLink({ href, external, shared, className, style, children }: Props) {
+export default function BoardLink({ href, external, shared, lead, plain, off, className, style, children }: Props) {
   const marker = shared ? "" : undefined;
+  const flags = {
+    "data-lead": lead ? "" : undefined,
+    "data-plain": plain ? "" : undefined,
+    "data-off": off ? "" : undefined,
+  };
   if (external) {
     return (
       <a
@@ -22,6 +30,7 @@ export default function BoardLink({ href, external, shared, className, style, ch
         className={className}
         style={style}
         data-shared={marker}
+        {...flags}
         target="_blank"
         rel="noreferrer"
         onClick={playOpen}
@@ -31,7 +40,7 @@ export default function BoardLink({ href, external, shared, className, style, ch
     );
   }
   return (
-    <Link href={href} className={className} style={style} data-shared={marker} onClick={playOpen}>
+    <Link href={href} className={className} style={style} data-shared={marker} {...flags} onClick={playOpen}>
       {children}
     </Link>
   );

@@ -22,9 +22,19 @@ const slots: Frame[] = [
   { x: 1000, y: 900, w: 335, h: 330 },
 ];
 
+const mobileSlots: Frame[] = [
+  { x: 35, y: 95, w: 185, h: 185 },
+  { x: 395, y: 85, w: 185, h: 185 },
+  { x: 30, y: 905, w: 180, h: 180 },
+  { x: 385, y: 1050, w: 180, h: 180 },
+  { x: 225, y: 340, w: 165, h: 165 },
+];
+
 const intro: BoardSpec = {
   id: "posts-intro",
+  m: { x: 60, y: 548, w: 500, h: 285 },
   tag: "Posts",
+  intro: true,
   x: 644,
   y: 549,
   w: 632,
@@ -37,13 +47,14 @@ const intro: BoardSpec = {
   ),
 };
 
-export function postBoard(post: PostMeta, frame: Frame): BoardSpec {
+export function postBoard(post: PostMeta, frame: Frame, m?: Frame): BoardSpec {
   const image = images[post.slug];
   return {
     id: post.slug,
     tag: "Post",
     href: `/posts/${post.slug}`,
     ...frame,
+    m,
     h: image?.h ?? frame.h,
     fit: true,
     content: (
@@ -57,6 +68,6 @@ export function postBoard(post: PostMeta, frame: Frame): BoardSpec {
 }
 
 export function postsPage(posts: PostMeta[]): PageSpec {
-  const boards = posts.slice(0, slots.length).map((p, i) => postBoard(p, slots[i]));
+  const boards = posts.slice(0, slots.length).map((p, i) => postBoard(p, slots[i], mobileSlots[i]));
   return { boards: [intro, ...boards] };
 }

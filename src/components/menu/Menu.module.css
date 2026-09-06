@@ -122,3 +122,50 @@
   width: auto;
   color: #929292;
 }
+
+@media (max-width: 560px) {
+  .menu {
+    --icon-size: 15px;
+    top: auto;
+    bottom: 14px;
+    left: 50%;
+    translate: -50%;
+    width: auto;
+    height: auto;
+    padding: 6px 10px;
+    border-radius: 14px;
+    zoom: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .cursorButton,
+  .name,
+  .sub {
+    display: none;
+  }
+
+  .divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 5px;
+  }
+
+  .nav {
+    flex-direction: row;
+    gap: 5px;
+    margin: 0;
+  }
+
+  .link {
+    gap: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0;
+  }
+
+  .icon {
+    color: #ffffff;
+  }
+}

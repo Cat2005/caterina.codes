@@ -1,5 +1,6 @@
 import { ViewTransition } from "react";
 import type { CSSProperties, ReactNode } from "react";
+import type { Placed } from "../canvas/layout";
 import { BoardProvider } from "./BoardContext";
 import BoardLink from "./BoardLink";
 import Frame from "./Frame";
@@ -12,9 +13,12 @@ export type BoardProps = {
   fy: number;
   w: number;
   h?: number;
+  m?: Placed;
   tag?: string;
   href?: string;
   hero?: boolean;
+  lead?: boolean;
+  plain?: boolean;
   fit?: boolean;
   preload?: string[];
   index?: number;
@@ -24,15 +28,20 @@ export type BoardProps = {
 const isExternal = (href: string) => /^https?:/.test(href);
 
 export default function Board(props: BoardProps) {
-  const { id, tag, href, hero, fit, preload, index = 0, fx, fy, w, h, children } = props;
+  const { id, tag, href, hero, lead, plain, fit, preload, index = 0, fx, fy, w, h, m, children } = props;
   const style = {
     "--fx": fx,
     "--fy": fy,
     "--w": `${w}px`,
     "--h": `${h ?? 0}px`,
     "--height": h && !fit ? `${h}px` : "auto",
+    "--mfx": m?.fx,
+    "--mfy": m?.fy,
+    "--mw": `${m?.w ?? 0}px`,
+    "--mh": `${m?.h ?? 0}px`,
     "--i": index,
   } as CSSProperties;
+  const off = plain && !m;
   const className = s.board;
   const frame = (
     <BoardProvider value={{ tag, clickable: href !== undefined }}>
@@ -47,6 +56,9 @@ export default function Board(props: BoardProps) {
       href={href}
       external={isExternal(href)}
       shared={shared}
+      lead={lead}
+      plain={plain}
+      off={off}
       className={className}
       style={style}
     >
@@ -57,6 +69,9 @@ export default function Board(props: BoardProps) {
       className={className}
       style={style}
       data-hero={hero ? "" : undefined}
+      data-lead={lead ? "" : undefined}
+      data-plain={plain ? "" : undefined}
+      data-off={off ? "" : undefined}
       data-shared={shared ? "" : undefined}
     >
       {frame}

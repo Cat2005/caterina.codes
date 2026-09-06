@@ -64,15 +64,16 @@ type PicProps = {
   className?: string;
   center?: boolean;
   bleed?: boolean;
+  flush?: boolean;
 };
 
-export async function Pic({ src, alt, width, height, className, center, bleed }: PicProps) {
+export async function Pic({ src, alt, width, height, className, center, bleed, flush }: PicProps) {
   const meta = await getImageMeta(src);
   const style = {
     ...(width ? { "--w": `${width}px` } : {}),
     ...(height ? { "--h": `${height}px` } : {}),
   } as CSSProperties;
-  const cls = `${s.pic} ${center ? s.picCenter : ""} ${bleed ? s.bleed : ""} ${className ?? ""}`;
+  const cls = `${s.pic} ${center ? s.picCenter : ""} ${bleed ? s.bleed : ""} ${flush ? s.flush : ""} ${className ?? ""}`;
   return (
     <BlurImage
       src={src}

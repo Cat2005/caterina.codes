@@ -91,3 +91,20 @@
     transform: none;
   }
 }
+
+@media (max-width: 560px) {
+  .board[data-off] {
+    display: none;
+  }
+
+  .board[data-lead],
+  .board[data-plain] {
+    --tag-size: 14px;
+    --tag-pad: 5px 16px;
+    --tag-gap: 16px;
+    --tag-left: 14px;
+    --tag-radius: 5px;
+    width: var(--mw);
+    height: var(--mh);
+  }
+}

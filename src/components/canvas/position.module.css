@@ -6,3 +6,11 @@
     left 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
     top 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+@media (max-width: 560px) {
+  .positioned[data-lead],
+  .positioned[data-plain] {
+    left: calc(var(--mfx) * (var(--vwd) - var(--mw)));
+    top: calc(var(--mfy) * (var(--vhd) - var(--mh)));
+  }
+}

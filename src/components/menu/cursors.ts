@@ -11,12 +11,18 @@ function subscribe(cb: () => void) {
 }
 
 function read() {
-  const saved = Number(localStorage.getItem(storageKey));
-  return Number.isInteger(saved) && saved >= 0 && saved < cursors.length ? saved : 0;
+  try {
+    const saved = Number(localStorage.getItem(storageKey));
+    return Number.isInteger(saved) && saved >= 0 && saved < cursors.length ? saved : 0;
+  } catch {
+    return 0;
+  }
 }
 
 export function setCursor(index: number) {
-  localStorage.setItem(storageKey, String(index));
+  try {
+    localStorage.setItem(storageKey, String(index));
+  } catch {}
   listeners.forEach((cb) => cb());
 }
 

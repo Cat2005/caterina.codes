@@ -26,12 +26,14 @@
   --board-bg: #ffffff;
   --menu-bg: #2b2b2b;
 
-  --fit-w: 2000;
-  --fit-h: 1390;
-  --scale: clamp(0.35, tan(atan2(min(100vw / var(--fit-w), 100vh / var(--fit-h)), 1px)), 1);
+  --pad-top: 0px;
+
+  /* Safari resolves var() inside a registered @property against the base
+     declaration and ignores media-query overrides of the referenced custom
+     property, so the design space is written out literally in each branch. */
+  --scale: clamp(0.35, tan(atan2(min(100vw / 2000, 100vh / 1390), 1px)), 1);
   --vwd: calc(100vw / var(--scale));
   --vhd: calc(100vh / var(--scale));
-  --pad-top: 0px;
 
   --board-border-size: 1.5px;
   --corner-size: 14px;
@@ -47,6 +49,14 @@
   --dot-pitch: 26.4px;
 
   --cursor-size: 48px;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --scale: clamp(0.3, tan(atan2(min(100vw / 620, 100vh / 1380), 1px)), 1);
+    --vwd: calc(100vw / var(--scale));
+    --vhd: calc(100vh / var(--scale));
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

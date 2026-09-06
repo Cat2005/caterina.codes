@@ -6,7 +6,9 @@ const home: PageSpec = {
   boards: [
     {
       id: "intro",
+      m: { x: 60, y: 548, w: 500, h: 285 },
       tag: "Intro",
+      intro: true,
       x: 644,
       y: 549,
       w: 632,
@@ -20,6 +22,7 @@ const home: PageSpec = {
     },
     {
       id: "makeupcherie",
+      m: { x: 35, y: 95, w: 185, h: 185 },
       tag: "Web",
       href: "/makeupcherie",
       x: 541,
@@ -38,6 +41,7 @@ const home: PageSpec = {
     },
     {
       id: "uni",
+      m: { x: 395, y: 85, w: 185, h: 185 },
       tag: "Education",
       href: "/uni",
       x: 1323,
@@ -71,6 +75,7 @@ const home: PageSpec = {
     },
     {
       id: "bicepcurl-post",
+      m: { x: 38, y: 965, w: 180, h: 180 },
       tag: "ML",
       href: "/posts/bicepcurl-post",
       x: 133,
@@ -87,6 +92,7 @@ const home: PageSpec = {
     },
     {
       id: "minki",
+      m: { x: 210, y: 342, w: 200, h: 167 },
       tag: "Web",
       href: "/minki",
       x: 631,
@@ -99,12 +105,13 @@ const home: PageSpec = {
             <Title size={36}>minki.cards</Title>
             <Pixel size={20}>My newest and most ambitious project!</Pixel>
           </Col>
-          <Pic src="/projects/minki-card.webp" alt="" width={230} />
+          <Pic src="/projects/minki-card.webp" alt="" width={230} flush />
         </Row>
       ),
     },
     {
       id: "spotify",
+      m: { x: 405, y: 900, w: 175, h: 175 },
       tag: "Job",
       href: "/spotify",
       x: 1389,

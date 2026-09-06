@@ -26,3 +26,14 @@
 .back:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 560px) {
+  .canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    zoom: 1;
+    transform: scale(var(--scale));
+    transform-origin: 0 0;
+  }
+}
