@@ -71,8 +71,8 @@ const minki: PageSpec = {
       x: 1000,
       y: 1020,
       w: 410,
-      h: 258,
-      content: <Media src="/projects/minki-send.mp4" poster="/projects/minki-send-poster.webp" />,
+      h: 245,
+      content: <Media src="/projects/minki-send.mp4" poster="/projects/minki-send-poster.webp" pad={0} />,
     },
     {
       id: "minki-editor",
