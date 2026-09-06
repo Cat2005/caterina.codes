@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import Board from "@/components/board/Board";
 import BackArea from "./BackArea";
 import BackLink from "./BackLink";
@@ -8,16 +7,10 @@ import type { PageSpec } from "./types";
 import s from "./Canvas.module.css";
 
 export default function Canvas({ spec }: { spec: PageSpec }) {
-  const { placed, padLeft, padTop, fitW, fitH } = layoutBoards(spec.boards);
+  const placed = layoutBoards(spec.boards);
   const hero = spec.boards.find((b) => b.hero);
-  const style = {
-    "--pad-left": `${padLeft}px`,
-    "--pad-top": `${padTop}px`,
-    "--fit-w": fitW,
-    "--fit-h": fitH,
-  } as CSSProperties;
   return (
-    <main className={s.page} style={style}>
+    <main>
       <div className={s.canvas}>
         {spec.back && <BackArea href={spec.back} />}
         {spec.back && hero && (

@@ -1,9 +1,3 @@
-.page {
-  --scale: clamp(0.35, tan(atan2(min(100vw / var(--fit-w), 100vh / var(--fit-h)), 1px)), 1);
-  --vwd: calc(100vw / var(--scale));
-  --vhd: calc(100vh / var(--scale));
-}
-
 .canvas {
   position: relative;
   width: var(--vwd);

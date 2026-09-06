@@ -1,7 +1,7 @@
 .positioned {
   position: absolute;
-  left: calc(var(--pad-left) + var(--fx) * (var(--vwd) - var(--pad-left) - var(--pad-x) - var(--w)));
-  top: calc(var(--pad-top) + var(--fy) * (var(--vhd) - var(--pad-top) - var(--pad-bottom) - var(--h)));
+  left: calc(var(--fx) * (var(--vwd) - var(--w)));
+  top: calc(var(--pad-top) + var(--fy) * (var(--vhd) - var(--pad-top) - var(--h)));
   transition:
     left 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
     top 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
