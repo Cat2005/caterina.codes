@@ -9,6 +9,11 @@ const links: { href: string; label: string; icon: IconName }[] = [
   { href: "/posts", label: "Posts", icon: "posts" },
 ];
 
+const social: { href: string; label: string; icon: IconName }[] = [
+  { href: "https://github.com/Cat2005", label: "GitHub", icon: "github" },
+  { href: "https://www.linkedin.com/in/caterina-m", label: "LinkedIn", icon: "linkedin" },
+];
+
 export default function Menu() {
   return (
     <aside className={s.menu}>
@@ -22,6 +27,21 @@ export default function Menu() {
             <NdotIcon name={l.icon} />
             {l.label}
           </Link>
+        ))}
+      </nav>
+      <hr className={s.divider} />
+      <nav className={s.nav}>
+        {social.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noreferrer"
+            className={s.link}
+          >
+            <NdotIcon name={l.icon} />
+            {l.label}
+          </a>
         ))}
       </nav>
     </aside>
