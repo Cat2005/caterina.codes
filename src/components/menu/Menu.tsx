@@ -1,6 +1,6 @@
-import Link from "next/link";
 import CursorButton from "./CursorButton";
-import NdotIcon, { type IconName } from "./NdotIcon";
+import MenuLink from "./MenuLink";
+import { type IconName } from "./NdotIcon";
 import s from "./Menu.module.css";
 
 const links: { href: string; label: string; icon: IconName }[] = [
@@ -23,25 +23,13 @@ export default function Menu() {
       <hr className={s.divider} />
       <nav className={s.nav}>
         {links.map((l) => (
-          <Link key={l.href} href={l.href} className={s.link}>
-            <NdotIcon name={l.icon} />
-            {l.label}
-          </Link>
+          <MenuLink key={l.href} {...l} />
         ))}
       </nav>
       <hr className={s.divider} />
       <nav className={s.nav}>
         {social.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            target="_blank"
-            rel="noreferrer"
-            className={s.link}
-          >
-            <NdotIcon name={l.icon} />
-            {l.label}
-          </a>
+          <MenuLink key={l.href} {...l} external />
         ))}
       </nav>
     </aside>
