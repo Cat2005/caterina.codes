@@ -39,6 +39,7 @@ export default function Board(props: BoardProps) {
     "--mfy": m?.fy,
     "--mw": `${m?.w ?? 0}px`,
     "--mh": `${m?.h ?? 0}px`,
+    "--mheight": m?.h ? `${m.h}px` : "auto",
     "--i": index,
   } as CSSProperties;
   const off = plain && !m;

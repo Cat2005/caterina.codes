@@ -105,6 +105,10 @@
     --tag-left: 14px;
     --tag-radius: 5px;
     width: var(--mw);
-    height: var(--mh);
+    height: var(--mheight);
+  }
+
+  .board[data-hero] {
+    width: 94%;
   }
 }

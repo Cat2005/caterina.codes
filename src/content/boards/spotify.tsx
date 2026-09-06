@@ -7,6 +7,7 @@ const spotify: PageSpec = {
   boards: [
     {
       id: "spotify",
+      m: { x: 10, y: 495, w: 600, h: 390 },
       tag: "Job",
       hero: true,
       x: 455,
@@ -32,6 +33,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-authors",
+      m: { x: 40, y: 100, w: 200, h: 158 },
       tag: "Full-stack",
       x: 1564,
       y: 120,
@@ -46,6 +48,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-jam",
+      m: { x: 380, y: 95, w: 200, h: 200 },
       tag: "Backend",
       x: 1560,
       y: 850,
@@ -60,6 +63,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-managed",
+      m: { x: 40, y: 1000, w: 230, h: 190 },
       tag: "Backend",
       x: 138,
       y: 968,
@@ -74,6 +78,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-import",
+      m: { x: 340, y: 1040, w: 230, h: 190 },
       tag: "Backend",
       x: 760,
       y: 960,

@@ -7,6 +7,7 @@ const uni: PageSpec = {
   boards: [
     {
       id: "uni",
+      m: { x: 10, y: 525, w: 600, h: 330 },
       tag: "Education",
       hero: true,
       x: 455,
@@ -29,6 +30,7 @@ const uni: PageSpec = {
     },
     {
       id: "bicepcurl-post",
+      m: { x: 40, y: 110, w: 200, h: 200 },
       tag: "Post",
       href: "/posts/bicepcurl-post",
       fit: true,
@@ -46,6 +48,7 @@ const uni: PageSpec = {
     },
     {
       id: "dissertation",
+      m: { x: 380, y: 100, w: 200, h: 200 },
       tag: "Dissertation",
       x: 1620,
       y: 650,
@@ -61,6 +64,7 @@ const uni: PageSpec = {
     },
     {
       id: "compsoc",
+      m: { x: 40, y: 930, w: 190, h: 190 },
       tag: "Web",
       href: "https://comp-soc.com",
       x: 190,
@@ -76,6 +80,7 @@ const uni: PageSpec = {
     },
     {
       id: "make-mindmaps",
+      m: { x: 360, y: 970, w: 200, h: 200 },
       tag: "Post",
       href: "/posts/make-mindmaps",
       fit: true,

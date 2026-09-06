@@ -7,6 +7,7 @@ const makeupcherie: PageSpec = {
   boards: [
     {
       id: "makeupcherie",
+      m: { x: 10, y: 522, w: 600, h: 335 },
       tag: "Web",
       hero: true,
       x: 455,
@@ -31,6 +32,7 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "makeup-post",
+      m: { x: 40, y: 110, w: 200, h: 200 },
       tag: "Post",
       href: "/posts/makeup-post",
       fit: true,
@@ -51,6 +53,7 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "makeupcherie-site",
+      m: { x: 380, y: 100, w: 200, h: 200 },
       tag: "Web",
       href: "https://makeupcherie.com",
       x: 120,
@@ -61,6 +64,7 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "nailpolish",
+      m: { x: 200, y: 960, w: 230, h: 190 },
       tag: "Web",
       href: "https://nailpolishfinder.com",
       x: 1000,

@@ -9,7 +9,6 @@ import s from "./Canvas.module.css";
 export default function Canvas({ spec }: { spec: PageSpec }) {
   const placed = layoutBoards(spec.boards);
   const hero = spec.boards.find((b) => b.hero);
-  const flow = !spec.back;
   return (
     <main>
       <div className={s.canvas}>
@@ -25,8 +24,8 @@ export default function Canvas({ spec }: { spec: PageSpec }) {
             tag={b.tag}
             href={b.href}
             hero={b.hero}
-            lead={flow && b.intro}
-            plain={flow && !b.intro}
+            lead={b.intro || b.hero}
+            plain={!b.intro && !b.hero}
             fit={b.fit}
             preload={
               b.href?.startsWith("/posts/")

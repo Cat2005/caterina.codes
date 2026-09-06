@@ -7,6 +7,7 @@ const minki: PageSpec = {
   boards: [
     {
       id: "minki",
+      m: { x: 10, y: 490, w: 600, h: 400 },
       tag: "Web",
       hero: true,
       x: 455,
@@ -36,6 +37,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-main-flow",
+      m: { x: 40, y: 990, w: 250, h: 180 },
       tag: "Main flow",
       x: 700,
       y: 970,
@@ -45,6 +47,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-design-post",
+      m: { x: 340, y: 1030, w: 240, h: 180 },
       tag: "Post",
       fit: true,
       x: 1470,
@@ -64,6 +67,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-disc",
+      m: { x: 40, y: 100, w: 185, h: 185 },
       tag: "Disc annotation",
       x: 1660,
       y: 200,
@@ -73,6 +77,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-send",
+      m: { x: 350, y: 110, w: 230, h: 155 },
       tag: "Send flow",
       x: 90,
       y: 940,

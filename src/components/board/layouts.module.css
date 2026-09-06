@@ -121,8 +121,26 @@
     padding: var(--mpad);
   }
 
-  [data-plain] .col {
+  [data-plain] .col,
+  [data-plain] .caption {
     display: none;
+  }
+
+  [data-lead] .row {
+    padding: 26px;
+    gap: 18px;
+  }
+
+  [data-lead] .pic {
+    width: 32%;
+    flex: none;
+    align-self: center;
+  }
+
+  [data-plain] .media {
+    --pad: 0px;
+    gap: 0;
+    padding: 0;
   }
 
   [data-plain] .pic {

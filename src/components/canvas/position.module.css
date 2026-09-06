@@ -9,8 +9,18 @@
 
 @media (max-width: 560px) {
   .positioned[data-lead],
-  .positioned[data-plain] {
+  .positioned[data-plain],
+  .positioned[data-back] {
     left: calc(var(--mfx) * (var(--vwd) - var(--mw)));
-    top: calc(var(--mfy) * (var(--vhd) - var(--mh)));
+    top: calc(var(--pad-top) + var(--mfy) * (var(--vhd) - var(--pad-top) - var(--mh)));
+  }
+
+  .positioned[data-hero] {
+    left: 50%;
+    translate: -50%;
+  }
+
+  .positioned[data-back] {
+    left: 3%;
   }
 }
