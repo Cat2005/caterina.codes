@@ -7,14 +7,14 @@ const projects: PageSpec = {
     {
       id: "projects-intro",
       tag: "Projects",
-      x: 683,
-      y: 555,
-      w: 550,
-      h: 270,
+      x: 644,
+      y: 535,
+      w: 632,
+      h: 310,
       content: (
-        <Hero gap={16}>
-          <Title size={52}>Projects</Title>
-          <Pixel size={20}>
+        <Hero gap={18}>
+          <Title size={60}>projects</Title>
+          <Pixel size={23}>
             I build mostly web, with some ML from uni. I like making things that are fun, creative, and a
             bit unnecessary.
           </Pixel>

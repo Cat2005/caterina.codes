@@ -25,14 +25,14 @@ const slots: Frame[] = [
 const intro: BoardSpec = {
   id: "posts-intro",
   tag: "Posts",
-  x: 683,
-  y: 567,
-  w: 550,
-  h: 240,
+  x: 644,
+  y: 549,
+  w: 632,
+  h: 276,
   content: (
-    <Hero gap={16}>
-      <Title size={52}>Posts</Title>
-      <Pixel size={20}>Some of my thoughts on learning, marketing, product and UI.</Pixel>
+    <Hero gap={18}>
+      <Title size={60}>posts</Title>
+      <Pixel size={23}>Some of my thoughts on learning, marketing, product and UI.</Pixel>
     </Hero>
   ),
 };

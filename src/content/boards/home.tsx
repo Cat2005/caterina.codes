@@ -7,14 +7,14 @@ const home: PageSpec = {
     {
       id: "intro",
       tag: "Intro",
-      x: 683,
-      y: 567,
-      w: 550,
-      h: 240,
+      x: 644,
+      y: 549,
+      w: 632,
+      h: 276,
       content: (
-        <Hero gap={16}>
-          <Title size={52}>hi, i&apos;m Cat.</Title>
-          <Pixel size={20}>i like making fun websites and i care a lot about design.</Pixel>
+        <Hero gap={18}>
+          <Title size={60}>hi, i&apos;m Cat.</Title>
+          <Pixel size={23}>i like making fun websites and i care a lot about design.</Pixel>
         </Hero>
       ),
     },
@@ -114,7 +114,7 @@ const home: PageSpec = {
       content: (
         <Stack pad={24} gap={12} center>
           <Pic src="/clay/spotify.webp" alt="" width={150} />
-          <Title size={26}>SWE @ Spotify</Title>
+          <Title size={23}>SWE @ Spotify</Title>
         </Stack>
       ),
     },
