@@ -36,7 +36,7 @@
   --pad-top: 90px;
   --pad-bottom: 60px;
 
-  --board-border: 1px;
+  --board-border: 2px;
   --corner-size: 14px;
   --corner: var(--corner-size);
 
