@@ -25,17 +25,17 @@ const projects: PageSpec = {
       id: "minki",
       tag: "Web",
       href: "/minki",
-      x: 560,
-      y: 140,
-      w: 538,
-      h: 220,
+      x: 840,
+      y: 940,
+      w: 590,
+      h: 245,
       content: (
-        <Row pad={32}>
-          <Col gap={10}>
-            <Title size={36}>minki.cards</Title>
-            <Pixel size={20}>My newest and most ambitious project!</Pixel>
+        <Row pad={36}>
+          <Col gap={12}>
+            <Title size={40}>minki.cards</Title>
+            <Pixel size={21}>My newest and most ambitious project!</Pixel>
           </Col>
-          <Pic src="/projects/minki-card.webp" alt="" width={230} />
+          <Pic src="/projects/minki-card.webp" alt="" width={255} />
         </Row>
       ),
     },
@@ -43,8 +43,8 @@ const projects: PageSpec = {
       id: "makeupcherie",
       tag: "Web",
       href: "/makeupcherie",
-      x: 1250,
-      y: 320,
+      x: 700,
+      y: 140,
       w: 587,
       h: 216,
       content: (
@@ -61,8 +61,8 @@ const projects: PageSpec = {
       id: "compsoc",
       tag: "Web",
       href: "https://comp-soc.com",
-      x: 480,
-      y: 900,
+      x: 1460,
+      y: 500,
       w: 254,
       h: 242,
       content: (
@@ -75,8 +75,8 @@ const projects: PageSpec = {
     {
       id: "dissertation",
       tag: "ML",
-      x: 1400,
-      y: 780,
+      x: 300,
+      y: 880,
       w: 287,
       h: 350,
       content: (
@@ -90,8 +90,8 @@ const projects: PageSpec = {
       id: "bicepcurl-post",
       tag: "ML",
       href: "/posts/bicepcurl-post",
-      x: 900,
-      y: 950,
+      x: 150,
+      y: 520,
       w: 335,
       h: 262,
       content: (
