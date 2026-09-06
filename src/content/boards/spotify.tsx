@@ -14,8 +14,8 @@ const spotify: PageSpec = {
       w: 1076,
       h: 420,
       content: (
-        <Row pad={80} gap={50}>
-          <Pic src="/clay/spotify.webp" alt="" width={180} />
+        <Row pad={52} gap={20}>
+          <Pic src="/clay/spotify.webp" alt="" width={300} />
           <Col gap={20}>
             <Title size={30}>SWE @ Spotify</Title>
             <Text size={22}>
@@ -33,8 +33,8 @@ const spotify: PageSpec = {
     {
       id: "spotify-authors",
       tag: "Full-stack",
-      x: 760,
-      y: 960,
+      x: 1564,
+      y: 120,
       w: 346,
       h: 273,
       content: (
@@ -47,8 +47,8 @@ const spotify: PageSpec = {
     {
       id: "spotify-jam",
       tag: "Backend",
-      x: 1623,
-      y: 260,
+      x: 1560,
+      y: 850,
       w: 287,
       h: 350,
       content: (
@@ -75,8 +75,8 @@ const spotify: PageSpec = {
     {
       id: "spotify-import",
       tag: "Backend",
-      x: 1437,
-      y: 990,
+      x: 760,
+      y: 960,
       w: 400,
       h: 330,
       content: (
