@@ -33,9 +33,11 @@
   --vhd: calc(100vh / var(--scale));
   --pad-top: 0px;
 
-  --board-border: 1.5px;
+  --board-border-size: 1.5px;
   --corner-size: 14px;
-  --corner-radius: 4px;
+  --corner-radius-size: 4px;
+  --board-border: var(--board-border-size);
+  --corner-radius: var(--corner-radius-size);
   --corner: var(--corner-size);
 
   --font-pixel: var(--font-ndot), "Courier New", monospace;

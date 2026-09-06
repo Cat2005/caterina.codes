@@ -21,6 +21,8 @@
 
 .board {
   --corner: calc(var(--corner-size) * var(--scale));
+  --corner-radius: calc(var(--corner-radius-size) * var(--scale));
+  --board-border: calc(var(--board-border-size) * var(--scale));
   --tag-radius: calc(6px * var(--scale));
   --tag-left: calc(20px * var(--scale));
   --tag-gap: calc(22px * var(--scale));
