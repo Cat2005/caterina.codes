@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import Board from "@/components/board/Board";
+import BackArea from "@/components/canvas/BackArea";
 import BackLink from "@/components/canvas/BackLink";
 import mdxComponents from "@/components/mdx/MdxComponents";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
@@ -26,6 +27,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <main className={s.page}>
+      <BackArea href="/posts" />
       <div className={s.canvas}>
         <BackLink href="/posts" fx={0.62} fy={0} w={1300} h={0} />
         <Board id={post.slug} hero fx={0.62} fy={0} w={1300}>
