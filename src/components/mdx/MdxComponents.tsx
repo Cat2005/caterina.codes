@@ -1,13 +1,26 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { headingText, slugify } from "@/lib/headings";
 import { MDXImage, MDXVideo } from "./MdxMedia";
 import s from "./mdx.module.css";
 
 type Kids = { children?: ReactNode };
 
 const mdxComponents = {
-  h1: ({ children }: Kids) => <h1 className={s.h1}>{children}</h1>,
-  h2: ({ children }: Kids) => <h2 className={s.h2}>{children}</h2>,
-  h3: ({ children }: Kids) => <h3 className={s.h3}>{children}</h3>,
+  h1: ({ children }: Kids) => (
+    <h1 id={slugify(headingText(children))} className={s.h1}>
+      {children}
+    </h1>
+  ),
+  h2: ({ children }: Kids) => (
+    <h2 id={slugify(headingText(children))} className={s.h2}>
+      {children}
+    </h2>
+  ),
+  h3: ({ children }: Kids) => (
+    <h3 id={slugify(headingText(children))} className={s.h3}>
+      {children}
+    </h3>
+  ),
   p: ({ children }: Kids) => <p className={s.p}>{children}</p>,
   a: ({ href, children }: { href?: string; children?: ReactNode }) => (
     <a href={href} target="_blank" rel="noreferrer" className={s.a}>

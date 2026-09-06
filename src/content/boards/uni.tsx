@@ -55,10 +55,7 @@ const uni: PageSpec = {
         <Stack pad={24} gap={10}>
           <Pic src="/clay/brain.webp" alt="" width={160} center />
           <Title size={20}>Clinically Interpretable XAI for glioblastoma diagnosis</Title>
-          <Text size={12}>
-            Built on prior work in concept bottleneck models to integrate clinical concepts into diagnosis
-            pipeline. I achieved an outstanding classification for this work (84%).
-          </Text>
+          <Text size={12}>I achieved an outstanding classification for this work (84%).</Text>
         </Stack>
       ),
     },

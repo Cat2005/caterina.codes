@@ -6,6 +6,8 @@ import Board from "@/components/board/Board";
 import BackArea from "@/components/canvas/BackArea";
 import BackLink from "@/components/canvas/BackLink";
 import mdxComponents from "@/components/mdx/MdxComponents";
+import ScrollRail from "@/components/post/ScrollRail";
+import { getHeadings } from "@/lib/headings";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import s from "./post.module.css";
 
@@ -24,33 +26,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const post = getPostBySlug((await params).slug);
   if (!post) notFound();
+  const headings = getHeadings(post.content);
 
   return (
-    <main className={s.page}>
-      <BackArea href="/posts" />
-      <div className={s.canvas}>
-        <BackLink href="/posts" fx={0.62} fy={0} w={1300} h={0} />
-        <Board id={post.slug} hero fx={0.62} fy={0} w={1300}>
-          <article className={s.article}>
-            <h1 className={s.title}>{post.title}</h1>
-            <p className={s.lede}>{post.description}</p>
-            <MDXRemote
-              source={post.content}
-              components={mdxComponents}
-              options={{
-                mdxOptions: {
-                  rehypePlugins: [
-                    [
-                      rehypePrettyCode,
-                      { theme: "rose-pine-dawn", keepBackground: true },
-                    ],
-                  ],
-                },
-              }}
-            />
-          </article>
-        </Board>
-      </div>
-    </main>
+    <>
+      <main className={s.page}>
+        <BackArea href="/posts" />
+        <div className={s.canvas}>
+          <BackLink href="/posts" fx={0.62} fy={0} w={1300} h={0} />
+          <Board id={post.slug} hero fx={0.62} fy={0} w={1300}>
+            <article className={s.article}>
+              <h1 className={s.title}>{post.title}</h1>
+              <p className={s.lede}>{post.description}</p>
+              <MDXRemote
+                source={post.content}
+                components={mdxComponents}
+                options={{
+                  mdxOptions: {
+                    rehypePlugins: [[rehypePrettyCode, { theme: "rose-pine-dawn", keepBackground: true }]],
+                  },
+                }}
+              />
+            </article>
+          </Board>
+        </div>
+      </main>
+      <ScrollRail headings={headings} />
+    </>
   );
 }

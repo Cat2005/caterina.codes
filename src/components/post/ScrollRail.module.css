@@ -1,0 +1,121 @@
+.rail {
+  --progress: 0;
+  --top: 40px;
+  --bottom: 40px;
+  --pitch: 13px;
+  --room: calc(38vw - 480px * var(--scale) - 50px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 100vh;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.zone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max(60px, calc(var(--room) + 50px));
+  height: 100%;
+  pointer-events: auto;
+}
+
+.ticks {
+  position: absolute;
+  top: var(--top);
+  right: 14px;
+  bottom: var(--bottom);
+  width: 9px;
+  background: repeating-linear-gradient(to bottom, var(--faint) 0 1px, transparent 1px var(--pitch));
+  opacity: 0.55;
+}
+
+.mark {
+  position: absolute;
+  top: calc(var(--top) + var(--step) * var(--pitch) + 0.5px);
+  right: 14px;
+  width: clamp(80px, var(--room), 210px);
+  padding: 0;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  translate: 0 -50%;
+  pointer-events: none;
+}
+
+.rail[data-open] .mark {
+  pointer-events: auto;
+}
+
+.notch {
+  width: 12px;
+  height: 1px;
+  flex: none;
+  background: var(--muted);
+  opacity: 0.7;
+}
+
+.label {
+  font-family: var(--font-pixel);
+  font-size: clamp(9.5px, calc(var(--room) / 14), 12.5px);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.rail[data-open] .label {
+  opacity: 1;
+}
+
+.rail[data-open] .cursor {
+  opacity: 0;
+}
+
+.mark:hover .label {
+  color: var(--red);
+}
+
+.mark:hover .notch {
+  background: var(--red);
+  opacity: 1;
+}
+
+.cursor {
+  position: absolute;
+  transition: opacity 160ms ease;
+  top: calc(var(--top) + var(--progress) * (100% - var(--top) - var(--bottom)));
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  translate: 0 -50%;
+}
+
+.readout {
+  font-family: var(--font-pixel);
+  font-size: clamp(9px, calc(var(--room) / 16), 12px);
+  letter-spacing: 0.06em;
+  color: var(--red);
+}
+
+.line {
+  width: 20px;
+  height: 1.5px;
+  background: var(--red);
+}
+
+@media (max-width: 900px) {
+  .rail {
+    display: none;
+  }
+}
