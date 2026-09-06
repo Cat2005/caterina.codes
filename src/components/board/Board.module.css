@@ -28,6 +28,7 @@
   height: var(--corner);
   background: #ffffff;
   border: var(--board-border) solid var(--red);
+  border-radius: var(--corner-radius);
   pointer-events: none;
   z-index: 2;
 }

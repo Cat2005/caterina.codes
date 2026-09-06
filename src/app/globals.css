@@ -38,6 +38,7 @@
 
   --board-border: 2px;
   --corner-size: 14px;
+  --corner-radius: 4px;
   --corner: var(--corner-size);
 
   --font-pixel: var(--font-ndot), "Courier New", monospace;
