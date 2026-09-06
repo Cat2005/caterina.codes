@@ -25,8 +25,8 @@ const projects: PageSpec = {
       id: "minki",
       tag: "Web",
       href: "/minki",
-      x: 840,
-      y: 940,
+      x: 690,
+      y: 1030,
       w: 590,
       h: 245,
       content: (
@@ -62,7 +62,7 @@ const projects: PageSpec = {
       tag: "Web",
       href: "https://comp-soc.com",
       x: 1460,
-      y: 500,
+      y: 330,
       w: 254,
       h: 242,
       content: (
@@ -75,8 +75,8 @@ const projects: PageSpec = {
     {
       id: "dissertation",
       tag: "Dissertation",
-      x: 300,
-      y: 880,
+      x: 1500,
+      y: 760,
       w: 287,
       h: 350,
       content: (
@@ -92,7 +92,7 @@ const projects: PageSpec = {
       tag: "ML",
       href: "/posts/bicepcurl-post",
       x: 150,
-      y: 520,
+      y: 820,
       w: 335,
       h: 262,
       content: (
