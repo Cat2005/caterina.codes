@@ -8,6 +8,7 @@ import BlurImage from "./BlurImage";
 import { useBoard } from "./BoardContext";
 import DeferredVideo from "./DeferredVideo";
 import Lightbox from "./Lightbox";
+import { playOpen } from "@/lib/sounds";
 import s from "./layouts.module.css";
 
 export type MediaProps = { src: string; alt?: string; poster?: string; pad?: number; caption?: ReactNode };
@@ -59,7 +60,10 @@ export function MediaBox(props: MediaBoxProps) {
   if (!expandable) return figure;
   return (
     <>
-      <button type="button" className={s.expand} onClick={() => setOpen(true)} aria-label="Expand">
+      <button type="button" className={s.expand} onClick={() => {
+          playOpen();
+          setOpen(true);
+        }} aria-label="Expand">
         {figure}
       </button>
       {open && <Lightbox tag={tag} onClose={() => setOpen(false)} {...props} />}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CursorIcon from "./CursorIcon";
+import CursorButton from "./CursorButton";
 import s from "./Menu.module.css";
 
 const links = [
@@ -11,9 +11,7 @@ const links = [
 export default function Menu() {
   return (
     <aside className={s.menu}>
-      <button type="button" className={s.cursorButton} aria-label="Change cursor">
-        <CursorIcon />
-      </button>
+      <CursorButton />
       <p className={s.name}>Cat</p>
       <p className={s.sub}>Personal website</p>
       <nav className={s.nav}>

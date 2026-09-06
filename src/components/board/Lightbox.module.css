@@ -8,7 +8,6 @@
   background: rgb(255 252 250 / 0.82);
   backdrop-filter: blur(6px);
   animation: fade 200ms ease-out both;
-  cursor: pointer;
 }
 
 .closing {
@@ -32,7 +31,6 @@
   max-height: 100%;
   background: var(--board-bg);
   border: var(--board-border) solid var(--red);
-  cursor: default;
   animation: pop 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 

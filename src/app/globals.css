@@ -45,6 +45,16 @@
 
   --dot-radius: 1px;
   --dot-pitch: 26.4px;
+
+  --cursor-size: 48px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  a,
+  button {
+    cursor: none;
+  }
 }
 
 * {
@@ -122,5 +132,18 @@ video {
 }
 
 ::view-transition-new(menu) {
+  animation: none;
+}
+
+::view-transition-group(cursor) {
+  animation: none;
+  z-index: 200;
+}
+
+::view-transition-old(cursor) {
+  display: none;
+}
+
+::view-transition-new(cursor) {
   animation: none;
 }

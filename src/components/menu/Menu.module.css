@@ -25,7 +25,11 @@
   background: #ffffff;
   display: grid;
   place-items: center;
-  cursor: pointer;
+}
+
+.cursorImage {
+  height: 32px;
+  width: auto;
 }
 
 .name {

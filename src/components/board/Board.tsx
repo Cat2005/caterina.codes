@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ViewTransition } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { BoardProvider } from "./BoardContext";
+import BoardLink from "./BoardLink";
 import Frame from "./Frame";
 import HoverPreload from "./HoverPreload";
 import s from "./Board.module.css";
@@ -41,26 +41,15 @@ export default function Board(props: BoardProps) {
     </BoardProvider>
   );
 
-  let el: ReactNode;
-  if (href && isExternal(href)) {
-    el = (
-      <a href={href} className={className} style={style} target="_blank" rel="noreferrer">
-        {frame}
-      </a>
-    );
-  } else if (href) {
-    el = (
-      <Link href={href} className={className} style={style}>
-        {frame}
-      </Link>
-    );
-  } else {
-    el = (
-      <div className={className} style={style} data-hero={hero ? "" : undefined}>
-        {frame}
-      </div>
-    );
-  }
+  const el: ReactNode = href ? (
+    <BoardLink href={href} external={isExternal(href)} className={className} style={style}>
+      {frame}
+    </BoardLink>
+  ) : (
+    <div className={className} style={style} data-hero={hero ? "" : undefined}>
+      {frame}
+    </div>
+  );
 
   const shared = hero || (href !== undefined && !isExternal(href));
   if (!shared) return el;

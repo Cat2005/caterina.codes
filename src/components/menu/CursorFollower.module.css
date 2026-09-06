@@ -1,0 +1,22 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--cursor-size);
+  width: auto;
+  pointer-events: none;
+  z-index: 1000;
+  will-change: transform;
+  opacity: 0;
+  view-transition-name: cursor;
+}
+
+.cursor[data-visible] {
+  opacity: 1;
+}
+
+@media not ((hover: hover) and (pointer: fine)) {
+  .cursor {
+    display: none;
+  }
+}

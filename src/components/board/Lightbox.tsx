@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Frame from "./Frame";
 import { MediaElement } from "./Media";
 import type { MediaBoxProps } from "./Media";
+import { playClose } from "@/lib/sounds";
 import s from "./Lightbox.module.css";
 
 type Props = MediaBoxProps & { tag?: string; onClose: () => void };
@@ -15,6 +16,7 @@ export default function Lightbox({ tag, onClose, caption, ...media }: Props) {
 
   useEffect(() => {
     if (!closing) return;
+    playClose();
     const id = setTimeout(onClose, 240);
     return () => clearTimeout(id);
   }, [closing, onClose]);
