@@ -1,0 +1,31 @@
+.title {
+  --size: 24px;
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: var(--size);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.pixel {
+  --size: 18px;
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: var(--size);
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.text {
+  --size: 14px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--size);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--muted);
+}

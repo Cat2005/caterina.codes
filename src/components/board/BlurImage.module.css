@@ -1,0 +1,40 @@
+.wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  background-image: var(--blur, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) saturate(1.1);
+  transform: scale(1.05);
+  opacity: 1;
+  transition: opacity 320ms ease;
+}
+
+.wrap.done::before {
+  opacity: 0;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.loaded {
+  opacity: 1;
+}
+
+.instant {
+  transition: none;
+}

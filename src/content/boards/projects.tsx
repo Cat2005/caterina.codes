@@ -1,0 +1,108 @@
+import { Hero, Pic, Row, Stack, Col } from "@/components/board/layouts";
+import { Pixel, Text, Title } from "@/components/board/text";
+import type { PageSpec } from "@/components/canvas/types";
+
+const projects: PageSpec = {
+  boards: [
+    {
+      id: "projects-intro",
+      tag: "Projects",
+      x: 683,
+      y: 555,
+      w: 550,
+      h: 270,
+      content: (
+        <Hero gap={16}>
+          <Title size={52}>Projects</Title>
+          <Pixel size={20}>
+            I build mostly web, with some ML from uni. I like making things that are fun, creative, and a
+            bit unnecessary.
+          </Pixel>
+        </Hero>
+      ),
+    },
+    {
+      id: "minki",
+      tag: "Web",
+      href: "/minki",
+      x: 560,
+      y: 140,
+      w: 538,
+      h: 220,
+      content: (
+        <Row pad={32}>
+          <Col gap={10}>
+            <Title size={36}>minki.cards</Title>
+            <Pixel size={20}>My newest and most ambitious project!</Pixel>
+          </Col>
+          <Pic src="/projects/minki-card.webp" alt="" width={230} />
+        </Row>
+      ),
+    },
+    {
+      id: "makeupcherie",
+      tag: "Web",
+      href: "/makeupcherie",
+      x: 1250,
+      y: 320,
+      w: 587,
+      h: 216,
+      content: (
+        <Row pad={40}>
+          <Col gap={8}>
+            <Title size={38}>makeupcherie.com</Title>
+            <Pixel size={17}>10M+ views on Instagram/Tiktok/Reddit</Pixel>
+          </Col>
+          <Pic src="/clay/cherries.webp" alt="" width={150} />
+        </Row>
+      ),
+    },
+    {
+      id: "compsoc",
+      tag: "Web",
+      href: "https://comp-soc.com",
+      x: 480,
+      y: 900,
+      w: 254,
+      h: 242,
+      content: (
+        <Stack pad={20} gap={10} center>
+          <Pic src="/clay/building.webp" alt="" width={130} />
+          <Title size={24}>comp-soc.com</Title>
+        </Stack>
+      ),
+    },
+    {
+      id: "dissertation",
+      tag: "ML",
+      x: 1400,
+      y: 780,
+      w: 287,
+      h: 350,
+      content: (
+        <Stack pad={24} gap={10}>
+          <Pic src="/clay/brain.webp" alt="" width={160} center />
+          <Title size={20}>Clinically Interpretable XAI for glioblastoma diagnosis</Title>
+        </Stack>
+      ),
+    },
+    {
+      id: "bicepcurl-post",
+      tag: "ML",
+      href: "/posts/bicepcurl-post",
+      x: 900,
+      y: 950,
+      w: 335,
+      h: 262,
+      content: (
+        <Stack pad={28} gap={10}>
+          <Pic src="/clay/dumbbell.webp" alt="" width={150} />
+          <Title size={24}>Predicting muscular failure with ML</Title>
+          <Text size={13}>Somehow I convinced CS students to do 3,200 bicep curls for science.</Text>
+        </Stack>
+      ),
+    },
+  ],
+};
+
+export default projects;

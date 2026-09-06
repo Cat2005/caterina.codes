@@ -1,0 +1,96 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 6vh 6vw;
+  background: rgb(255 252 250 / 0.82);
+  backdrop-filter: blur(6px);
+  animation: fade 200ms ease-out both;
+  cursor: pointer;
+}
+
+.closing {
+  animation: fade-out 180ms ease-in both;
+  pointer-events: none;
+}
+
+.closing .board {
+  animation: pop-out 220ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.board {
+  --corner: calc(var(--corner-size) * var(--scale));
+  --tag-radius: calc(6px * var(--scale));
+  --tag-left: calc(20px * var(--scale));
+  --tag-gap: calc(22px * var(--scale));
+  --tag-pad: calc(7px * var(--scale)) calc(24px * var(--scale));
+  --tag-size: calc(18px * var(--scale));
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  background: var(--board-bg);
+  border: var(--board-border) solid var(--red);
+  cursor: default;
+  animation: pop 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.figure {
+  margin: 0;
+  padding: calc(24px * var(--scale));
+  display: flex;
+  flex-direction: column;
+  gap: calc(12px * var(--scale));
+  max-height: 84vh;
+}
+
+.mediaEl {
+  display: block;
+  max-width: 88vw;
+  max-height: calc(84vh - 48px * var(--scale));
+  width: auto;
+  height: auto;
+}
+
+.mediaEl > * {
+  display: block;
+  max-width: 88vw;
+  max-height: calc(84vh - 48px * var(--scale));
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.caption {
+  font-family: var(--font-pixel);
+  font-size: calc(16px * var(--scale));
+  color: var(--faint);
+  text-align: center;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-out {
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}

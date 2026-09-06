@@ -1,0 +1,72 @@
+import Link from "next/link";
+import { ViewTransition } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { BoardProvider } from "./BoardContext";
+import Frame from "./Frame";
+import HoverPreload from "./HoverPreload";
+import s from "./Board.module.css";
+
+export type BoardProps = {
+  id: string;
+  fx: number;
+  fy: number;
+  w: number;
+  h?: number;
+  tag?: string;
+  href?: string;
+  hero?: boolean;
+  fit?: boolean;
+  preload?: string[];
+  index?: number;
+  children: ReactNode;
+};
+
+const isExternal = (href: string) => /^https?:/.test(href);
+
+export default function Board(props: BoardProps) {
+  const { id, tag, href, hero, fit, preload, index = 0, fx, fy, w, h, children } = props;
+  const style = {
+    "--fx": fx,
+    "--fy": fy,
+    "--w": `${w}px`,
+    "--h": `${h ?? 0}px`,
+    "--height": h && !fit ? `${h}px` : "auto",
+    "--i": index,
+  } as CSSProperties;
+  const className = href ? `${s.board} ${s.link}` : s.board;
+  const frame = (
+    <BoardProvider value={{ tag, clickable: href !== undefined }}>
+      <Frame tag={tag}>{children}</Frame>
+      {preload && preload.length > 0 && <HoverPreload urls={preload} />}
+    </BoardProvider>
+  );
+
+  let el: ReactNode;
+  if (href && isExternal(href)) {
+    el = (
+      <a href={href} className={className} style={style} target="_blank" rel="noreferrer">
+        {frame}
+      </a>
+    );
+  } else if (href) {
+    el = (
+      <Link href={href} className={className} style={style}>
+        {frame}
+      </Link>
+    );
+  } else {
+    el = (
+      <div className={className} style={style} data-hero={hero ? "" : undefined}>
+        {frame}
+      </div>
+    );
+  }
+
+  const shared = hero || (href !== undefined && !isExternal(href));
+  if (!shared) return el;
+  return (
+    <ViewTransition name={`board-${id}`} share="morph" default="none">
+      {el}
+    </ViewTransition>
+  );
+}

@@ -1,0 +1,28 @@
+.page {
+  --pad-top: 160px;
+  position: relative;
+  width: var(--vwd);
+  min-height: 100vh;
+  padding-bottom: 120px;
+  zoom: var(--scale);
+}
+
+.article {
+  padding: 130px 110px 110px;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.lede {
+  margin: 0 0 40px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  line-height: 1.35;
+}

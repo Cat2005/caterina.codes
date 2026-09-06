@@ -1,0 +1,111 @@
+.stack,
+.row,
+.hero,
+.col {
+  --pad: 28px;
+  --gap: 12px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: var(--gap);
+}
+
+.stack {
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--pad);
+  padding-bottom: var(--pad-bottom-box, var(--pad));
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.top {
+  justify-content: flex-start;
+}
+
+.picCenter {
+  align-self: center;
+}
+
+.bleed {
+  --w: auto;
+  width: calc(100% + 2 * var(--pad));
+  max-width: none;
+  margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0;
+}
+
+.row {
+  flex-direction: row;
+  align-items: center;
+  padding: var(--pad);
+  --gap: 48px;
+}
+
+.hero {
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--pad);
+  --pad: 60px;
+}
+
+.col {
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+.pic {
+  --w: auto;
+  --h: auto;
+  width: var(--w);
+  height: var(--h);
+  flex-shrink: 0;
+}
+
+.media {
+  --pad: 24px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mediaEl {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.mediaEl > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--faint);
+  text-align: center;
+}
+
+.expand {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}

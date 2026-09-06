@@ -1,0 +1,28 @@
+.page {
+  --scale: clamp(0.35, tan(atan2(min(100vw / var(--fit-w), 100vh / var(--fit-h)), 1px)), 1);
+  --vwd: calc(100vw / var(--scale));
+  --vhd: calc(100vh / var(--scale));
+}
+
+.canvas {
+  position: relative;
+  width: var(--vwd);
+  height: var(--vhd);
+  overflow: hidden;
+  zoom: var(--scale);
+}
+
+.back {
+  composes: positioned from "./position.module.css";
+  margin-left: -10px;
+  margin-top: -110px;
+  font-family: var(--font-pixel);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--red);
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+}

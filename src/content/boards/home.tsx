@@ -1,0 +1,124 @@
+import { Hero, Pic, Row, Stack, Col } from "@/components/board/layouts";
+import { Pixel, Text, Title } from "@/components/board/text";
+import type { PageSpec } from "@/components/canvas/types";
+
+const home: PageSpec = {
+  boards: [
+    {
+      id: "intro",
+      tag: "Intro",
+      x: 683,
+      y: 567,
+      w: 550,
+      h: 240,
+      content: (
+        <Hero gap={16}>
+          <Title size={52}>hi, i&apos;m Cat.</Title>
+          <Pixel size={20}>i like making fun websites and i care a lot about design.</Pixel>
+        </Hero>
+      ),
+    },
+    {
+      id: "makeupcherie",
+      tag: "Web",
+      href: "/makeupcherie",
+      x: 541,
+      y: 108,
+      w: 587,
+      h: 216,
+      content: (
+        <Row pad={40}>
+          <Col gap={8}>
+            <Title size={38}>makeupcherie.com</Title>
+            <Pixel size={17}>10M+ views on Instagram/Tiktok/Reddit</Pixel>
+          </Col>
+          <Pic src="/clay/cherries.webp" alt="" width={150} />
+        </Row>
+      ),
+    },
+    {
+      id: "uni",
+      tag: "Education",
+      href: "/uni",
+      x: 1323,
+      y: 194,
+      w: 587,
+      h: 220,
+      content: (
+        <Row pad={24} gap={24}>
+          <Pic src="/clay/acropolis.webp" alt="" width={190} />
+          <Col gap={8}>
+            <Title size={24}>BSc Computer Science and AI</Title>
+            <Text size={14}>Ranked 1st in programme</Text>
+          </Col>
+        </Row>
+      ),
+    },
+    {
+      id: "compsoc",
+      tag: "Web",
+      href: "https://comp-soc.com",
+      x: 1591,
+      y: 545,
+      w: 254,
+      h: 242,
+      content: (
+        <Stack pad={20} gap={10} center>
+          <Pic src="/clay/building.webp" alt="" width={130} />
+          <Title size={24}>comp-soc.com</Title>
+        </Stack>
+      ),
+    },
+    {
+      id: "bicepcurl-post",
+      tag: "ML",
+      href: "/posts/bicepcurl-post",
+      x: 133,
+      y: 675,
+      w: 335,
+      h: 262,
+      content: (
+        <Stack pad={28} gap={10}>
+          <Pic src="/clay/dumbbell.webp" alt="" width={150} />
+          <Title size={24}>Predicting muscular failure with ML</Title>
+          <Text size={13}>Somehow I convinced CS students to do 3,200 bicep curls for science.</Text>
+        </Stack>
+      ),
+    },
+    {
+      id: "minki",
+      tag: "Web",
+      href: "/minki",
+      x: 631,
+      y: 1041,
+      w: 538,
+      h: 220,
+      content: (
+        <Row pad={32}>
+          <Col gap={10}>
+            <Title size={36}>minki.cards</Title>
+            <Pixel size={20}>My newest and most ambitious project!</Pixel>
+          </Col>
+          <Pic src="/projects/minki-card.webp" alt="" width={230} />
+        </Row>
+      ),
+    },
+    {
+      id: "spotify",
+      tag: "Job",
+      href: "/spotify",
+      x: 1389,
+      y: 933,
+      w: 263,
+      h: 250,
+      content: (
+        <Stack pad={24} gap={12} center>
+          <Pic src="/clay/spotify.webp" alt="" width={150} />
+          <Title size={26}>SWE @ Spotify</Title>
+        </Stack>
+      ),
+    },
+  ],
+};
+
+export default home;
