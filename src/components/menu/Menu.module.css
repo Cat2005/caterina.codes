@@ -1,10 +1,11 @@
 .menu {
+  --icon-size: 12.36px;
   position: fixed;
   top: 37px;
   left: 47px;
   width: 290px;
   height: 348px;
-  padding: 52px 32px;
+  padding: 30px 32px 52px;
   border-radius: 28px;
   background: var(--menu-bg);
   color: #ffffff;
@@ -62,30 +63,62 @@
 
 .name {
   margin: 0;
-  font-size: 20px;
-  line-height: 1.2;
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 18.7px;
+  line-height: 24px;
 }
 
 .sub {
-  margin: 4px 0 0;
-  font-size: 15px;
+  margin: 10px 0 0;
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
   color: var(--faint);
+}
+
+.divider {
+  height: 1px;
+  margin: 28px 0 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
+  gap: 2px;
+  margin: 22px -12px 0;
 }
 
 .link {
-  font-size: 16px;
-  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 15.3px;
+  line-height: 20px;
   text-decoration: none;
   color: #ffffff;
+  transition: background-color 140ms ease;
 }
 
 .link:hover {
-  color: var(--red);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
+
+.icon {
+  flex: none;
+  height: var(--icon-size);
+  width: auto;
+  color: #929292;
 }
