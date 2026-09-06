@@ -41,17 +41,28 @@ export default function Board(props: BoardProps) {
     </BoardProvider>
   );
 
+  const shared = hero || (href !== undefined && !isExternal(href));
   const el: ReactNode = href ? (
-    <BoardLink href={href} external={isExternal(href)} className={className} style={style}>
+    <BoardLink
+      href={href}
+      external={isExternal(href)}
+      shared={shared}
+      className={className}
+      style={style}
+    >
       {frame}
     </BoardLink>
   ) : (
-    <div className={className} style={style} data-hero={hero ? "" : undefined}>
+    <div
+      className={className}
+      style={style}
+      data-hero={hero ? "" : undefined}
+      data-shared={shared ? "" : undefined}
+    >
       {frame}
     </div>
   );
 
-  const shared = hero || (href !== undefined && !isExternal(href));
   if (!shared) return el;
   return (
     <ViewTransition name={`board-${id}`} share="morph" default="none">
