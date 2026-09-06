@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { headingText, slugify } from "@/lib/headings";
+import LinkArrow from "@/components/LinkArrow";
 import { MDXImage, MDXVideo } from "./MdxMedia";
 import s from "./mdx.module.css";
 
@@ -24,7 +25,8 @@ const mdxComponents = {
   p: ({ children }: Kids) => <p className={s.p}>{children}</p>,
   a: ({ href, children }: { href?: string; children?: ReactNode }) => (
     <a href={href} target="_blank" rel="noreferrer" className={s.a}>
-      {children}
+      <span className={s.aText}>{children}</span>
+      <LinkArrow />
     </a>
   ),
   img: ({ src, alt }: { src?: string; alt?: string }) => <MDXImage src={src ?? ""} alt={alt ?? ""} />,

@@ -42,10 +42,13 @@
 .a {
   color: var(--red);
   text-decoration: none;
+}
+
+.aText {
   border-bottom: 1px solid transparent;
 }
 
-.a:hover {
+.a:hover .aText {
   border-bottom-color: currentColor;
 }
 

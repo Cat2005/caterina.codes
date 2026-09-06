@@ -1,0 +1,6 @@
+.arrow {
+  height: var(--arrow-size, 0.85em);
+  width: auto;
+  margin-left: 0.14em;
+  vertical-align: middle;
+}
