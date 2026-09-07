@@ -51,7 +51,7 @@ const uni: PageSpec = {
       id: "dissertation",
       m: { x: 380, y: 100, w: 200, h: 200 },
       tag: "Dissertation",
-      href: "https://github.com/Cat2005/XAI-Brain-Diagnosis",
+      href: "/dissertation",
       x: 1620,
       y: 650,
       w: 287,

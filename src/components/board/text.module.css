@@ -36,6 +36,14 @@
   text-decoration: none;
 }
 
+.textLink {
+  --arrow-size: 0.6em;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-underline-offset: 0.15em;
+}
+
 @media (max-width: 560px) {
   [data-plain] .title,
   [data-plain] .pixel,
