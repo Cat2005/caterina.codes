@@ -65,7 +65,7 @@ const home: PageSpec = {
       id: "compsoc",
       p: { x: 1040, y: 140 },
       tag: "Web",
-      href: "https://comp-soc.com",
+      href: "/compsoc",
       x: 1591,
       y: 545,
       w: 254,

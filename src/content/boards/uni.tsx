@@ -68,7 +68,7 @@ const uni: PageSpec = {
       id: "compsoc",
       m: { x: 40, y: 930, w: 190, h: 190 },
       tag: "Web",
-      href: "https://comp-soc.com",
+      href: "/compsoc",
       x: 190,
       y: 928,
       w: 254,
