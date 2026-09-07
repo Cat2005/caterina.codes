@@ -12,7 +12,7 @@ const makeupcherie: PageSpec = {
       hero: true,
       x: 455,
       y: 436,
-      w: 900,
+      w: 1075,
       h: 340,
       content: (
         <Row pad={48}>
@@ -38,7 +38,7 @@ const makeupcherie: PageSpec = {
       fit: true,
       post: true,
       x: 1420,
-      y: 820,
+      y: 870,
       w: 460,
       h: 385,
       content: (
@@ -77,10 +77,10 @@ const makeupcherie: PageSpec = {
       id: "makeupcherie-results",
       m: { x: 40, y: 1000, w: 250, h: 169 },
       tag: "Match results",
-      x: 1430,
-      y: 170,
-      w: 507,
-      h: 343,
+      x: 1510,
+      y: 95,
+      w: 400,
+      h: 271,
       content: <Media src="/posts/makeupcherie-lip-results.mp4" pad={0} />,
     },
   ],

@@ -12,7 +12,7 @@ const minki: PageSpec = {
       hero: true,
       x: 455,
       y: 410,
-      w: 940,
+      w: 1075,
       h: 450,
       content: (
         <Row pad={50} gap={30}>
@@ -50,15 +50,15 @@ const minki: PageSpec = {
       m: { x: 340, y: 1030, w: 240, h: 180 },
       tag: "Post",
       fit: true,
-      x: 1470,
-      y: 700,
-      w: 445,
-      h: 345,
+      x: 1500,
+      y: 940,
+      w: 380,
+      h: 295,
       content: (
-        <Stack pad={40} padBottom={16} gap={10}>
-          <Pic src="/clay/laptop.webp" alt="" width={190} />
-          <Title size={28}>Finding design inspiration for Minki</Title>
-          <Text size={15}>
+        <Stack pad={34} padBottom={14} gap={8}>
+          <Pic src="/clay/laptop.webp" alt="" width={162} />
+          <Title size={24}>Finding design inspiration for Minki</Title>
+          <Text size={13}>
             30,000 people asked me for a lip shade matcher so I did it. But extracting accurate colors is
             harder than it looks!
           </Text>
