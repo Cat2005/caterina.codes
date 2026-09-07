@@ -32,10 +32,11 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "makeup-post",
-      m: { x: 45, y: 110, w: 210, h: 210 },
+      m: { x: 45, y: 100, w: 235, h: 280 },
       tag: "Post",
       href: "/posts/makeup-post",
       fit: true,
+      post: true,
       x: 1420,
       y: 820,
       w: 460,
