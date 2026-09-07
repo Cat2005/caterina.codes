@@ -46,9 +46,10 @@ const minki: PageSpec = {
       content: <Media src="/projects/minki-main-flow.mp4" poster="/projects/minki-main-flow-poster.webp" />,
     },
     {
-      id: "minki-design-post",
+      id: "minki-design-inspiration",
       m: { x: 340, y: 1030, w: 240, h: 180 },
       tag: "Post",
+      href: "/posts/minki-design-inspiration",
       fit: true,
       x: 1500,
       y: 940,
@@ -59,8 +60,8 @@ const minki: PageSpec = {
           <Pic src="/clay/laptop.webp" alt="" width={162} />
           <Title size={24}>Finding design inspiration for Minki</Title>
           <Text size={13}>
-            30,000 people asked me for a lip shade matcher so I did it. But extracting accurate colors is
-            harder than it looks!
+            A lot of Minki&apos;s design is inspired by things I saw on some of my favorite sites.
+            Here&apos;s each original next to what it turned into.
           </Text>
         </Stack>
       ),

@@ -132,3 +132,45 @@
   height: 100%;
   border: 0;
 }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 28px;
+}
+
+.compareSide {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  align-items: start;
+  gap: 12px;
+}
+
+.compareShrink {
+  display: block;
+  margin-inline: auto;
+}
+
+.compareLabel {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  color: var(--faint);
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .compare {
+    gap: 14px;
+  }
+
+  .compareShrink {
+  display: block;
+  margin-inline: auto;
+}
+
+.compareLabel {
+    font-size: 15px;
+  }
+}

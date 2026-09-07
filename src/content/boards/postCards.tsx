@@ -10,6 +10,7 @@ const images: Record<string, Image> = {
   "make-mindmaps": { src: "/posts/mindmap-card.webp", bleed: true, h: 375 },
   "makeup-post": { src: "/posts/lip-instagram-comments.webp", bleed: true, h: 300 },
   "kids-hackathon": { src: "/posts/hackathon-poster.webp", bleed: true, h: 345 },
+  "minki-design-inspiration": { src: "/clay/laptop.webp", width: 162 },
 };
 
 type Frame = { x: number; y: number; w: number; h: number };

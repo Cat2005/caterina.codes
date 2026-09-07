@@ -11,7 +11,7 @@ export type PostMeta = {
   date: string;
 };
 
-export type Post = PostMeta & { content: string };
+export type Post = PostMeta & { content: string; hideLede: boolean };
 
 export function getAllPosts(): PostMeta[] {
   if (!fs.existsSync(postsDir)) return [];
@@ -34,7 +34,14 @@ export function getPostBySlug(slug: string): Post | null {
   const full = path.join(postsDir, `${slug}.mdx`);
   if (!fs.existsSync(full)) return null;
   const { data, content } = matter(fs.readFileSync(full, "utf8"));
-  return { slug, title: data.title, description: data.description, date: data.date, content };
+  return {
+    slug,
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    hideLede: data.hideLede ?? false,
+    content,
+  };
 }
 
 export function getPostImages(slug: string, limit = 2): string[] {

@@ -37,7 +37,7 @@ export default async function PostPage({ params }: Props) {
           <Board id={post.slug} hero lead fx={0.62} fy={0} w={1300} m={{ fx: 0.5, fy: 0, w: 600 }}>
             <article className={s.article}>
               <h1 className={s.title}>{post.title}</h1>
-              <p className={s.lede}>{post.description}</p>
+              {!post.hideLede && <p className={s.lede}>{post.description}</p>}
               <MDXRemote
                 source={post.content}
                 components={mdxComponents}

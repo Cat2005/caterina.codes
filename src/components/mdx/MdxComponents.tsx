@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { headingText, slugify } from "@/lib/headings";
 import LinkArrow from "@/components/LinkArrow";
-import { MDXImage, MDXVideo } from "./MdxMedia";
+import { MDXCompare, MDXImage, MDXVideo } from "./MdxMedia";
 import s from "./mdx.module.css";
 
 type Kids = { children?: ReactNode };
@@ -53,6 +53,7 @@ const mdxComponents = {
   SignOff: () => <p className={s.signoff}>Cat &lt;3</p>,
   MDXImage,
   MDXVideo,
+  MDXCompare,
 };
 
 export default mdxComponents;

@@ -72,3 +72,76 @@ export async function MDXVideo({ src, caption, type, autoPlay = false, loop = fa
     </figure>
   );
 }
+
+type SideProps = { src: string; label?: string; widthPct?: number };
+
+type VideoMetaLike = { poster?: string } | null;
+
+const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
+
+const sideMeta = (src: string) => (isVideo(src) ? getVideoMeta(src) : getImageMeta(src));
+
+async function CompareSide({ src, label, widthPct }: SideProps) {
+  const meta = await sideMeta(src);
+  const media = isVideo(src) ? (
+    <DeferredVideo
+      src={src}
+      poster={(meta as VideoMetaLike)?.poster}
+      width={meta?.width}
+      height={meta?.height}
+      blur={meta?.blur}
+      className={s.figureMedia}
+    />
+  ) : (
+    <BlurImage
+      src={src}
+      alt={label ?? ""}
+      width={meta?.width}
+      height={meta?.height}
+      blur={meta?.blur}
+      className={s.figureMedia}
+    />
+  );
+  return (
+    <div className={s.compareSide}>
+      {widthPct ? (
+        <span className={s.compareShrink} style={{ width: `${widthPct}%` }}>
+          {media}
+        </span>
+      ) : (
+        media
+      )}
+      {label && <span className={s.compareLabel}>{label}</span>}
+    </div>
+  );
+}
+
+type CompareProps = {
+  leftSrc: string;
+  leftLabel?: string;
+  rightSrc: string;
+  rightLabel?: string;
+  matchHeight?: boolean;
+  caption?: ReactNode;
+};
+
+export async function MDXCompare({
+  leftSrc,
+  leftLabel,
+  rightSrc,
+  rightLabel,
+  matchHeight,
+  caption,
+}: CompareProps) {
+  const [left, right] = await Promise.all([sideMeta(leftSrc), sideMeta(rightSrc)]);
+  const ratio = matchHeight && left && right ? left.width / left.height / (right.width / right.height) : 1;
+  return (
+    <figure className={s.figure}>
+      <div className={s.compare}>
+        <CompareSide src={leftSrc} label={leftLabel} widthPct={ratio < 1 ? ratio * 100 : undefined} />
+        <CompareSide src={rightSrc} label={rightLabel} widthPct={ratio > 1 ? 100 / ratio : undefined} />
+      </div>
+      {caption && <figcaption className={s.caption}>{caption}</figcaption>}
+    </figure>
+  );
+}
