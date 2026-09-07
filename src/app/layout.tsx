@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       ? Math.min(w / 620, h / 1380)
       : p
         ? Math.min(w / 1450, h / 1920)
-        : Math.min(w / 2000, h / 1250, Math.sqrt((w * h) / 2780000));
+        : Math.min(w / 2000, h / Math.max(1250, Math.min(1390, 1950 - 350 * (w / h))));
     s = Math.max(m ? 0.3 : 0.35, Math.min(m ? 1 : 1.5, s));
     d.style.setProperty("--scale", s);
     d.style.setProperty("--vwd", w / s + "px");
