@@ -33,14 +33,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={`${ndot.variable} ${inter.variable}`}>
       <body>
+        <NavTracker />
+        <Menu />
+        <CursorFollower />
+        {children}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function () {
   var d = document.documentElement;
   function set() {
     var w = d.clientWidth, h = d.clientHeight, m = w <= 560;
-    var s = Math.min(w / (m ? 620 : 2000), h / (m ? 1380 : 1390));
-    s = Math.max(m ? 0.3 : 0.35, Math.min(1, s));
+    var p = w <= h && !document.querySelector("[data-wide-scale]");
+    var s = m
+      ? Math.min(w / 620, h / 1380)
+      : p
+        ? Math.min(w / 1450, h / 1920)
+        : Math.min(w / 2000, h / 1250, Math.sqrt((w * h) / 2780000));
+    s = Math.max(m ? 0.3 : 0.35, Math.min(m ? 1 : 1.5, s));
     d.style.setProperty("--scale", s);
     d.style.setProperty("--vwd", w / s + "px");
     d.style.setProperty("--vhd", h / s + "px");
@@ -51,10 +60,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 })();`,
           }}
         />
-        <NavTracker />
-        <Menu />
-        <CursorFollower />
-        {children}
         <Analytics />
       </body>
     </html>

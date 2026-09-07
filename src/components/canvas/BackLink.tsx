@@ -6,13 +6,16 @@ import { useGoBack } from "./useGoBack";
 import type { Placed } from "./layout";
 import s from "./Canvas.module.css";
 
-export default function BackLink({ href, fx, fy, w, h, m }: Placed & { href: string }) {
+export default function BackLink({ href, fx, fy, w, h, dy, p, m }: Placed & { href: string }) {
   const goBack = useGoBack();
   const style = {
     "--fx": fx,
     "--fy": fy,
     "--w": `${w}px`,
     "--h": `${h ?? 0}px`,
+    "--dy": `${dy ?? 0}px`,
+    "--pfx": p?.fx ?? fx,
+    "--pfy": p?.fy ?? fy,
     "--mfx": m?.fx,
     "--mfy": m?.fy,
     "--mw": `${m?.w ?? 0}px`,

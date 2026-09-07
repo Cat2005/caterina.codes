@@ -13,6 +13,8 @@ export type BoardProps = {
   fy: number;
   w: number;
   h?: number;
+  dy?: number;
+  p?: Placed;
   m?: Placed;
   tag?: string;
   href?: string;
@@ -28,12 +30,16 @@ export type BoardProps = {
 const isExternal = (href: string) => /^https?:/.test(href);
 
 export default function Board(props: BoardProps) {
-  const { id, tag, href, hero, lead, plain, fit, preload, index = 0, fx, fy, w, h, m, children } = props;
+  const { id, tag, href, hero, lead, plain, fit, preload, index = 0, fx, fy, w, h, dy, p, m, children } = props;
   const style = {
     "--fx": fx,
     "--fy": fy,
     "--w": `${w}px`,
     "--h": `${h ?? 0}px`,
+    "--dy": `${dy ?? 0}px`,
+    "--pfx": p?.fx ?? fx,
+    "--pfy": p?.fy ?? fy,
+    "--pz": p?.scale ?? 1,
     "--height": h && !fit ? `${h}px` : "auto",
     "--mfx": m?.fx,
     "--mfy": m?.fy,

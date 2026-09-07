@@ -1,4 +1,5 @@
 .canvas {
+  --t: clamp(0, tan(atan2(1390px - var(--vhd), 140px)), 1);
   position: relative;
   width: var(--vwd);
   height: var(--vhd);
@@ -27,6 +28,12 @@
   text-decoration: underline;
 }
 
+@media (min-width: 561px) and (max-aspect-ratio: 1/1) {
+  .canvas {
+    --t: 0;
+  }
+}
+
 @media (max-width: 560px) {
   .back {
     margin-left: 0;
@@ -35,6 +42,7 @@
   }
 
   .canvas {
+    --t: 0;
     position: fixed;
     top: 0;
     left: 0;

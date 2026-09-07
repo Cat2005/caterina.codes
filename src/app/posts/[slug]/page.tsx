@@ -30,7 +30,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
-      <main className={s.page}>
+      <main className={s.page} data-wide-scale="">
         <BackArea href="/posts" />
         <div className={s.canvas}>
           <BackLink href="/posts" fx={0.62} fy={0} w={1300} h={0} m={{ fx: 0.5, fy: 0, w: 600 }} />

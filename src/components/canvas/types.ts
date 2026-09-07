@@ -9,6 +9,7 @@ export type BoardSpec = {
   w: number;
   h?: number;
   m?: Box;
+  p?: { x: number; y: number; scale?: number };
   tag?: string;
   href?: string;
   hero?: boolean;

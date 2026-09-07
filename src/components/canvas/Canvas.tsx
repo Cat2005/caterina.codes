@@ -7,7 +7,7 @@ import type { PageSpec } from "./types";
 import s from "./Canvas.module.css";
 
 export default function Canvas({ spec }: { spec: PageSpec }) {
-  const placed = layoutBoards(spec.boards);
+  const placed = layoutBoards(spec);
   const hero = spec.boards.find((b) => b.hero);
   return (
     <main>

@@ -92,6 +92,13 @@
   }
 }
 
+@media (min-width: 561px) and (max-aspect-ratio: 1/1) {
+  .board {
+    scale: var(--pz, 1);
+    transform-origin: 0 0;
+  }
+}
+
 @media (max-width: 560px) {
   .board[data-off] {
     display: none;

@@ -6,6 +6,7 @@ const home: PageSpec = {
   boards: [
     {
       id: "intro",
+      p: { x: 409, y: 810 },
       m: { x: 60, y: 548, w: 500, h: 285 },
       tag: "Intro",
       intro: true,
@@ -22,6 +23,7 @@ const home: PageSpec = {
     },
     {
       id: "makeupcherie",
+      p: { x: 560, y: 465 },
       m: { x: 35, y: 95, w: 185, h: 185 },
       tag: "Web",
       href: "/makeupcherie",
@@ -41,6 +43,7 @@ const home: PageSpec = {
     },
     {
       id: "uni",
+      p: { x: 120, y: 1590 },
       m: { x: 395, y: 85, w: 185, h: 185 },
       tag: "Education",
       href: "/uni",
@@ -60,6 +63,7 @@ const home: PageSpec = {
     },
     {
       id: "compsoc",
+      p: { x: 1040, y: 140 },
       tag: "Web",
       href: "https://comp-soc.com",
       x: 1591,
@@ -75,6 +79,7 @@ const home: PageSpec = {
     },
     {
       id: "bicepcurl-post",
+      p: { x: 40, y: 940, scale: 0.85 },
       m: { x: 38, y: 965, w: 180, h: 180 },
       tag: "ML",
       href: "/posts/bicepcurl-post",
@@ -92,6 +97,7 @@ const home: PageSpec = {
     },
     {
       id: "minki",
+      p: { x: 520, y: 1240 },
       m: { x: 210, y: 342, w: 200, h: 167 },
       tag: "Web",
       href: "/minki",
@@ -111,6 +117,7 @@ const home: PageSpec = {
     },
     {
       id: "spotify",
+      p: { x: 1130, y: 900 },
       m: { x: 405, y: 900, w: 175, h: 175 },
       tag: "Job",
       href: "/spotify",
