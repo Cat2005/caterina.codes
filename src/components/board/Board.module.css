@@ -105,7 +105,8 @@
   }
 
   .board[data-lead],
-  .board[data-plain] {
+  .board[data-plain],
+  .board[data-post] {
     --tag-size: 14px;
     --tag-pad: 5px 16px;
     --tag-gap: 16px;
@@ -113,6 +114,10 @@
     --tag-radius: 5px;
     width: var(--mw);
     height: var(--mheight);
+  }
+
+  .board[data-post] {
+    height: auto;
   }
 
   .board[data-hero] {

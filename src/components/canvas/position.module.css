@@ -17,6 +17,7 @@
 @media (max-width: 560px) {
   .positioned[data-lead],
   .positioned[data-plain],
+  .positioned[data-post],
   .positioned[data-back] {
     left: calc(var(--mfx) * (var(--vwd) - var(--mw)));
     top: calc(var(--pad-top) + var(--mfy) * (var(--vhd) - var(--pad-top) - var(--mh)));

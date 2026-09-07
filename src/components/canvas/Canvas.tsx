@@ -25,7 +25,8 @@ export default function Canvas({ spec }: { spec: PageSpec }) {
             href={b.href}
             hero={b.hero}
             lead={b.intro || b.hero}
-            plain={!b.intro && !b.hero}
+            plain={!b.intro && !b.hero && !b.post}
+            post={b.post}
             fit={b.fit}
             preload={
               b.href?.startsWith("/posts/")

@@ -23,11 +23,10 @@ const slots: Frame[] = [
 ];
 
 const mobileSlots: Frame[] = [
-  { x: 35, y: 95, w: 185, h: 185 },
-  { x: 395, y: 85, w: 185, h: 185 },
-  { x: 30, y: 905, w: 180, h: 180 },
-  { x: 385, y: 1050, w: 180, h: 180 },
-  { x: 225, y: 340, w: 165, h: 165 },
+  { x: 45, y: 110, w: 235, h: 280 },
+  { x: 340, y: 200, w: 235, h: 280 },
+  { x: 45, y: 935, w: 235, h: 280 },
+  { x: 340, y: 930, w: 235, h: 280 },
 ];
 
 const intro: BoardSpec = {
@@ -57,6 +56,7 @@ export function postBoard(post: PostMeta, frame: Frame, m?: Frame): BoardSpec {
     m,
     h: image?.h ?? frame.h,
     fit: true,
+    post: true,
     content: (
       <Stack pad={28} padBottom={16} gap={10} top={image?.bleed}>
         {image && <Pic src={image.src} alt="" width={image.width} bleed={image.bleed} />}

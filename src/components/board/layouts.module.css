@@ -176,4 +176,31 @@
   [data-plain] .bleed img {
     object-fit: cover;
   }
+
+  [data-post] .stack {
+    --mpad: 14px;
+    gap: 6px;
+    padding: var(--mpad);
+    justify-content: flex-start;
+  }
+
+  [data-post] .pic {
+    width: 76px;
+    height: 76px;
+  }
+
+  [data-post] .pic img {
+    height: 100%;
+    object-fit: contain;
+  }
+
+  [data-post] .bleed {
+    width: calc(100% + 2 * var(--mpad));
+    height: 104px;
+    margin: calc(-1 * var(--mpad)) calc(-1 * var(--mpad)) 0;
+  }
+
+  [data-post] .bleed img {
+    object-fit: cover;
+  }
 }

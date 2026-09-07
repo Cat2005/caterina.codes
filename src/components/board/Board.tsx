@@ -21,6 +21,7 @@ export type BoardProps = {
   hero?: boolean;
   lead?: boolean;
   plain?: boolean;
+  post?: boolean;
   fit?: boolean;
   preload?: string[];
   index?: number;
@@ -30,7 +31,7 @@ export type BoardProps = {
 const isExternal = (href: string) => /^https?:/.test(href);
 
 export default function Board(props: BoardProps) {
-  const { id, tag, href, hero, lead, plain, fit, preload, index = 0, fx, fy, w, h, dy, p, m, children } = props;
+  const { id, tag, href, hero, lead, plain, post, fit, preload, index = 0, fx, fy, w, h, dy, p, m, children } = props;
   const style = {
     "--fx": fx,
     "--fy": fy,
@@ -48,7 +49,7 @@ export default function Board(props: BoardProps) {
     "--mheight": m?.h ? `${m.h}px` : "auto",
     "--i": index,
   } as CSSProperties;
-  const off = plain && !m;
+  const off = (plain || post) && !m;
   const className = s.board;
   const frame = (
     <BoardProvider value={{ tag, clickable: href !== undefined }}>
@@ -65,6 +66,7 @@ export default function Board(props: BoardProps) {
       shared={shared}
       lead={lead}
       plain={plain}
+      post={post}
       off={off}
       className={className}
       style={style}
@@ -78,6 +80,7 @@ export default function Board(props: BoardProps) {
       data-hero={hero ? "" : undefined}
       data-lead={lead ? "" : undefined}
       data-plain={plain ? "" : undefined}
+      data-post={post ? "" : undefined}
       data-off={off ? "" : undefined}
       data-shared={shared ? "" : undefined}
     >

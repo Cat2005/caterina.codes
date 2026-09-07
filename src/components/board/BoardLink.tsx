@@ -10,17 +10,19 @@ type Props = {
   shared: boolean;
   lead?: boolean;
   plain?: boolean;
+  post?: boolean;
   off?: boolean;
   className: string;
   style: CSSProperties;
   children: ReactNode;
 };
 
-export default function BoardLink({ href, external, shared, lead, plain, off, className, style, children }: Props) {
+export default function BoardLink({ href, external, shared, lead, plain, post, off, className, style, children }: Props) {
   const marker = shared ? "" : undefined;
   const flags = {
     "data-lead": lead ? "" : undefined,
     "data-plain": plain ? "" : undefined,
+    "data-post": post ? "" : undefined,
     "data-off": off ? "" : undefined,
   };
   if (external) {

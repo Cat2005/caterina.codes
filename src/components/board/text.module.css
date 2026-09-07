@@ -50,4 +50,12 @@
   [data-lead] .text {
     font-size: min(var(--size), 19px);
   }
+
+  [data-post] .title {
+    font-size: 18px;
+  }
+
+  [data-post] .text {
+    font-size: 12px;
+  }
 }

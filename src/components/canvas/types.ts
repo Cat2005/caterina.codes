@@ -15,6 +15,7 @@ export type BoardSpec = {
   hero?: boolean;
   intro?: boolean;
   fit?: boolean;
+  post?: boolean;
   content: ReactNode;
 };
 
