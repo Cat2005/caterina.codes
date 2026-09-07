@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Frame from "./Frame";
 import { MediaElement } from "./Media";
@@ -31,6 +32,8 @@ export default function Lightbox({ tag, onClose, caption, ...media }: Props) {
     };
   }, []);
 
+  const ratio = media.meta ? { "--ar": media.meta.width / media.meta.height } : undefined;
+
   return createPortal(
     <div
       className={`${s.backdrop} ${closing ? s.closing : ""}`}
@@ -40,7 +43,7 @@ export default function Lightbox({ tag, onClose, caption, ...media }: Props) {
     >
       <div className={s.board} onClick={(e) => e.stopPropagation()}>
         <Frame tag={tag}>
-          <figure className={s.figure}>
+          <figure className={s.figure} style={ratio as CSSProperties} data-caption={caption ? "" : undefined}>
             <MediaElement {...media} className={s.mediaEl} />
             {caption && <figcaption className={s.caption}>{caption}</figcaption>}
           </figure>

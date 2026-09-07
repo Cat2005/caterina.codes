@@ -28,6 +28,8 @@
   --tag-gap: calc(22px * var(--scale));
   --tag-pad: calc(7px * var(--scale)) calc(24px * var(--scale));
   --tag-size: calc(18px * var(--scale));
+  --lb-pad: calc(24px * var(--scale));
+  --lb-inset: calc(2 * var(--lb-pad) + 2 * var(--board-border));
   position: relative;
   max-width: 100%;
   max-height: 100%;
@@ -37,29 +39,31 @@
 }
 
 .figure {
+  --cap: 0px;
   margin: 0;
-  padding: calc(24px * var(--scale));
+  padding: var(--lb-pad);
   display: flex;
   flex-direction: column;
   gap: calc(12px * var(--scale));
-  max-height: 84vh;
+}
+
+.figure[data-caption] {
+  --cap: calc(12px * var(--scale) + 2.8 * 16px * var(--scale));
 }
 
 .mediaEl {
+  --avail-w: calc(88vw - var(--lb-inset));
+  --avail-h: calc(84svh - var(--lb-inset) - var(--cap));
   display: block;
-  max-width: 88vw;
-  max-height: calc(84vh - 48px * var(--scale));
-  width: auto;
-  height: auto;
+  width: min(var(--avail-w), calc(var(--avail-h) * var(--ar)));
+  max-width: var(--avail-w);
+  max-height: var(--avail-h);
 }
 
 .mediaEl > * {
   display: block;
-  max-width: 88vw;
-  max-height: calc(84vh - 48px * var(--scale));
-  width: auto;
+  width: 100%;
   height: auto;
-  object-fit: contain;
 }
 
 .caption {
