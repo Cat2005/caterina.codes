@@ -8,7 +8,7 @@ const compsoc: PageSpec = {
   boards: [
     {
       id: "compsoc",
-      m: { x: 10, y: 300, w: 600, h: 500 },
+      m: { x: 10, y: 400, w: 600, h: 500 },
       tag: "Web",
       hero: true,
       x: 455,
@@ -39,7 +39,7 @@ const compsoc: PageSpec = {
     },
     {
       id: "compsoc-home",
-      m: { x: 340, y: 900, w: 245, h: 161 },
+      m: { x: 340, y: 980, w: 245, h: 161 },
       tag: "Home page",
       x: 1330,
       y: 880,
@@ -48,8 +48,18 @@ const compsoc: PageSpec = {
       content: <Media src="/projects/compsoc-home.mp4" poster="/projects/compsoc-home-poster.webp" pad={0} />,
     },
     {
+      id: "compsoc-sigs",
+      m: { x: 430, y: 40, w: 115, h: 250 },
+      tag: "SIGs on mobile",
+      x: 1660,
+      y: 120,
+      w: 220,
+      h: 478,
+      content: <Media src="/projects/compsoc-sigs.mp4" poster="/projects/compsoc-sigs-poster.webp" pad={0} />,
+    },
+    {
       id: "compsoc-sponsors",
-      m: { x: 40, y: 870, w: 240, h: 198 },
+      m: { x: 40, y: 970, w: 240, h: 198 },
       tag: "Sponsors page",
       x: 140,
       y: 900,
