@@ -67,7 +67,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-disc",
-      m: { x: 40, y: 100, w: 185, h: 185 },
+      m: { x: 65, y: 100, w: 185, h: 185 },
       tag: "Disc annotation",
       x: 1660,
       y: 200,
@@ -77,7 +77,7 @@ const minki: PageSpec = {
     },
     {
       id: "minki-send",
-      m: { x: 350, y: 110, w: 230, h: 155 },
+      m: { x: 345, y: 150, w: 255, h: 172 },
       tag: "Send flow",
       x: 90,
       y: 940,

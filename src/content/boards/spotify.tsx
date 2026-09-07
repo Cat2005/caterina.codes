@@ -33,7 +33,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-authors",
-      m: { x: 40, y: 100, w: 200, h: 158 },
+      m: { x: 65, y: 100, w: 230, h: 182 },
       tag: "Full-stack",
       x: 1564,
       y: 120,
@@ -48,7 +48,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-jam",
-      m: { x: 380, y: 95, w: 200, h: 200 },
+      m: { x: 380, y: 130, w: 200, h: 200 },
       tag: "Backend",
       x: 1560,
       y: 850,
@@ -78,7 +78,7 @@ const spotify: PageSpec = {
     },
     {
       id: "spotify-import",
-      m: { x: 340, y: 1040, w: 230, h: 190 },
+      m: { x: 340, y: 1000, w: 230, h: 190 },
       tag: "Backend",
       x: 760,
       y: 960,

@@ -32,7 +32,7 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "makeup-post",
-      m: { x: 45, y: 100, w: 235, h: 280 },
+      m: { x: 80, y: 100, w: 235, h: 280 },
       tag: "Post",
       href: "/posts/makeup-post",
       fit: true,
@@ -54,7 +54,7 @@ const makeupcherie: PageSpec = {
     },
     {
       id: "makeupcherie-reel",
-      m: { x: 340, y: 95, w: 150, h: 269 },
+      m: { x: 370, y: 135, w: 150, h: 269 },
       tag: "Viral reel",
       href: "https://www.instagram.com/reels/DEiFRHeA5j-/",
       x: 110,

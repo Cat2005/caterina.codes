@@ -49,7 +49,7 @@ const uni: PageSpec = {
     },
     {
       id: "dissertation",
-      m: { x: 380, y: 100, w: 200, h: 200 },
+      m: { x: 380, y: 140, w: 200, h: 200 },
       tag: "Dissertation",
       href: "/dissertation",
       x: 1620,

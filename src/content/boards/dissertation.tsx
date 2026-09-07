@@ -36,7 +36,7 @@ const dissertation: PageSpec = {
     },
     {
       id: "dissertation-pipeline",
-      m: { x: 300, y: 1000, w: 300, h: 160 },
+      m: { x: 60, y: 120, w: 340, h: 181 },
       tag: "Model Architecture",
       x: 1240,
       y: 940,
@@ -51,7 +51,7 @@ const dissertation: PageSpec = {
     },
     {
       id: "dissertation-concepts",
-      m: { x: 40, y: 960, w: 250, h: 216 },
+      m: { x: 40, y: 1010, w: 250, h: 216 },
       tag: "Dataset Construction",
       x: 150,
       y: 900,
@@ -66,7 +66,7 @@ const dissertation: PageSpec = {
     },
     {
       id: "dissertation-views",
-      m: { x: 60, y: 120, w: 240, h: 148 },
+      m: { x: 300, y: 1000, w: 240, h: 148 },
       tag: "MRI views",
       x: 1500,
       y: 130,
