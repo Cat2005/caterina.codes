@@ -81,6 +81,7 @@ const projects: PageSpec = {
       id: "dissertation",
       m: { x: 40, y: 920, w: 180, h: 180 },
       tag: "Dissertation",
+      href: "https://github.com/Cat2005/XAI-Brain-Diagnosis",
       x: 1500,
       y: 760,
       w: 287,
