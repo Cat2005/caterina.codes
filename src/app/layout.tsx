@@ -9,9 +9,19 @@ import "./globals.css";
 const title = "cat :)";
 const description = "i like making fun websites and i care a lot about design.";
 
+// Scrapers ignore a relative og:image, so this has to be absolute -- and it has to
+// point at the deployment being shared, or a preview link advertises an image that
+// only exists in production. Vercel supplies both hosts, so the canonical domain
+// (apex vs www) never has to be hardcoded here.
+const host =
+  process.env.VERCEL_ENV === "production"
+    ? process.env.VERCEL_PROJECT_PRODUCTION_URL
+    : process.env.VERCEL_URL;
+
+const site = process.env.NEXT_PUBLIC_SITE_URL ?? (host ? `https://${host}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  // absolute urls for the link preview image; relative ones are ignored by scrapers
-  metadataBase: new URL("https://caterina.codes"),
+  metadataBase: new URL(site),
   title,
   description,
   openGraph: { title, description, url: "/", siteName: title, type: "website" },
