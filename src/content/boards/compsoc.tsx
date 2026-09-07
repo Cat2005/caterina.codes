@@ -50,7 +50,7 @@ const compsoc: PageSpec = {
     {
       id: "compsoc-sigs",
       m: { x: 430, y: 40, w: 115, h: 250 },
-      tag: "SIGs on mobile",
+      tag: "Swipe cards",
       x: 1660,
       y: 120,
       w: 220,
