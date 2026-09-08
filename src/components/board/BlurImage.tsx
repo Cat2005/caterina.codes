@@ -50,6 +50,7 @@ export default function BlurImage({ src, alt, width, height, blur, className, st
         width={width}
         height={height}
         loading={loading}
+        draggable={false}
         onLoad={onLoad}
         onTransitionEnd={() => setDone(true)}
         className={`${s.img} ${loaded ? s.loaded : ""} ${done ? s.instant : ""}`}

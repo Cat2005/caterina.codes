@@ -150,6 +150,7 @@ export default function CursorButton() {
         src={cursorSrc(index)}
         alt=""
         className={s.cursorImage}
+        draggable={false}
         onAnimationEnd={() => {
           if (imageRef.current) delete imageRef.current.dataset.pop;
         }}

@@ -26,5 +26,5 @@ export default function CursorFollower() {
     };
   }, []);
 
-  return <img ref={ref} src={cursorSrc(index)} alt="" className={s.cursor} />;
+  return <img ref={ref} src={cursorSrc(index)} alt="" className={s.cursor} draggable={false} />;
 }
