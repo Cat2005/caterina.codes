@@ -5,10 +5,30 @@ import type { ReactNode } from "react";
 import { playBump } from "@/lib/sounds";
 import { createBody, step, TUNING } from "./physics";
 import type { Body, Bounds } from "./physics";
+import { applyScale, beginResize, targetScale } from "./scaling";
 
-type Held = { body: Body; sx: number; sy: number; ox: number; oy: number; dragging: boolean };
+type Corner = { name: string; ax: number; ay: number };
+type Held = { body: Body; sx: number; sy: number; ox: number; oy: number; s0: number; corner?: Corner; outside: boolean; dragging: boolean };
+
+const CORNERS: Corner[] = [
+  { name: "tl", ax: 1, ay: 1 },
+  { name: "tr", ax: 0, ay: 1 },
+  { name: "bl", ax: 1, ay: 0 },
+  { name: "br", ax: 0, ay: 0 },
+];
 
 const scaleOf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale")) || 1;
+
+function cornerAt(el: HTMLElement, x: number, y: number) {
+  const r = el.getBoundingClientRect();
+  if (!r.width) return;
+  const z = TUNING.cornerZone;
+  return CORNERS.find((c) => {
+    const cx = c.ax ? r.left : r.right;
+    const cy = c.ay ? r.top : r.bottom;
+    return Math.abs(x - cx) <= z && Math.abs(y - cy) <= z;
+  });
+}
 
 export default function PhysicsLayer({ className, children }: { className: string; children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,6 +50,7 @@ export default function PhysicsLayer({ className, children }: { className: strin
     let lastBump = 0;
     let homing = false;
     let suppress = false;
+    let hovered: HTMLElement | undefined;
 
     const measure = () => {
       scale = scaleOf();
@@ -38,23 +59,17 @@ export default function PhysicsLayer({ className, children }: { className: strin
       bounds = { left: 0, top: padTop, right: r.width / scale, bottom: r.height / scale };
       for (const b of bodies) {
         const br = b.el.getBoundingClientRect();
-        b.w = br.width / scale;
-        b.h = br.height / scale;
+        b.w0 = br.width / scale / b.s;
+        b.h0 = br.height / scale / b.s;
         b.bx = (br.left - r.left) / scale - b.x;
         b.by = (br.top - r.top) / scale - b.y;
-        b.boxes = [{ x: 0, y: 0, w: b.w, h: b.h }];
         const tag = b.fixed ? undefined : Array.from(b.el.querySelectorAll(":scope > span")).find((el) => el.textContent);
-        if (tag) {
-          const tr = tag.getBoundingClientRect();
-          const y = (tr.top - br.top) / scale;
-          if (y < 0) b.boxes.push({ x: (tr.left - br.left) / scale, y, w: tr.width / scale, h: -y });
-        }
-        b.ext = {
-          l: Math.min(...b.boxes.map((k) => k.x)),
-          t: Math.min(...b.boxes.map((k) => k.y)),
-          r: Math.max(...b.boxes.map((k) => k.x + k.w)),
-          b: Math.max(...b.boxes.map((k) => k.y + k.h)),
-        };
+        const tr = tag?.getBoundingClientRect();
+        b.tag =
+          tr && tr.bottom <= br.top
+            ? { x: (tr.left - br.left) / scale / b.s, gap: (br.top - tr.bottom) / scale / b.s, w: tr.width / scale, h: tr.height / scale }
+            : undefined;
+        applyScale(b);
       }
     };
 
@@ -66,6 +81,19 @@ export default function PhysicsLayer({ className, children }: { className: strin
       });
     };
 
+    const findCorner = (x: number, y: number) => {
+      for (let i = order.length - 1; i >= 0; i--) {
+        const corner = cornerAt(order[i].el, x, y);
+        if (corner) return { body: order[i], corner };
+      }
+    };
+
+    const hover = (el?: HTMLElement, corner?: Corner) => {
+      if (hovered && hovered !== el) delete hovered.dataset.corner;
+      hovered = el;
+      if (el && corner) el.dataset.corner = corner.name;
+    };
+
     const tick = (t: number) => {
       const dt = Math.max(1 / 240, Math.min((t - last) / 1000, 1 / 30));
       last = t;
@@ -73,6 +101,7 @@ export default function PhysicsLayer({ className, children }: { className: strin
       for (const b of boards) {
         b.el.style.setProperty("--px", `${b.x}px`);
         b.el.style.setProperty("--py", `${b.y}px`);
+        b.el.style.setProperty("--sz", `${b.s}`);
       }
       if (impacts.length && t - lastBump >= TUNING.bumpGap * 1000) {
         lastBump = t;
@@ -93,8 +122,9 @@ export default function PhysicsLayer({ className, children }: { className: strin
 
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
-      const el = (e.target as Element).closest<HTMLElement>("[data-body]");
-      const body = el && byEl.get(el);
+      const hit = e.pointerType === "mouse" ? findCorner(e.clientX, e.clientY) : undefined;
+      const el = hit ? hit.body.el : (e.target as Element).closest<HTMLElement>("[data-body]");
+      const body = hit ? hit.body : el && byEl.get(el);
       if (!el || !body || body.held) return;
       measure();
       body.held = true;
@@ -102,8 +132,14 @@ export default function PhysicsLayer({ className, children }: { className: strin
       body.ty = body.y;
       body.vx = 0;
       body.vy = 0;
+      if (hit) {
+        beginResize(body, hit.corner.ax, hit.corner.ay);
+        el.style.setProperty("--origin", "0 0");
+        hover(el, hit.corner);
+      }
       raise(body);
-      held.set(e.pointerId, { body, sx: e.clientX, sy: e.clientY, ox: body.x, oy: body.y, dragging: false });
+      const outside = !el.contains(e.target as Node);
+      held.set(e.pointerId, { body, sx: e.clientX, sy: e.clientY, ox: body.x, oy: body.y, s0: body.s, corner: hit?.corner, outside, dragging: false });
       suppress = false;
       e.preventDefault();
       wake();
@@ -118,8 +154,14 @@ export default function PhysicsLayer({ className, children }: { className: strin
         h.dragging = true;
         h.body.el.setPointerCapture(e.pointerId);
       }
-      h.body.tx = h.ox + (e.clientX - h.sx) / scale;
-      h.body.ty = h.oy + (e.clientY - h.sy) / scale;
+      const dx = (e.clientX - h.sx) / scale;
+      const dy = (e.clientY - h.sy) / scale;
+      if (h.corner) {
+        h.body.ts = targetScale(h.body, h.s0, dx, dy);
+      } else {
+        h.body.tx = h.ox + dx;
+        h.body.ty = h.oy + dy;
+      }
       wake();
     };
 
@@ -128,14 +170,21 @@ export default function PhysicsLayer({ className, children }: { className: strin
       if (!h) return;
       held.delete(e.pointerId);
       h.body.held = false;
-      if (h.dragging) {
-        suppress = true;
-        const k = reduce.matches ? 0 : TUNING.throw;
-        h.body.vx *= k;
-        h.body.vy *= k;
-      }
+      h.body.resizing = false;
+      if (h.dragging || h.outside) suppress = true;
+      const k = h.dragging && !h.corner && !reduce.matches ? TUNING.throw : 0;
+      h.body.vx *= k;
+      h.body.vy *= k;
       wake();
     };
+
+    const onHover = (e: PointerEvent) => {
+      if (held.size || e.pointerType !== "mouse") return;
+      const hit = findCorner(e.clientX, e.clientY);
+      hover(hit?.body.el, hit?.corner);
+    };
+
+    const onLeave = () => hover();
 
     const onClick = (e: MouseEvent) => {
       if (!suppress) return;
@@ -150,6 +199,8 @@ export default function PhysicsLayer({ className, children }: { className: strin
     };
 
     root.addEventListener("pointerdown", onDown);
+    root.addEventListener("pointermove", onHover);
+    root.addEventListener("pointerleave", onLeave);
     root.addEventListener("click", onClick, true);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
@@ -158,6 +209,8 @@ export default function PhysicsLayer({ className, children }: { className: strin
     return () => {
       cancelAnimationFrame(raf);
       root.removeEventListener("pointerdown", onDown);
+      root.removeEventListener("pointermove", onHover);
+      root.removeEventListener("pointerleave", onLeave);
       root.removeEventListener("click", onClick, true);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
@@ -167,7 +220,7 @@ export default function PhysicsLayer({ className, children }: { className: strin
   }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} data-canvas="">
       {children}
     </div>
   );

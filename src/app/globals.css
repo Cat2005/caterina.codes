@@ -16,6 +16,12 @@
   initial-value: 1390px;
 }
 
+@property --corner-pop {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 :root {
   --bg: #fffcfa;
   --dot: #eee9e2;
@@ -77,6 +83,11 @@
     --scale: clamp(0.3, tan(atan2(min(100vw / 620, 100vh / 1380), 1px)), 1);
     --vwd: calc(100vw / var(--scale));
     --vhd: calc(100vh / var(--scale));
+  }
+
+  :root:has([data-canvas]) {
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 }
 
