@@ -77,6 +77,7 @@ export default function Board(props: BoardProps) {
     <div
       className={className}
       style={style}
+      data-body=""
       data-hero={hero ? "" : undefined}
       data-lead={lead ? "" : undefined}
       data-plain={plain ? "" : undefined}

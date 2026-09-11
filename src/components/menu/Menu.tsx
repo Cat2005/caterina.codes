@@ -16,7 +16,7 @@ const social: { href: string; label: string; icon: IconName }[] = [
 
 export default function Menu() {
   return (
-    <aside className={s.menu}>
+    <aside className={s.menu} data-obstacle="">
       <CursorButton />
       <p className={s.name}>Cat</p>
       <p className={s.sub}>Personal website</p>

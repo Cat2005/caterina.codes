@@ -16,6 +16,8 @@ const closeSound: Sound = {
   sweep: { from: 700, to: 370, attack: 0.012, hold: 0.09, end: 0.2, gain: 0.3 },
 };
 
+const bumpSound = { from: 680, to: 1100, drop: 1.3, decay: 0.02, gain: 0.4, floor: 0.35 };
+
 let ctx: AudioContext | undefined;
 let reverb: ConvolverNode | undefined;
 
@@ -93,6 +95,24 @@ function play({ click, sweep }: Sound) {
   c.stop(t + click.decay * 8);
 
   voice(ac, out, sweep, t);
+}
+
+export function playBump(strength: number) {
+  const ac = context();
+  if (!ac) return;
+  const t = ac.currentTime + 0.005;
+  const { out } = bus(ac);
+  const { from, to, drop, decay, gain, floor } = bumpSound;
+  const freq = from + (to - from) * strength;
+  const o = ac.createOscillator();
+  o.frequency.setValueAtTime(freq * drop, t);
+  o.frequency.exponentialRampToValueAtTime(freq, t + decay);
+  const g = ac.createGain();
+  g.gain.setValueAtTime(gain * (floor + (1 - floor) * strength), t);
+  g.gain.setTargetAtTime(0, t, decay);
+  o.connect(g).connect(out);
+  o.start(t);
+  o.stop(t + decay * 8);
 }
 
 export const playOpen = () => play(openSound);

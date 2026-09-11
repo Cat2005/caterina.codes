@@ -20,6 +20,7 @@ type Props = {
 export default function BoardLink({ href, external, shared, lead, plain, post, off, className, style, children }: Props) {
   const marker = shared ? "" : undefined;
   const flags = {
+    "data-body": "",
     "data-lead": lead ? "" : undefined,
     "data-plain": plain ? "" : undefined,
     "data-post": post ? "" : undefined,

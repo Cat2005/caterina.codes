@@ -26,7 +26,7 @@ export default function BackLink({ href, fx, fy, w, h, dy, p, m }: Placed & { hr
     if (goBack()) e.preventDefault();
   };
   return (
-    <Link href={href} className={s.back} style={style} data-back="" onClick={onClick}>
+    <Link href={href} className={s.back} style={style} data-back="" data-obstacle="" onClick={onClick}>
       &lt; back
     </Link>
   );

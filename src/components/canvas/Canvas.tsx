@@ -1,6 +1,7 @@
 import Board from "@/components/board/Board";
 import BackArea from "./BackArea";
 import BackLink from "./BackLink";
+import PhysicsLayer from "./PhysicsLayer";
 import { layoutBoards } from "./layout";
 import { getPostImages } from "@/lib/posts";
 import type { PageSpec } from "./types";
@@ -11,7 +12,7 @@ export default function Canvas({ spec }: { spec: PageSpec }) {
   const hero = spec.boards.find((b) => b.hero);
   return (
     <main>
-      <div className={s.canvas}>
+      <PhysicsLayer className={s.canvas}>
         {spec.back && <BackArea href={spec.back} />}
         {spec.back && hero && (
           <BackLink href={spec.back} {...placed.get(hero.id)!} />
@@ -38,7 +39,7 @@ export default function Canvas({ spec }: { spec: PageSpec }) {
             {b.content}
           </Board>
         ))}
-      </div>
+      </PhysicsLayer>
     </main>
   );
 }
