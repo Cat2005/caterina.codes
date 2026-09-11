@@ -20,9 +20,13 @@ export const TUNING = {
   touchThreshold: 10,
 };
 
+export type Box = { x: number; y: number; w: number; h: number };
+
 export type Body = {
   el: HTMLElement;
   fixed: boolean;
+  boxes: Box[];
+  ext: { l: number; t: number; r: number; b: number };
   x: number;
   y: number;
   px: number;
@@ -33,7 +37,6 @@ export type Body = {
   by: number;
   w: number;
   h: number;
-  top: number;
   held: boolean;
   tx: number;
   ty: number;
@@ -48,6 +51,8 @@ export type Options = { reduced: boolean; homing: boolean };
 export const createBody = (el: HTMLElement, fixed = false): Body => ({
   el,
   fixed,
+  boxes: [],
+  ext: { l: 0, t: 0, r: 0, b: 0 },
   x: 0,
   y: 0,
   px: 0,
@@ -58,7 +63,6 @@ export const createBody = (el: HTMLElement, fixed = false): Body => ({
   by: 0,
   w: 0,
   h: 0,
-  top: 0,
   held: false,
   tx: 0,
   ty: 0,
@@ -109,14 +113,16 @@ function integrate(b: Body, dt: number, o: Options) {
   b.y += b.vy * dt;
 }
 
-function collide(a: Body, b: Body, e: number, now: number, impacts: number[]) {
-  const halfW = (a.w + b.w) / 2 + TUNING.gap;
-  const halfH = (a.h + b.h) / 2 + TUNING.gap;
-  const dx = b.bx + b.x + b.w / 2 - (a.bx + a.x + a.w / 2);
-  const dy = b.by + b.y + b.h / 2 - (a.by + a.y + a.h / 2);
+function resolve(a: Body, ba: Box, b: Body, bb: Box, e: number, now: number, impacts: number[]) {
+  const halfW = (ba.w + bb.w) / 2 + TUNING.gap;
+  const halfH = (ba.h + bb.h) / 2 + TUNING.gap;
+  const ox = b.bx + bb.x + bb.w / 2 - (a.bx + ba.x + ba.w / 2);
+  const oy = b.by + bb.y + bb.h / 2 - (a.by + ba.y + ba.h / 2);
+  const dx = ox + b.x - a.x;
+  const dy = oy + b.y - a.y;
   if (Math.abs(dx) >= halfW || Math.abs(dy) >= halfH) return;
-  const pdx = b.bx + b.px + b.w / 2 - (a.bx + a.px + a.w / 2);
-  const pdy = b.by + b.py + b.h / 2 - (a.by + a.py + a.h / 2);
+  const pdx = ox + b.px - a.px;
+  const pdy = oy + b.py - a.py;
   const sepX = Math.abs(pdx) >= halfW - 0.01;
   const sepY = Math.abs(pdy) >= halfH - 0.01;
   let nx = 0;
@@ -159,12 +165,18 @@ function collide(a: Body, b: Body, e: number, now: number, impacts: number[]) {
   }
 }
 
+function collide(a: Body, b: Body, e: number, now: number, impacts: number[]) {
+  for (const ba of a.boxes) {
+    for (const bb of b.boxes) resolve(a, ba, b, bb, e, now, impacts);
+  }
+}
+
 function walls(b: Body, bounds: Bounds, e: number, now: number, impacts: number[]) {
   if (b.fixed) return;
-  const minX = Math.min(0, bounds.left + TUNING.edge - b.bx);
-  const maxX = Math.max(0, bounds.right - TUNING.edge - b.w - b.bx);
-  const minY = Math.min(0, bounds.top + b.top - b.by);
-  const maxY = Math.max(0, bounds.bottom - TUNING.edge - b.h - b.by);
+  const minX = Math.min(0, bounds.left + TUNING.edge - b.bx - b.ext.l);
+  const maxX = Math.max(0, bounds.right - TUNING.edge - b.bx - b.ext.r);
+  const minY = Math.min(0, bounds.top + TUNING.edge - b.by - b.ext.t);
+  const maxY = Math.max(0, bounds.bottom - TUNING.edge - b.by - b.ext.b);
   let touching = 0;
   let hit = 0;
   if (b.x < minX) {

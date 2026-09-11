@@ -42,8 +42,19 @@ export default function PhysicsLayer({ className, children }: { className: strin
         b.h = br.height / scale;
         b.bx = (br.left - r.left) / scale - b.x;
         b.by = (br.top - r.top) / scale - b.y;
-        const tag = Array.from(b.el.querySelectorAll(":scope > span")).find((el) => el.textContent);
-        b.top = TUNING.edge + (tag ? Math.max(0, br.top - tag.getBoundingClientRect().top) / scale : 0);
+        b.boxes = [{ x: 0, y: 0, w: b.w, h: b.h }];
+        const tag = b.fixed ? undefined : Array.from(b.el.querySelectorAll(":scope > span")).find((el) => el.textContent);
+        if (tag) {
+          const tr = tag.getBoundingClientRect();
+          const y = (tr.top - br.top) / scale;
+          if (y < 0) b.boxes.push({ x: (tr.left - br.left) / scale, y, w: tr.width / scale, h: -y });
+        }
+        b.ext = {
+          l: Math.min(...b.boxes.map((k) => k.x)),
+          t: Math.min(...b.boxes.map((k) => k.y)),
+          r: Math.max(...b.boxes.map((k) => k.x + k.w)),
+          b: Math.max(...b.boxes.map((k) => k.y + k.h)),
+        };
       }
     };
 
