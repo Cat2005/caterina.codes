@@ -60,6 +60,15 @@ function resolve(a: Body, ba: Box, b: Body, bb: Box, e: number, now: number, imp
   a.vy -= j * ia * ny;
   b.vx += j * ib * nx;
   b.vy += j * ib * ny;
+  const tx = -ny;
+  const ty = nx;
+  const rvt = (b.vx - a.vx) * tx + (b.vy - a.vy) * ty;
+  const maxT = TUNING.contactFriction * j;
+  const jt = Math.max(-maxT, Math.min(maxT, -rvt / total));
+  a.vx -= jt * ia * tx;
+  a.vy -= jt * ia * ty;
+  b.vx += jt * ib * tx;
+  b.vy += jt * ib * ty;
   if (canBump(a, -rv, now) && canBump(b, -rv, now)) {
     a.lastBump = now;
     b.lastBump = now;
@@ -72,6 +81,8 @@ export function collide(a: Body, b: Body, e: number, now: number, impacts: numbe
     for (const bb of b.boxes) resolve(a, ba, b, bb, e, now, impacts);
   }
 }
+
+const rub = (v: number, max: number) => (Math.abs(v) <= max ? 0 : v - Math.sign(v) * max);
 
 const lo = (raw: number, home: number) => (home > 0 ? Math.min(raw, 0) : raw);
 const hi = (raw: number, home: number) => (home < 0 ? Math.max(raw, 0) : raw);
@@ -88,11 +99,14 @@ export function walls(b: Body, bounds: Bounds, e: number, now: number, impacts: 
   const maxY = hi(bottom - b.ext.b, bottom - b.home.b);
   let touching = 0;
   let hit = 0;
+  let jx = 0;
+  let jy = 0;
   if (b.x < minX) {
     b.x = minX;
     touching |= LEFT;
     if (b.vx < 0) {
       hit = Math.max(hit, -b.vx);
+      jx = -b.vx * (1 + e);
       b.vx = -b.vx * e;
     }
   } else if (b.x > maxX) {
@@ -100,6 +114,7 @@ export function walls(b: Body, bounds: Bounds, e: number, now: number, impacts: 
     touching |= RIGHT;
     if (b.vx > 0) {
       hit = Math.max(hit, b.vx);
+      jx = b.vx * (1 + e);
       b.vx = -b.vx * e;
     }
   }
@@ -108,6 +123,7 @@ export function walls(b: Body, bounds: Bounds, e: number, now: number, impacts: 
     touching |= UP;
     if (b.vy < 0) {
       hit = Math.max(hit, -b.vy);
+      jy = -b.vy * (1 + e);
       b.vy = -b.vy * e;
     }
   } else if (b.y > maxY) {
@@ -115,9 +131,12 @@ export function walls(b: Body, bounds: Bounds, e: number, now: number, impacts: 
     touching |= DOWN;
     if (b.vy > 0) {
       hit = Math.max(hit, b.vy);
+      jy = b.vy * (1 + e);
       b.vy = -b.vy * e;
     }
   }
+  if (jx) b.vy = rub(b.vy, TUNING.wallFriction * jx);
+  if (jy) b.vx = rub(b.vx, TUNING.wallFriction * jy);
   b.pinned |= touching;
   const fresh = touching & ~b.walls;
   b.walls = touching;

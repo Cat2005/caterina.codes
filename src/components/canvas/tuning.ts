@@ -2,6 +2,8 @@ export const TUNING = {
   friction: 1.6,
   restitution: 0.3,
   wallRestitution: 0.3,
+  contactFriction: 0.5,
+  wallFriction: 0.3,
   follow: 9,
   throw: 0.55,
   maxSpeed: 2500,
